@@ -26,7 +26,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${outfit.className} ${quantico.variable} ${outfit.variable} ${brunoAceSC.variable} bg-bg-light text-text-dark antialiased`}>
+      <body suppressHydrationWarning className={`${outfit.className} ${quantico.variable} ${outfit.variable} ${brunoAceSC.variable} bg-white text-[#1d1d1f] antialiased`}>
         <ConditionalLayout>
           {children}
         </ConditionalLayout>

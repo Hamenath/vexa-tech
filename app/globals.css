@@ -1,40 +1,69 @@
 @import "tailwindcss";
 
 @theme {
-  --color-brand-accent: #0f62fe;
-  --color-brand-accent-hover: #0043ce;
-  --color-brand-dark: #09090b;
-  
-  --color-bg-light: #fafafa;
-  --color-bg-offwhite: #f4f4f5;
-  --color-bg-dark: #09090b;
-  
-  --color-text-dark: #09090b;
-  --color-text-muted: #52525b;
-  --color-text-light: #ffffff;
+  /* ── Apple Inspired Light Palette ─────────────────────────── */
+  --color-brand-accent:       #0071e3;      /* Apple blue */
+  --color-brand-accent-2:     #0077ed;      /* subtle variation */
+  --color-brand-accent-hover: #0071e3;
+  --color-brand-dark:         #111111;
 
-  --color-border-light: #e4e4e7;
-  
+  /* ── Backgrounds ──────────────────────── */
+  --color-bg-base:    #ffffff;
+  --color-bg-surface: #f5f5f7;
+  --color-bg-card:    #ffffff;
+  --color-bg-raised:  #ffffff;
+  --color-bg-light:   #f5f5f7;
+  --color-bg-offwhite:#fbfbfd;
+
+  /* ── Text ─────────────────────────────────── */
+  --color-text-primary: #1d1d1f;
+  --color-text-muted:   #6e6e73;
+  --color-text-faint:   #86868b;
+  --color-text-dark:    #1d1d1f;
+  --color-text-light:   #ffffff;
+
+  /* ── Borders ─────────────────────────────── */
+  --color-border-subtle: rgba(0, 0, 0, 0.08);
+  --color-border-card:   rgba(0, 0, 0, 0.12);
+  --color-border-light:  rgba(0, 0, 0, 0.05);
+
+  /* ── Spacing ─────────────────────────────── */
   --spacing-section-py: clamp(5rem, 12vh, 12rem);
-  
-  --font-sans: var(--font-outfit), ui-sans-serif, system-ui, sans-serif;
-  --font-quantico: var(--font-quantico), ui-sans-serif, system-ui, sans-serif;
 
-  @keyframes shiny-text {
-    0%, 90%, 100% {
-      background-position: calc(-100% - var(--shiny-width)) 0;
-    }
-    30%, 60% {
-      background-position: calc(100% + var(--shiny-width)) 0;
-    }
+  /* ── Fonts ───────────────────────────────── */
+  --font-sans:     var(--font-outfit),    ui-sans-serif, system-ui, sans-serif;
+  --font-quantico: var(--font-quantico),  ui-sans-serif, system-ui, sans-serif;
+
+  /* ── Keyframes ───────────────────────────── */
+  @keyframes floatUp {
+    0%, 100% { transform: translateY(0px); }
+    50%       { transform: translateY(-8px); }
   }
 
-  --animate-shiny-text: shiny-text 8s infinite;
+  @keyframes floatDown {
+    0%, 100% { transform: translateY(0px); }
+    50%       { transform: translateY(8px); }
+  }
+
+  @keyframes scrollBob {
+    0%, 100% { transform: translateY(0px); }
+    50%       { transform: translateY(6px); }
+  }
+
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  --animate-float-up:    floatUp 4s ease-in-out infinite;
+  --animate-float-down:  floatDown 5s ease-in-out infinite;
+  --animate-scroll-bob:  scrollBob 1.5s ease-in-out infinite;
 }
 
+/* ── Root ──────────────────────────────────────────────── */
 :root {
-  --background: var(--color-bg-light);
-  --foreground: var(--color-text-dark);
+  --background: #ffffff;
+  --foreground: #1d1d1f;
   --navbar-height: 80px;
 }
 
@@ -43,103 +72,130 @@ html {
 }
 
 body {
-  background-color: var(--color-bg-light);
-  color: var(--color-text-dark);
+  background-color: #ffffff;
+  color: #1d1d1f;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
 }
 
-/* Base Headings */
 h1, h2, h3, h4, h5, h6 {
-  letter-spacing: -0.02em;
+  letter-spacing: -0.015em;
+  font-weight: 700;
 }
 
-/* Light Theme Card */
-.light-card {
+/* ── Utility Classes ──────────────────────────────────── */
+
+/* Apple-style gradient text (very subtle) */
+.text-gradient-primary {
+  background: linear-gradient(135deg, #1d1d1f 0%, #434343 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-gradient-blue {
+  background: linear-gradient(135deg, #0071e3 0%, #0077ed 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Apple-style cards */
+.glass-card {
   position: relative;
-  background: var(--color-bg-light);
+  background: #ffffff;
   border-radius: 20px;
-  border: 1px solid var(--color-border-light);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
   overflow: hidden;
   transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
-.light-card:hover {
+.glass-card:hover {
+  border-color: rgba(0, 0, 0, 0.15);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
   transform: translateY(-2px);
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.04);
-  border-color: #d4d4d8; /* zinc-300 */
 }
 
-/* Hero Section Dark Card - deprecated by light theme */
-.dark-glass-card {
-  position: relative;
-  background: rgba(255, 255, 255, 0.9);
-  backdrop-filter: blur(24px);
-  border-radius: 24px;
-  border: 1px solid rgba(0, 0, 0, 0.05);
-  color: #0f172a;
+/* Section tag badge */
+.section-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  border-radius: 9999px;
+  background: #f5f5f7;
+  color: #1d1d1f;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
 }
 
-/* Typography Utilities */
-.text-gradient-primary {
-  background: linear-gradient(135deg, #a855f7 0%, #ec4899 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+/* Premium button */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 28px;
+  border-radius: 9999px;
+  background: #0071e3;
+  color: #fff;
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: -0.01em;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 
-.text-gradient-dark {
-  background: linear-gradient(110deg, #0f172a 15%, #334155 85%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+.btn-primary:hover {
+  background: #0077ed;
+  transform: translateY(-1px);
 }
 
-/* Scroll Offset for Anchor Links */
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 28px;
+  border-radius: 9999px;
+  background: transparent;
+  color: #0071e3;
+  font-weight: 600;
+  font-size: 14px;
+  border: 1px solid rgba(0, 113, 227, 0.3);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-ghost:hover {
+  background: rgba(0, 113, 227, 0.05);
+  border-color: #0071e3;
+}
+
+/* Section scroll offset */
 section {
   scroll-margin-top: var(--navbar-height);
 }
 
-/* Noise overlay for hero */
-.noise-overlay {
-  position: absolute;
-  inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-  opacity: 0.03;
-  mix-blend-mode: overlay;
-  pointer-events: none;
-}
-
-/* Lenis Scrollbar */
-::-webkit-scrollbar {
-  width: 10px;
-}
-::-webkit-scrollbar-track {
-  background: var(--color-bg-offwhite);
-}
+/* ── Scrollbar ───────────────────────────────────── */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: #ffffff; }
 ::-webkit-scrollbar-thumb {
-  background: #cbd5e1;
-  border-radius: 6px;
-  border: 2px solid var(--color-bg-offwhite);
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  border: 2px solid #ffffff;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #94a3b8;
+  background: rgba(0, 0, 0, 0.3);
 }
 
-html.lenis, html.lenis body {
-  height: auto;
-}
-.lenis.lenis-smooth {
-  scroll-behavior: auto !important;
-}
-.lenis.lenis-smooth [data-lenis-prevent] {
-  overscroll-behavior: contain;
-}
-.lenis.lenis-stopped {
-  overflow: hidden;
-}
-.lenis.lenis-smooth iframe {
-  pointer-events: none;
-}
+/* ── Lenis ───────────────────────────────────────── */
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+.lenis.lenis-stopped { overflow: hidden; }
+.lenis.lenis-smooth iframe { pointer-events: none; }

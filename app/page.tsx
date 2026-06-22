@@ -1,26 +1,18 @@
 import Hero from "./components/Hero";
-import About from "./components/About";
-import Services from "./components/Services";
-import Process from "./components/Process";
-import WhyChooseUs from "./components/WhyChooseUs";
-import Team from "./components/Team";
-import Contact from "./components/Contact";
+import AboutPreview from "./components/AboutPreview";
+import CTASection from "./components/CTASection";
 import ScrollToTop from "./components/ScrollToTop";
-import CinematicLandingHero from "@/components/ui/cinematic-landing-hero";
+import PageTransition from "./components/PageTransition";
 
-// updated
 export default function Home() {
   return (
-    <main className="min-h-screen bg-bg-light text-text-dark selection:bg-brand-accent/30 relative">
-      <Hero />
-      <CinematicLandingHero />
-      <About />
-      <Services />
-      <Process />
-      <WhyChooseUs />
-      <Team />
-      <Contact />
-      <ScrollToTop />
-    </main>
+    <PageTransition>
+      <main className="min-h-screen bg-white text-[#1d1d1f] selection:bg-blue-500/10 selection:text-[#0071e3] relative">
+        <Hero />
+        <AboutPreview />
+        <CTASection />
+        <ScrollToTop />
+      </main>
+    </PageTransition>
   );
 }

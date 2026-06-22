@@ -2,105 +2,141 @@
 
 import { useRef } from "react";
 import Image from "next/image";
-import { useGSAP } from "@gsap/react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Link from "next/link";
+import { motion, useInView } from "framer-motion";
+import { ArrowUpRight } from "lucide-react";
 
-gsap.registerPlugin(ScrollTrigger);
+const values = [
+  "Strategic Design Thinking",
+  "Advanced Web Architecture",
+  "Brand-Focused Execution",
+  "Scalable Digital Systems",
+];
 
 export default function About() {
   const containerRef = useRef<HTMLElement>(null);
-  const textRef = useRef<HTMLDivElement>(null);
-  const visualRef = useRef<HTMLDivElement>(null);
-
-  useGSAP(() => {
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: containerRef.current,
-        start: "top 75%",
-      }
-    });
-
-    tl.from(textRef.current, {
-      opacity: 0,
-      y: 30,
-      duration: 0.8,
-      ease: "power3.out"
-    })
-    .from(visualRef.current, {
-      opacity: 0,
-      x: 30,
-      duration: 0.8,
-      ease: "power3.out"
-    }, "-=0.4");
-  }, { scope: containerRef });
+  const isInView = useInView(containerRef, { once: true, margin: "-100px" });
 
   return (
-    <section id="about" ref={containerRef} className="py-20 md:py-24 bg-zinc-50 relative overflow-hidden">
-      
+    <section
+      id="about"
+      ref={containerRef}
+      className="relative py-32 md:py-40 bg-white overflow-hidden"
+    >
+      {/* ── Minimal background ── */}
+      <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-slate-50 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-blue-50/30 rounded-full blur-[100px] pointer-events-none" />
+
       <div className="max-w-7xl mx-auto px-6 md:px-8 lg:px-12 relative z-10">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-          
-          {/* Left: Text Content */}
-          <div ref={textRef} className="flex flex-col justify-center lg:pr-8">
-            <h3 className="text-brand-accent font-bold tracking-widest uppercase text-xs mb-4">About Vexa Tech</h3>
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-8 text-neutral-900 leading-[1.1] tracking-tight border-l-4 border-brand-accent pl-5 -ml-6">
-              We architect <span className="text-gradient-primary">digital</span> ecosystems
+        <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+
+          {/* ── LEFT: Text ── */}
+          <motion.div
+            initial={{ opacity: 0, x: -40 }}
+            animate={isInView ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            className="flex flex-col"
+          >
+            <div className="section-tag mb-8">
+              About Vexa Tech
+            </div>
+
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-8 text-[#1d1d1f] leading-[1.1] tracking-tight">
+              We architect{" "}
+              <span className="text-[#0071e3]">digital</span>{" "}
+              ecosystems
             </h2>
-            <div className="space-y-6 text-zinc-500 text-lg leading-relaxed font-light">
+
+            <div className="space-y-6 text-[#6e6e73] text-lg leading-relaxed font-light mb-12">
               <p>
-                We exist to elevate brands. VEXA TECH is an elite digital engineering firm specialized in high-performance web architecture, strategic UI/UX design, and scalable business systems.
+                VEXA TECH is an elite digital engineering firm specialized in 
+                high-performance web architecture, strategic UI/UX design, 
+                and scalable business systems.
               </p>
               <p>
-                We do not just build websites—we craft premium digital experiences that command authority, optimize workflows, and drive definitive market growth.
+                We build premium digital experiences that command authority, 
+                optimize workflows, and drive definitive market growth.
               </p>
             </div>
-            
-            {/* Value Points */}
-            <div className="grid sm:grid-cols-2 gap-x-6 gap-y-4 mt-10">
-              {[
-                "Strategic Design Thinking",
-                "Advanced Web Architecture",
-                "Brand-Focused Execution",
-                "Scalable Digital Systems"
-              ].map((point, index) => (
-                <div 
-                  key={index} 
-                  className="relative flex items-center gap-4 px-4 py-3 rounded-lg overflow-hidden group cursor-pointer transition-all duration-300 -ml-4"
+
+            {/* Value points */}
+            <div className="grid sm:grid-cols-2 gap-3">
+              {values.map((point, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={isInView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ duration: 0.5, delay: 0.3 + i * 0.1 }}
+                  className="group flex items-center gap-4 px-5 py-4 rounded-2xl border border-slate-100 bg-white hover:border-slate-200 hover:shadow-sm transition-all duration-300 cursor-default"
                 >
-                  {/* Sliding Blue Background */}
-                  <div className="absolute inset-0 bg-brand-accent translate-x-[-102%] group-hover:translate-x-0 transition-transform duration-500 ease-out z-0" />
-                  
-                  {/* Content (Z-indexed above background) */}
-                  <div className="w-1.5 h-6 bg-zinc-200 transition-all duration-300 rounded-full relative z-10 group-hover:bg-white" />
-                  <span className="text-neutral-800 font-semibold text-sm tracking-wide relative z-10 group-hover:text-white transition-colors duration-300">
+                  <div className="w-1.5 h-1.5 rounded-full bg-[#0071e3]" />
+                  <span className="text-[15px] font-medium text-[#1d1d1f]">
                     {point}
                   </span>
-                </div>
+                </motion.div>
               ))}
             </div>
-          </div>
 
-          {/* Right: Visual Element */}
-          <div ref={visualRef} className="relative w-full max-w-[500px] aspect-square rounded-4xl overflow-hidden shadow-[0_20px_60px_rgba(0,0,0,0.05)] ring-1 ring-zinc-200/60 group bg-white mx-auto lg:ml-auto">
-            
-            {/* Branded Logo Illustration */}
-            <div className="absolute inset-0 flex items-center justify-center p-20 bg-zinc-50 transition-all duration-300 group-hover:bg-zinc-100">
-              <div 
-                className="relative w-full h-full transform transition-all duration-1000 group-hover:scale-110"
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={isInView ? { opacity: 1 } : {}}
+              transition={{ delay: 0.8 }}
+              className="mt-10"
+            >
+              <Link
+                href="/contact"
+                className="inline-flex items-center gap-1.5 text-[15px] font-semibold text-[#0071e3] hover:underline group transition-all duration-300"
               >
-                <Image 
-                  src="/vexatechlogo.svg"
-                  alt="VEXA TECH Logo"
-                  fill
-                  className="object-contain"
-                />
+                Work with us
+                <ArrowUpRight size={18} />
+              </Link>
+            </motion.div>
+          </motion.div>
+
+          {/* ── RIGHT: Visual ── */}
+          <motion.div
+            initial={{ opacity: 0, x: 40 }}
+            animate={isInView ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+            className="relative"
+          >
+            {/* Card */}
+            <div className="glass-card w-full aspect-square max-w-[480px] mx-auto lg:ml-auto p-4 rounded-[40px] bg-white border-slate-100 shadow-xl">
+              {/* Inner frame */}
+              <div className="w-full h-full rounded-[32px] bg-slate-50 flex items-center justify-center relative overflow-hidden group">
+                {/* Subtle light */}
+                <div className="absolute inset-0 bg-linear-to-br from-blue-500/5 to-transparent pointer-events-none" />
+
+                {/* Logo */}
+                <div className="relative w-1/2 h-1/2 transform transition-all duration-1000 group-hover:scale-105">
+                  <Image
+                    src="/vexatechlogo.svg"
+                    alt="VEXA TECH Logo"
+                    fill
+                    className="object-contain opacity-80"
+                  />
+                </div>
               </div>
             </div>
-            
-            <div className="absolute inset-0 bg-linear-to-t from-white/10 via-transparent to-transparent pointer-events-none"></div>
-          </div>
-          
+
+            {/* Floating stat badges — CSS animations avoid React removeChild conflicts */}
+            <div
+              className="absolute -top-4 -right-4 glass-card rounded-2xl px-6 py-4 text-center bg-white border-slate-100 shadow-lg"
+              style={{ animation: "floatUp 4s ease-in-out infinite" }}
+            >
+              <div className="text-2xl font-bold text-[#1d1d1f]">150+</div>
+              <div className="text-[10px] font-bold uppercase tracking-wider text-[#6e6e73]">Projects</div>
+            </div>
+
+            <div
+              className="absolute -bottom-4 -left-4 glass-card rounded-2xl px-6 py-4 text-center bg-white border-slate-100 shadow-lg"
+              style={{ animation: "floatDown 5s ease-in-out infinite 1s" }}
+            >
+              <div className="text-2xl font-bold text-[#0071e3]">99%</div>
+              <div className="text-[10px] font-bold uppercase tracking-wider text-[#6e6e73]">Satisfaction</div>
+            </div>
+          </motion.div>
+
         </div>
       </div>
     </section>

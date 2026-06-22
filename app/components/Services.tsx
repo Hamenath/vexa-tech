@@ -3,256 +3,211 @@
 import { useRef, useEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { 
-  Code2, 
-  Layers, 
-  TrendingUp, 
-  BarChart3, 
-  Palette, 
+import { motion, useInView } from "framer-motion";
+import {
+  Code2,
+  Layers,
+  TrendingUp,
+  BarChart3,
+  Palette,
+  ArrowUpRight,
   ArrowRight,
-  ArrowUpRight
 } from "lucide-react";
 import Link from "next/link";
-import { cn } from "../lib/utils";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const services = [
   {
     title: "Web Development",
+    slug: "web-development",
     tag: "01",
-    description: "We build high-performance, SEO-optimized digital ecosystems that turn visitors into loyal customers. Scalable, secure, and lightning fast.",
+    description:
+      "We build high-performance, SEO-optimized digital ecosystems that turn visitors into loyal customers. Scalable, secure, and lightning fast.",
     icon: Code2,
-    accent: "#0f62fe",
-  },
-  {
-    title: "UI / UX Design",
-    tag: "02",
-    description: "Refined digital experiences that balance aesthetic elegance with intuitive functionality. We design for clarity, trust, and impact.",
-    icon: Layers,
+    gradient: "from-violet-500 to-blue-500",
+    glow: "rgba(124,58,237,0.4)",
     accent: "#7c3aed",
   },
   {
+    title: "UI / UX Design",
+    slug: "ui-ux-design",
+    tag: "02",
+    description:
+      "Refined digital experiences that balance aesthetic elegance with intuitive functionality. We design for clarity, trust, and impact.",
+    icon: Layers,
+    gradient: "from-blue-500 to-cyan-400",
+    glow: "rgba(59,130,246,0.4)",
+    accent: "#3b82f6",
+  },
+  {
     title: "Digital Marketing",
+    slug: "digital-marketing",
     tag: "03",
-    description: "Data-driven strategies designed to scale your reach and maximize ROI. We focus on growth that actually moves the needle.",
+    description:
+      "Data-driven strategies designed to scale your reach and maximize ROI. We focus on growth that actually moves the needle.",
     icon: TrendingUp,
-    accent: "#059669",
+    gradient: "from-emerald-500 to-teal-400",
+    glow: "rgba(16,185,129,0.4)",
+    accent: "#10b981",
   },
   {
     title: "Business Analysis",
+    slug: "business-analysis",
     tag: "04",
-    description: "Deep-dive diagnostics of your business workflows. We identify bottlenecks and architect digital roadmaps for long-term growth.",
+    description:
+      "Deep-dive diagnostics of your business workflows. We identify bottlenecks and architect digital roadmaps for long-term growth.",
     icon: BarChart3,
-    accent: "#d97706",
+    gradient: "from-amber-500 to-orange-400",
+    glow: "rgba(245,158,11,0.4)",
+    accent: "#f59e0b",
   },
   {
     title: "Graphic Design",
+    slug: "graphic-design",
     tag: "05",
-    description: "Premium visual identities that command attention. From motion graphics to full brand identity, we craft visual authority.",
+    description:
+      "Premium visual identities that command attention. From motion graphics to full brand identity, we craft visual authority.",
     icon: Palette,
-    accent: "#db2777",
+    gradient: "from-pink-500 to-rose-400",
+    glow: "rgba(236,72,153,0.4)",
+    accent: "#ec4899",
   },
 ];
 
-export default function Services() {
-  const containerRef = useRef<HTMLElement>(null);
-  const leftContentRef = useRef<HTMLDivElement>(null);
-  const cardsRef = useRef<(HTMLDivElement | null)[]>([]);
-
-  useEffect(() => {
-    const isDesktop = window.matchMedia("(min-width: 1024px)").matches;
-    if (!isDesktop) return;
-
-    const ctx = gsap.context(() => {
-      const container = containerRef.current;
-      const cards = cardsRef.current.filter(Boolean) as HTMLDivElement[];
-      if (!container || !cards.length) return;
-
-      // Pin the whole section
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: container,
-          start: "top top",
-          end: `+=${cards.length * 100}%`, // Length of scroll based on number of cards
-          pin: true,
-          scrub: 1,
-          anticipatePin: 1,
-        },
-      });
-
-      // Animate cards: One by one storytelling style
-      // We want cards to slide in from the right, stay centered/active, then fade/exit
-      cards.forEach((card, index) => {
-        if (index === 0) {
-          // First card starts active
-          tl.to(card, {
-            opacity: 0,
-            x: -100,
-            rotateY: -20,
-            scale: 0.9,
-            duration: 1,
-            ease: "power2.inOut"
-          }, 0.5); // Starts after a short stay
-        } else {
-          // Following cards: Enter -> Active -> Exit
-          tl.fromTo(card,
-            { x: "100%", opacity: 0, rotateY: 30, scale: 0.8 },
-            { x: "0%", opacity: 1, rotateY: 0, scale: 1, duration: 1, ease: "power2.out" },
-            index - 0.5 // Start overlap
-          );
-
-          // If not the last card, add an exit animation
-          if (index < cards.length - 1) {
-            tl.to(card, {
-              opacity: 0,
-              x: -100,
-              rotateY: -20,
-              scale: 0.9,
-              duration: 1,
-              ease: "power2.inOut"
-            }, index + 0.5);
-          }
-        }
-      });
-    });
-
-    return () => ctx.revert();
-  }, []);
+function ServiceCard({ service, index }: { service: (typeof services)[0]; index: number }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const isInView = useInView(ref, { once: true, margin: "-80px" });
+  const Icon = service.icon;
 
   return (
-    <section 
-      id="services" 
-      ref={containerRef} 
-      className="bg-white relative min-h-screen flex flex-col justify-center overflow-hidden"
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, y: 20 }}
+      animate={isInView ? { opacity: 1, y: 0 } : {}}
+      transition={{ duration: 0.6, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
+      className="group relative"
     >
-      <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-20 grid lg:grid-cols-2 gap-10 lg:gap-20 items-center h-full">
-        
-        {/* ── LEFT: Content ── */}
-        <div ref={leftContentRef} className="z-20 py-20 lg:py-0">
-          <p className="text-brand-accent font-bold tracking-widest uppercase text-xs mb-5">
-            Our Services
-          </p>
-          <h2 className="text-4xl md:text-5xl lg:text-7xl font-bold text-neutral-900 leading-[1.1] tracking-tight mb-8">
-            Solutions <span className="text-gradient-primary leading-normal">designed</span> for growth
-          </h2>
-          <p className="text-zinc-500 text-lg font-light leading-relaxed max-w-md mb-10">
-            Multidisciplinary expertise transformed into refined digital execution for modern brands. We build systems that perform as good as they look.
-          </p>
-
-          <div className="hidden lg:flex items-center gap-4 mt-12 opacity-30">
-            <div className="w-10 h-px bg-neutral-900" />
-            <p className="text-[10px] font-bold uppercase tracking-[0.2em]">Scroll to explore</p>
-          </div>
-        </div>
-
-        {/* ── RIGHT: Animated Stack ── */}
-        <div className="relative h-[500px] lg:h-[600px] flex items-center justify-center">
-          
-          {/* Mobile view: Simple list */}
-          <div className="lg:hidden flex flex-col gap-5 w-full">
-            {services.map((service, i) => (
-              <MobileCard key={i} service={service} index={i} />
-            ))}
+      <Link
+        href={`/services/${service.slug}`}
+        className="block relative flex flex-col p-10 rounded-[32px] border border-black/5 bg-white hover:border-black/10 transition-all duration-500 overflow-hidden cursor-pointer shadow-sm hover:shadow-xl"
+      >
+        <motion.div
+          whileHover={{
+            y: -4,
+            scale: 1.01,
+          }}
+          className="w-full h-full"
+        >
+          {/* Header */}
+          <div className="flex items-start justify-between mb-8">
+            <div
+              className="w-14 h-14 rounded-2xl flex items-center justify-center bg-slate-50 border border-slate-100 transition-all duration-500 group-hover:bg-blue-50 group-hover:border-blue-100"
+            >
+              <Icon size={24} className="text-[#0071e3]" strokeWidth={1.5} />
+            </div>
+            <span className="text-[11px] font-bold tracking-wider text-slate-300 group-hover:text-[#0071e3]/40 transition-colors">
+              {service.tag}
+            </span>
           </div>
 
-          {/* Desktop view: Layered Animated Cards */}
-          <div className="hidden lg:block relative w-full h-[550px]">
-            {services.map((service, i) => (
-              <div
-                key={i}
-                ref={(el) => { cardsRef.current[i] = el; }}
-                className={cn(
-                  "absolute inset-0 flex items-center justify-center lg:justify-start transform-gpu perspective-[1000px]",
-                  i === 0 ? "opacity-100" : "opacity-0"
-                )}
+          {/* Content */}
+          <h3 className="text-2xl font-bold text-[#1d1d1f] mb-4 tracking-tight">
+            {service.title}
+          </h3>
+          <p className="text-[15px] text-[#6e6e73] leading-relaxed flex-1 font-light mb-8">
+            {service.description}
+          </p>
+
+          {/* Tags */}
+          <div className="flex flex-wrap gap-2 mb-10">
+            {["Scalable", "Modern", "Premium"].map((tag) => (
+              <span
+                key={tag}
+                className="text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-slate-50 text-slate-500 border border-slate-100"
               >
-                <DesktopCard service={service} index={i} />
-              </div>
+                {tag}
+              </span>
             ))}
           </div>
+
+          {/* CTA */}
+          <div
+            className="inline-flex items-center gap-1.5 text-[15px] font-semibold text-[#0071e3] transition-all duration-300"
+          >
+            Learn more
+            <ArrowRight
+              size={16}
+              className="group-hover:translate-x-1 transition-transform"
+            />
+          </div>
+        </motion.div>
+      </Link>
+    </motion.div>
+  );
+}
+
+export default function Services() {
+  const headerRef = useRef<HTMLDivElement>(null);
+  const isInView = useInView(headerRef, { once: true, margin: "-100px" });
+
+  return (
+    <section
+      id="services"
+      className="relative py-32 md:py-40 bg-[#f5f5f7] overflow-hidden"
+    >
+      {/* Background */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[1000px] bg-blue-50/50 rounded-full blur-[120px] pointer-events-none" />
+
+      <div className="max-w-7xl mx-auto px-6 md:px-8 lg:px-12 relative z-10">
+
+        {/* Header */}
+        <div ref={headerRef} className="max-w-3xl mb-20">
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6 }}
+          >
+            <div className="section-tag mb-8">Our Services</div>
+            <h2 className="text-4xl md:text-5xl lg:text-7xl font-bold text-[#1d1d1f] leading-[1.1] tracking-tight mb-8">
+              Solutions <span className="text-[#0071e3]">designed</span> for growth
+            </h2>
+            <p className="text-[#6e6e73] text-xl font-light leading-relaxed max-w-xl">
+              Multidisciplinary expertise transformed into refined digital execution
+              for modern brands.
+            </p>
+          </motion.div>
         </div>
 
+        {/* Grid */}
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          {services.map((service, i) => (
+            <ServiceCard key={i} service={service} index={i} />
+          ))}
+
+          {/* CTA card */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.5 }}
+            className="sm:col-span-2 lg:col-span-2 relative flex flex-col items-center justify-center p-16 rounded-[40px] overflow-hidden text-center bg-white border border-slate-100 shadow-sm"
+          >
+            <div className="relative z-10">
+              <p className="text-slate-400 text-xs font-bold uppercase tracking-widest mb-6">Ready to start?</p>
+              <h3 className="text-3xl md:text-5xl font-bold text-[#1d1d1f] mb-8">
+                Let&apos;s build something <span className="text-[#0071e3]">extraordinary.</span>
+              </h3>
+              <Link
+                href="/contact"
+                className="inline-flex items-center gap-2.5 px-10 py-5 rounded-full bg-[#0071e3] hover:bg-[#0077ed] text-white font-semibold text-base transition-all duration-300"
+              >
+                Start a Project <ArrowRight size={18} />
+              </Link>
+            </div>
+          </motion.div>
+        </div>
       </div>
     </section>
-  );
-}
-
-function DesktopCard({ service, index }: { service: typeof services[0], index: number }) {
-  const Icon = service.icon;
-  return (
-    <div className="w-full max-w-[440px] h-[550px] bg-white border border-zinc-100 rounded-[3rem] p-12 shadow-[0_30px_70px_rgba(0,0,0,0.08)] flex flex-col justify-between group transition-all duration-500 hover:shadow-[0_40px_90px_rgba(0,0,0,0.12)]">
-      
-      {/* Icon Area */}
-      <div className="flex justify-between items-start">
-        <div 
-          className="w-16 h-16 rounded-2xl flex items-center justify-center transition-transform duration-500 group-hover:scale-110"
-          style={{ backgroundColor: `${service.accent}12`, border: `1px solid ${service.accent}20` }}
-        >
-          <Icon size={28} style={{ color: service.accent }} strokeWidth={1.5} />
-        </div>
-        <div className="text-[10px] font-black tracking-[0.3em] uppercase opacity-20" style={{ color: service.accent }}>
-          Service / 0{index + 1}
-        </div>
-      </div>
-
-      {/* Main Content */}
-      <div className="flex-1 flex flex-col justify-center py-8">
-        <h3 className="text-3xl font-bold text-neutral-900 mb-6 tracking-tight leading-tight">
-          {service.title}
-        </h3>
-        <p className="text-zinc-500 text-base font-light leading-relaxed mb-8">
-          {service.description}
-        </p>
-        
-        <div className="flex flex-wrap gap-2">
-          {["Scalable", "Modern", "Brand-Centric"].map((tag, t) => (
-            <span key={tag} className="text-[10px] font-bold uppercase tracking-widest px-3 py-1.5 rounded-full bg-zinc-50 text-zinc-400 border border-zinc-100">
-              {tag}
-            </span>
-          ))}
-        </div>
-      </div>
-
-      {/* Bottom CTA */}
-      <div className="pt-8 border-t border-zinc-50">
-        <Link 
-          href="#contact" 
-          className="inline-flex items-center gap-2.5 text-xs font-bold uppercase tracking-widest transition-all duration-300 group-hover:gap-4"
-          style={{ color: service.accent }}
-        >
-          View Solution
-          <ArrowUpRight size={16} strokeWidth={2.5} />
-        </Link>
-      </div>
-    </div>
-  );
-}
-
-function MobileCard({ service, index }: { service: typeof services[0], index: number }) {
-  const Icon = service.icon;
-  return (
-    <div className="bg-white border border-zinc-100 rounded-3xl p-8 shadow-sm">
-      <div className="flex items-center justify-between mb-6">
-        <div 
-          className="w-12 h-12 rounded-xl flex items-center justify-center"
-          style={{ backgroundColor: `${service.accent}10` }}
-        >
-          <Icon size={22} style={{ color: service.accent }} />
-        </div>
-        <span className="text-[10px] font-bold text-zinc-300">0{index + 1}</span>
-      </div>
-      <h3 className="text-xl font-bold text-neutral-900 mb-3">{service.title}</h3>
-      <p className="text-zinc-500 text-sm leading-relaxed mb-6 font-light">
-        {service.description}
-      </p>
-      <Link 
-        href="#contact" 
-        className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest"
-        style={{ color: service.accent }}
-      >
-        Learn More <ArrowRight size={14} />
-      </Link>
-    </div>
   );
 }
