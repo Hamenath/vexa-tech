@@ -18,7 +18,7 @@ export default function CTASection() {
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
         >
           <div className="section-tag mb-8 mx-auto">Get Started</div>
-          <h2 className="text-4xl md:text-6xl font-bold text-[#1d1d1f] leading-tight tracking-tight mb-8">
+          <h2 className="text-3xl sm:text-4xl md:text-6xl font-bold text-[#1d1d1f] leading-tight tracking-tight mb-8">
             Ready to architect your <br />
             <span className="text-[#0071e3]">digital future?</span>
           </h2>
@@ -29,17 +29,17 @@ export default function CTASection() {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
             <Link
               href="/contact"
-              className="group inline-flex items-center gap-2 px-10 py-5 rounded-full bg-[#0071e3] hover:bg-[#0077ed] text-white font-semibold text-base transition-all duration-300 shadow-lg shadow-blue-500/20"
+              className="group glass-btn-primary shadow-lg shadow-blue-500/10 text-base"
             >
               Start Your Project
-              <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
+              <ArrowRight size={18} className="transition-transform group-hover:translate-x-0.5 shrink-0" />
             </Link>
             <Link
               href="/services"
-              className="group inline-flex items-center gap-1.5 text-[#0071e3] hover:underline font-semibold text-base transition-all duration-300"
+              className="group glass-btn-secondary text-base"
             >
               Explore services
-              <ArrowRight size={18} />
+              <ArrowRight size={18} className="transition-transform group-hover:translate-x-0.5 shrink-0" />
             </Link>
           </div>
         </motion.div>

@@ -42,13 +42,13 @@ const stats = [
 
 export function HeroContent() {
   return (
-    <main className="relative z-10 flex flex-col items-center justify-center min-h-screen px-6 pb-16 pt-32">
+    <main className="relative z-10 flex flex-col items-center justify-center min-h-[85vh] md:min-h-screen px-6 pb-12 pt-28 md:pt-32">
       {/* Minimal Badge */}
       <motion.div
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-        className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full mb-10 bg-slate-100 text-slate-600 text-[11px] font-bold uppercase tracking-wider"
+        className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full mb-10 glass-surface-subtle border border-black/5 text-[#1d1d1f] text-[11px] font-bold uppercase tracking-wider shadow-sm"
       >
         Innovate · Create · Grow
       </motion.div>
@@ -69,7 +69,7 @@ export function HeroContent() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 0.3 }}
-          className="text-xl md:text-2xl text-[#6e6e73] font-light leading-relaxed max-w-2xl mx-auto mb-14"
+          className="text-lg md:text-2xl text-[#6e6e73] font-light leading-snug md:leading-relaxed max-w-[330px] md:max-w-2xl mx-auto mb-10 md:mb-14"
         >
           We architect refined digital experiences that command authority 
           and accelerate growth for ambitious brands.
@@ -84,17 +84,17 @@ export function HeroContent() {
         >
           <Link
             href="/contact"
-            className="group inline-flex items-center gap-2 px-8 py-4 rounded-full bg-[#0071e3] hover:bg-[#0077ed] text-white font-semibold text-base transition-all duration-300"
+            className="group glass-btn-primary shadow-lg shadow-blue-500/10 text-base"
           >
             Start your project
             <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
           </Link>
           <Link
             href="/services"
-            className="group inline-flex items-center gap-1.5 text-[#0071e3] hover:underline font-semibold text-base transition-all duration-300"
+            className="group glass-btn-secondary text-base"
           >
             Explore services
-            <ArrowRight size={18} />
+            <ArrowRight size={18} className="group-hover:translate-x-0.5 transition-transform" />
           </Link>
         </motion.div>
       </motion.div>
@@ -104,9 +104,9 @@ export function HeroContent() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 0.8 }}
-        className="mt-32 w-full max-w-4xl"
+        className="mt-14 md:mt-32 w-full max-w-4xl"
       >
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-px">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-y-8 gap-x-4 md:gap-px">
           {stats.map((stat, i) => (
             <div
               key={i}

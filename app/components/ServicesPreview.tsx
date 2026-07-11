@@ -36,6 +36,15 @@ export default function ServicesPreview() {
   const headerRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(headerRef, { once: true, margin: "-100px" });
 
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const card = e.currentTarget;
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    card.style.setProperty("--mouse-x", `${x}px`);
+    card.style.setProperty("--mouse-y", `${y}px`);
+  };
+
   return (
     <section className="relative py-24 md:py-32 bg-white">
       <div className="max-w-7xl mx-auto px-6 relative z-10">
@@ -46,7 +55,7 @@ export default function ServicesPreview() {
             transition={{ duration: 0.6 }}
           >
             <div className="section-tag mb-8">Our Expertise</div>
-            <h2 className="text-4xl md:text-5xl font-bold text-[#1d1d1f] leading-tight tracking-tight mb-8">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#1d1d1f] leading-tight tracking-tight mb-8">
               Solutions <span className="text-[#0071e3]">designed</span> for growth
             </h2>
             <p className="text-[#6e6e73] text-xl font-light leading-relaxed max-w-xl">
@@ -71,10 +80,11 @@ export default function ServicesPreview() {
                   className="block group h-full"
                 >
                   <motion.div 
-                    whileHover={{ scale: 1.01, y: -4 }}
-                    className="p-8 h-full rounded-3xl bg-slate-50 border border-slate-100 group-hover:bg-white group-hover:border-slate-200 group-hover:shadow-lg transition-all duration-300"
+                    whileHover={{ y: -4 }}
+                    onMouseMove={handleMouseMove}
+                    className="glass-card-interactive p-6 sm:p-8 h-full rounded-3xl transition-all duration-300"
                   >
-                    <div className="w-12 h-12 rounded-2xl bg-white flex items-center justify-center mb-6 border border-slate-100 group-hover:bg-blue-50 group-hover:border-blue-100 transition-all duration-500">
+                    <div className="w-12 h-12 rounded-2xl bg-white border border-slate-100 flex items-center justify-center mb-6 group-hover:bg-blue-50 group-hover:border-blue-100 transition-all duration-500 shadow-xs">
                       <Icon size={24} className="text-[#0071e3]" />
                     </div>
                     <h3 className="text-xl font-bold text-[#1d1d1f] mb-3 group-hover:text-[#0071e3] transition-all duration-300">
@@ -96,7 +106,7 @@ export default function ServicesPreview() {
         <div className="flex justify-center">
           <Link
             href="/services"
-            className="group inline-flex items-center gap-3 px-8 py-4 rounded-full bg-[#0071e3] hover:bg-[#0077ed] text-white font-semibold text-base transition-all duration-300"
+            className="group glass-btn-primary shadow-lg shadow-blue-500/10 text-base"
           >
             Explore All Services
             <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />

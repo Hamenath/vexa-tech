@@ -9,9 +9,6 @@ import {
   Check,
   X,
   Mail,
-  Linkedin,
-  Instagram,
-  Twitter,
 } from "lucide-react";
 import { cn, getGmailLink } from "../lib/utils";
 import { db } from "../lib/firebase";
@@ -22,7 +19,7 @@ import { useRef } from "react";
 import { useInView } from "framer-motion";
 
 const inputBase =
-  "w-full bg-[#f5f5f7] border border-transparent rounded-xl px-4 py-4 text-[15px] text-[#1d1d1f] placeholder-[#86868b] transition-all duration-200 focus:outline-none focus:border-[#0071e3] focus:ring-4 focus:ring-blue-500/10 focus:bg-white";
+  "w-full bg-white/45 backdrop-blur-[8px] border border-black/5 rounded-xl px-4 py-4 text-[15px] text-[#1d1d1f] placeholder-[#86868b] transition-all duration-200 focus:outline-none focus:border-[#0071e3] focus:ring-4 focus:ring-blue-500/10 focus:bg-white/65";
 
 const labelBase =
   "block text-[13px] font-semibold text-[#1d1d1f] mb-2 tracking-tight";
@@ -197,9 +194,10 @@ export default function Contact() {
             <span className="text-sm font-bold tracking-tight">{toast.message}</span>
             <button
               onClick={() => setToast((p) => ({ ...p, show: false }))}
-              className="ml-2 hover:opacity-50 transition-opacity"
+              className="ml-2 hover:opacity-50 transition-opacity flex items-center justify-center shrink-0 focus:outline-none focus:ring-1 focus:ring-white/20"
+              aria-label="Close notification"
             >
-              <X size={14} />
+              <X size={14} className="shrink-0" />
             </button>
           </motion.div>
         )}
@@ -215,7 +213,7 @@ export default function Contact() {
             transition={{ duration: 0.6 }}
           >
             <div className="section-tag mb-8 mx-auto w-fit">Get In Touch</div>
-            <h2 className="text-4xl md:text-5xl font-bold text-[#1d1d1f] tracking-tight mb-4">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#1d1d1f] tracking-tight mb-4">
               Let&apos;s build something <span className="text-[#0071e3]">meaningful.</span>
             </h2>
             <p className="text-[#6e6e73] text-xl font-light max-w-xl mx-auto">
@@ -229,12 +227,12 @@ export default function Contact() {
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7, delay: 0.2 }}
-          className="rounded-[40px] border border-slate-100 overflow-hidden bg-white shadow-2xl"
+          className="rounded-[40px] border border-white/60 overflow-hidden glass-surface shadow-2xl"
         >
           <div className="grid lg:grid-cols-2">
 
             {/* ── LEFT: Info ── */}
-            <div className="p-8 md:p-12 flex flex-col gap-8 border-b lg:border-b-0 lg:border-r border-slate-100 bg-[#fbfbfd]">
+            <div className="p-6 sm:p-8 md:p-12 flex flex-col gap-8 border-b lg:border-b-0 lg:border-r border-white/40 bg-white/20">
               <div>
                 <p className="text-[#1d1d1f] font-bold text-lg mb-2">VEXA TECH</p>
                 <p className="text-[15px] text-[#6e6e73] font-light leading-relaxed">
@@ -251,7 +249,7 @@ export default function Contact() {
                     href={s.href}
                     target={s.href.startsWith("https") ? "_blank" : undefined}
                     rel="noopener noreferrer"
-                    className="flex items-center gap-4 px-5 py-4 rounded-2xl border border-slate-200 hover:border-[#0071e3] transition-all duration-300 group bg-white hover:shadow-md"
+                    className="flex items-center gap-4 px-5 py-4 rounded-2xl border border-white/40 hover:border-[#0071e3] transition-all duration-300 group bg-white/30 hover:bg-white/65 hover:shadow-md"
                   >
                     <div
                       className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0 transition-all duration-300 group-hover:bg-[#0071e3] group-hover:text-white"
@@ -286,7 +284,7 @@ export default function Contact() {
             </div>
 
             {/* ── RIGHT: Form ── */}
-            <div className="p-8 md:p-12 flex flex-col justify-center min-h-[500px]">
+            <div className="p-6 sm:p-8 md:p-12 flex flex-col justify-center min-h-0 md:min-h-[500px]">
               <AnimatePresence mode="wait">
                 {status === "success" ? (
                   <motion.div
@@ -297,17 +295,17 @@ export default function Contact() {
                     transition={{ type: "spring", damping: 20, stiffness: 100 }}
                     className="text-center"
                   >
-                    <div className="w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 bg-emerald-500/15 border border-emerald-500/30">
-                      <Check className="text-emerald-400" size={36} />
+                    <div className="w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 bg-emerald-500/15 border border-emerald-500/30 shrink-0">
+                      <Check className="text-emerald-500" size={36} />
                     </div>
-                    <h3 className="text-2xl font-bold text-white mb-4">Inquiry Received!</h3>
-                    <p className="text-white/40 font-light leading-relaxed mb-8 max-w-sm mx-auto text-sm">
+                    <h3 className="text-2xl font-bold text-[#1d1d1f] mb-4">Inquiry Received!</h3>
+                    <p className="text-[#6e6e73] font-light leading-relaxed mb-8 max-w-sm mx-auto text-sm">
                       We&apos;ve sent a confirmation email. Our specialists are reviewing
                       your request and will reach out within 24 hours.
                     </p>
                     <button
                       onClick={resetForm}
-                      className="px-8 py-3 rounded-xl border border-white/10 text-white/50 hover:text-white hover:border-white/20 font-bold tracking-widest text-xs uppercase transition-all duration-200"
+                      className="group glass-btn-secondary px-8 py-3 rounded-xl text-xs uppercase tracking-widest font-bold"
                     >
                       Send Another Message
                     </button>
@@ -460,10 +458,10 @@ export default function Contact() {
                           type="submit"
                           disabled={status === "loading"}
                           className={cn(
-                            "w-full py-4 rounded-xl font-bold text-[11px] tracking-widest uppercase transition-all duration-300 flex items-center justify-center gap-3 group",
-                               status === "loading"
+                            "w-full py-4 rounded-xl font-bold text-[11px] tracking-widest uppercase transition-all duration-300 group flex items-center justify-center gap-3",
+                            status === "loading"
                               ? "opacity-60 cursor-not-allowed bg-slate-200 text-slate-500"
-                              : "bg-[#0071e3] hover:bg-[#0077ed] text-white shadow-lg hover:shadow-blue-500/20 hover:-translate-y-0.5"
+                              : "glass-btn-primary w-full py-4 rounded-xl font-bold text-[11px] tracking-widest uppercase shadow-lg shadow-blue-500/10"
                           )}
                         >
                           {status === "loading" ? (
@@ -476,7 +474,7 @@ export default function Contact() {
                               Send Message
                               <Send
                                 size={14}
-                                className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"
+                                className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 shrink-0"
                               />
                             </>
                           )}

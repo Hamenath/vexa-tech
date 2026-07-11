@@ -63,7 +63,7 @@ export default function PrivacyPolicy() {
             <p className="text-blue-600 font-bold uppercase tracking-[0.2em] text-xs mb-6">
               Transparency & Trust
             </p>
-            <h1 className="text-5xl md:text-7xl font-black text-gray-900 mb-8 tracking-tight">
+            <h1 className="text-3xl sm:text-4xl md:text-7xl font-black text-gray-900 mb-8 tracking-tight">
               Privacy Policy
             </h1>
             <p className="text-xl text-gray-500 font-medium max-w-2xl mx-auto leading-relaxed mb-10">
@@ -73,16 +73,16 @@ export default function PrivacyPolicy() {
             <div className="flex flex-wrap items-center justify-center gap-4">
               <button 
                 onClick={handlePrint}
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white border border-gray-200 text-gray-700 hover:text-blue-600 hover:border-blue-600 transition-all duration-300 shadow-sm font-bold text-sm"
+                className="group glass-btn-secondary px-6 py-3 text-sm font-bold shadow-sm"
               >
-                <Printer size={18} />
+                <Printer size={18} className="shrink-0" />
                 Print Policy
               </button>
               <Link
                 href="/support"
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-blue-600 text-white hover:bg-blue-700 transition-all duration-300 shadow-lg shadow-blue-200 font-bold text-sm"
+                className="group glass-btn-primary px-6 py-3 text-sm font-bold shadow-lg shadow-blue-500/10"
               >
-                <HelpCircle size={18} />
+                <HelpCircle size={18} className="shrink-0" />
                 Have Questions?
               </Link>
             </div>
@@ -209,9 +209,9 @@ export default function PrivacyPolicy() {
               </div>
               <button 
                 onClick={handleCopyEmail}
-                className="w-full sm:w-auto px-8 py-4 rounded-2xl bg-blue-600 hover:bg-blue-700 transition-all duration-300 font-bold flex items-center justify-center gap-2"
+                className="w-full sm:w-auto group glass-btn-primary px-8 py-4 rounded-2xl font-bold shadow-lg shadow-blue-500/10"
               >
-                {copied ? <Check size={18} /> : <Copy size={18} />}
+                {copied ? <Check size={18} className="shrink-0" /> : <Copy size={18} className="shrink-0" />}
                 {copied ? "Copied!" : "Copy Email"}
               </button>
             </div>

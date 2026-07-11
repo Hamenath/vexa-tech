@@ -115,7 +115,7 @@ export default function Footer() {
             <div className="flex flex-col sm:flex-row items-center gap-5 lg:justify-end">
               <Link
                 href="/contact"
-                className="group inline-flex items-center justify-center gap-3 px-10 py-5 rounded-full bg-[#0071e3] hover:bg-[#0077ed] text-white font-semibold text-base transition-all duration-300 shadow-lg shadow-blue-500/20"
+                className="group glass-btn-primary shadow-lg shadow-blue-500/10"
               >
                 Get Started
                 <ArrowUpRight
@@ -127,7 +127,7 @@ export default function Footer() {
                 href={getGmailLink("vexatech.connect@gmail.com", "Project Inquiry")}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group inline-flex items-center gap-3 px-8 py-5 text-[15px] font-semibold text-[#1d1d1f] hover:text-[#0071e3] transition-all duration-300 border border-slate-200 hover:border-[#0071e3] rounded-full"
+                className="group glass-btn-secondary"
               >
                 <Mail size={18} />
                 Send Inquiry
@@ -175,7 +175,7 @@ export default function Footer() {
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label={social.name}
-                      className="w-10 h-10 rounded-xl bg-white border border-slate-200 text-slate-400 flex items-center justify-center transition-all duration-300 hover:border-[#0071e3] hover:text-[#0071e3] hover:shadow-md hover:-translate-y-1"
+                      className="w-10 h-10 rounded-xl glass-surface-subtle text-slate-500 flex items-center justify-center transition-all duration-300 hover:border-[#0071e3] hover:text-[#0071e3] hover:shadow-md hover:-translate-y-0.5"
                     >
                       <Icon className="w-4 h-4" />
                     </Link>
@@ -217,20 +217,20 @@ export default function Footer() {
             <h4 className="text-slate-400 font-bold mb-8 uppercase text-[11px] tracking-wider">Services</h4>
             <ul className="space-y-4">
               {[
-                { name: "Web Development",  href: "/services" },
-                { name: "UI / UX Design",   href: "/services" },
-                { name: "Digital Marketing",href: "/services" },
-                { name: "Business Analysis",href: "/services" },
-                { name: "Graphic Design",   href: "/services" },
+                { name: "Web Development",  href: "/services/web-development" },
+                { name: "UI / UX Design",   href: "/services/ui-ux-design" },
+                { name: "Digital Marketing",href: "/services/digital-marketing" },
+                { name: "Business Analysis",href: "/services/business-analysis" },
+                { name: "Graphic Design",   href: "/services/graphic-design" },
               ].map((link) => (
                 <li key={link.name}>
                   <Link
                     href={link.href}
-                    className="group flex items-center text-white/30 hover:text-violet-400 transition-colors duration-300 text-sm"
+                    className="group flex items-center text-[#6e6e73] hover:text-[#0071e3] transition-colors duration-300 text-[15px]"
                   >
                     <ChevronRight
-                      className="w-0 opacity-0 overflow-hidden transition-all duration-300 group-hover:w-4 group-hover:opacity-100 group-hover:mr-1 text-violet-400 shrink-0"
-                      size={12}
+                      className="w-0 opacity-0 overflow-hidden transition-all duration-300 group-hover:w-4 group-hover:opacity-100 group-hover:mr-2 text-[#0071e3] shrink-0"
+                      size={14}
                     />
                     {link.name}
                   </Link>

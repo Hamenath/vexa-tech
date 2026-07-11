@@ -41,6 +41,15 @@ export default function WhyChooseUs() {
   const headerRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(headerRef, { once: true, margin: "-100px" });
 
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const card = e.currentTarget;
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    card.style.setProperty("--mouse-x", `${x}px`);
+    card.style.setProperty("--mouse-y", `${y}px`);
+  };
+
   return (
     <section id="why-us" className="relative py-32 md:py-40 bg-white overflow-hidden">
       {/* Background */}
@@ -56,7 +65,7 @@ export default function WhyChooseUs() {
             transition={{ duration: 0.6 }}
           >
             <div className="section-tag mb-8">Why Vexa Tech</div>
-            <h2 className="text-4xl md:text-6xl font-bold text-[#1d1d1f] leading-[1.1] tracking-tight mb-8">
+            <h2 className="text-3xl sm:text-4xl md:text-6xl font-bold text-[#1d1d1f] leading-[1.1] tracking-tight mb-8">
               The VEXA TECH <span className="text-[#0071e3]">Advantage</span>
             </h2>
             <p className="text-[#6e6e73] text-xl font-light leading-relaxed">
@@ -77,7 +86,8 @@ export default function WhyChooseUs() {
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ duration: 0.5, delay: index * 0.08 }}
                 whileHover={{ y: -4 }}
-                className="group relative p-10 rounded-[32px] border border-black/5 bg-white hover:border-black/10 transition-all duration-400 overflow-hidden shadow-sm hover:shadow-xl"
+                onMouseMove={handleMouseMove}
+                className="group glass-card-interactive p-6 sm:p-8 lg:p-10 rounded-[32px] transition-all duration-400"
               >
                 {/* Icon */}
                 <div

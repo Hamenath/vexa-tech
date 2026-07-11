@@ -38,7 +38,7 @@ export default function GraphicDesignPage() {
             <div className="w-16 h-16 rounded-2xl bg-slate-50 border border-slate-100 flex items-center justify-center mb-10">
               <Palette className="text-[#0071e3]" size={32} strokeWidth={1.5} />
             </div>
-            <h1 className="text-5xl md:text-8xl font-bold text-[#1d1d1f] leading-[1.1] tracking-tight mb-10">
+            <h1 className="text-3xl sm:text-4xl md:text-8xl font-bold text-[#1d1d1f] leading-[1.1] tracking-tight mb-10">
               Graphic <br />
               <span className="text-[#0071e3]">Design</span>
             </h1>
@@ -51,7 +51,7 @@ export default function GraphicDesignPage() {
           {/* Feature Grid */}
           <div className="grid md:grid-cols-2 gap-8 mb-32">
             {features.map((f, i) => (
-              <div key={i} className="p-10 rounded-[32px] border border-black/5 bg-white shadow-sm hover:shadow-xl transition-all duration-500 group">
+              <div key={i} className="glass-card p-6 sm:p-8 lg:p-10 rounded-[32px] transition-all duration-500 group">
                 <div className="w-12 h-12 rounded-xl bg-slate-50 flex items-center justify-center mb-8 group-hover:bg-blue-50 transition-colors">
                   <CheckCircle2 className="text-[#0071e3]" size={24} />
                 </div>
@@ -99,19 +99,19 @@ export default function GraphicDesignPage() {
           </div>
 
           {/* Final CTA */}
-          <div className="p-16 rounded-[48px] bg-[#f5f5f7] border border-black/5 text-center relative overflow-hidden">
+          <div className="p-8 sm:p-12 lg:p-16 rounded-[48px] border border-white/60 glass-surface text-center relative overflow-hidden shadow-lg">
             <div className="absolute top-0 left-0 w-full h-full bg-blue-50/30 blur-3xl -z-10" />
-            <h3 className="text-3xl md:text-5xl font-bold text-[#1d1d1f] mb-8">Define your visual brand</h3>
+            <h3 className="text-2xl sm:text-3xl md:text-5xl font-bold text-[#1d1d1f] mb-8">Define your visual brand</h3>
             <p className="text-[#6e6e73] text-lg font-light mb-12 max-w-xl mx-auto">
               Ready to create a visual identity that commands attention? Let&apos;s 
               start designing.
             </p>
             <Link 
               href="/contact"
-              className="inline-flex items-center gap-3 px-10 py-5 rounded-full bg-[#0071e3] hover:bg-[#0077ed] text-white font-semibold text-lg transition-all duration-300 shadow-lg shadow-blue-500/20"
+              className="group glass-btn-primary shadow-lg shadow-blue-500/10 text-lg"
             >
               Consult a Designer
-              <ArrowRight size={20} />
+              <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
             </Link>
           </div>
         </div>

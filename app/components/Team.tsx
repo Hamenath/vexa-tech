@@ -63,6 +63,15 @@ export default function Team() {
   const headerRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(headerRef, { once: true, margin: "-100px" });
 
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const card = e.currentTarget;
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    card.style.setProperty("--mouse-x", `${x}px`);
+    card.style.setProperty("--mouse-y", `${y}px`);
+  };
+
   return (
     <section
       id="team"
@@ -83,7 +92,7 @@ export default function Team() {
             className="text-center mb-20 md:mb-28 max-w-4xl mx-auto"
           >
             <div className="section-tag mb-8 mx-auto w-fit">Visionary Leadership</div>
-            <h2 className="text-4xl md:text-6xl font-bold text-[#1d1d1f] leading-[1.1] tracking-tight mb-8">
+            <h2 className="text-3xl sm:text-4xl md:text-6xl font-bold text-[#1d1d1f] leading-[1.1] tracking-tight mb-8">
               The <span className="text-[#0071e3]">minds</span> behind VEXA TECH
             </h2>
             <p className="text-[#6e6e73] text-lg md:text-xl leading-relaxed max-w-2xl mx-auto font-light">
@@ -106,7 +115,8 @@ export default function Team() {
               key={index}
               variants={cardVariants}
               whileHover={{ y: -4, transition: { duration: 0.3 } }}
-              className="group relative flex flex-col p-10 rounded-[32px] border border-black/5 bg-white hover:border-black/10 transition-all duration-500 overflow-hidden shadow-sm hover:shadow-xl"
+              onMouseMove={handleMouseMove}
+              className="group glass-card-interactive flex flex-col p-6 sm:p-8 lg:p-10 rounded-[32px] transition-all duration-500"
             >
               {/* Top gradient accent line */}
               <div
@@ -124,7 +134,7 @@ export default function Team() {
               {/* Monogram */}
               <div className="relative mb-8">
                 <div
-                  className="w-16 h-16 rounded-2xl bg-slate-50 border border-slate-100 flex items-center justify-center text-[#1d1d1f] text-2xl font-bold transition-all duration-500 group-hover:bg-[#0071e3] group-hover:text-white"
+                  className="w-16 h-16 rounded-2xl bg-white/70 border border-slate-100 flex items-center justify-center text-[#1d1d1f] text-2xl font-bold transition-all duration-500 group-hover:bg-[#0071e3] group-hover:text-white shadow-xs"
                 >
                   {member.initial}
                 </div>
@@ -154,7 +164,7 @@ export default function Team() {
                   href={member.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex-1 inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl border border-slate-200 text-[#6e6e73] hover:text-white hover:bg-[#1d1d1f] hover:border-[#1d1d1f] transition-all duration-300 text-xs font-semibold uppercase tracking-wider"
+                  className="flex-1 inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-white/50 border border-slate-200 text-[#6e6e73] hover:text-white hover:bg-[#1d1d1f] hover:border-[#1d1d1f] transition-all duration-300 text-xs font-semibold uppercase tracking-wider shadow-xs"
                 >
                   LinkedIn
                 </Link>
@@ -162,7 +172,7 @@ export default function Team() {
                   href={member.instagram}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-2.5 rounded-xl border border-slate-200 text-[#6e6e73] hover:text-white hover:bg-[#1d1d1f] hover:border-[#1d1d1f] transition-all duration-300"
+                  className="p-2.5 rounded-xl bg-white/50 border border-slate-200 text-[#6e6e73] hover:text-white hover:bg-[#1d1d1f] hover:border-[#1d1d1f] transition-all duration-300 shadow-xs"
                 >
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24">
                     <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />

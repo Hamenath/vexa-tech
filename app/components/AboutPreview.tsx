@@ -25,7 +25,7 @@ export default function AboutPreview() {
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           >
             <div className="section-tag mb-8">About Vexa Tech</div>
-            <h2 className="text-4xl md:text-5xl font-bold mb-8 text-[#1d1d1f] leading-tight tracking-tight">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-8 text-[#1d1d1f] leading-tight tracking-tight">
               We architect <span className="text-[#0071e3]">digital</span> ecosystems
             </h2>
             <p className="text-[#6e6e73] text-lg md:text-xl leading-relaxed font-light mb-10 max-w-xl">
@@ -35,10 +35,10 @@ export default function AboutPreview() {
             </p>
             <Link
               href="/about"
-              className="group inline-flex items-center gap-2 px-8 py-4 rounded-full bg-[#0071e3] hover:bg-[#0077ed] text-white font-semibold text-base transition-all duration-300 shadow-lg shadow-blue-500/20"
+              className="group glass-btn-primary shadow-lg shadow-blue-500/10 text-base"
             >
               Discover Our Story
-              <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
+              <ArrowRight size={18} className="transition-transform group-hover:translate-x-0.5 shrink-0" />
             </Link>
           </motion.div>
 
@@ -46,12 +46,25 @@ export default function AboutPreview() {
             initial={{ opacity: 0, scale: 0.98 }}
             animate={isInView ? { opacity: 1, scale: 1 } : {}}
             transition={{ duration: 1, delay: 0.2 }}
-            className="relative hidden lg:block"
+            className="relative w-full mt-12 lg:mt-0"
           >
-            <div className="glass-card aspect-video rounded-[32px] p-12 bg-white border-black/5 shadow-xl flex items-center justify-center overflow-hidden">
-               <div className="relative w-32 h-32 opacity-10">
-                  <Image src="/vexatechlogo.svg" alt="VEXA TECH" fill className="object-contain" />
-               </div>
+            <div className="glass-card-showcase aspect-video rounded-[32px] p-12 shadow-xl flex items-center justify-center overflow-hidden">
+              {/* Diffused radial background glow element behind logo */}
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,113,227,0.1)_0%,transparent_65%)] pointer-events-none z-0" />
+
+              <motion.div
+                animate={{
+                  y: [0, -6, 0]
+                }}
+                transition={{
+                  duration: 6,
+                  repeat: Infinity,
+                  ease: "easeInOut"
+                }}
+                className="relative w-40 h-40 opacity-90 z-10"
+              >
+                <Image src="/vexatechlogo.svg" alt="VEXA TECH" fill className="object-contain" />
+              </motion.div>
             </div>
           </motion.div>
         </div>

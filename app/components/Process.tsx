@@ -54,8 +54,8 @@ function TimelineCard({
       ref={ref}
       className="relative flex items-center w-full mb-20 md:mb-32"
     >
-      {/* Left side (even: card / odd: empty) */}
-      <div className="w-full md:w-1/2 md:pr-16">
+      {/* Left side (even: card / odd: empty) - hidden on mobile */}
+      <div className="hidden md:block w-full md:w-1/2 md:pr-16">
         {isEven && (
           <motion.div
             initial={{ opacity: 0, x: -30 }}
@@ -81,8 +81,8 @@ function TimelineCard({
         </motion.div>
       </div>
 
-      {/* Right side (odd: card / even: empty) */}
-      <div className="w-full md:w-1/2 md:pl-16">
+      {/* Right side (odd: card / even: empty) - hidden on mobile */}
+      <div className="hidden md:block w-full md:w-1/2 md:pl-16">
         {!isEven && (
           <motion.div
             initial={{ opacity: 0, x: 30 }}
@@ -99,7 +99,7 @@ function TimelineCard({
         initial={{ opacity: 0, y: 20 }}
         animate={isInView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.6 }}
-        className="md:hidden w-full"
+        className="md:hidden w-full pl-12"
       >
         <StepCard step={step} isMobile />
       </motion.div>
@@ -114,12 +114,22 @@ function StepCard({
   step: (typeof steps)[0];
   isMobile?: boolean;
 }) {
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const card = e.currentTarget;
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    card.style.setProperty("--mouse-x", `${x}px`);
+    card.style.setProperty("--mouse-y", `${y}px`);
+  };
+
   return (
     <div
-      className={`group relative p-10 rounded-[32px] border border-black/5 bg-white hover:border-black/10 transition-all duration-500 shadow-sm hover:shadow-xl ${isMobile ? "block" : "hidden md:block"}`}
+      onMouseMove={handleMouseMove}
+      className={`group glass-card-interactive p-6 sm:p-8 lg:p-10 rounded-[32px] transition-all duration-500 ${isMobile ? "block" : "hidden md:block"}`}
     >
       <div
-        className="inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-[#0071e3] text-white font-bold text-sm mb-6 shadow-lg shadow-blue-500/20"
+        className="inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-[#0071e3] text-white font-bold text-sm mb-6 shadow-md shadow-blue-500/10 border border-white/30"
       >
         {step.id}
       </div>
@@ -170,7 +180,7 @@ export default function Process() {
             transition={{ duration: 0.6 }}
           >
             <div className="section-tag mb-8 mx-auto w-fit">Execution Strategy</div>
-            <h2 className="text-4xl md:text-7xl font-bold text-[#1d1d1f] leading-tight tracking-tight mb-8">
+            <h2 className="text-3xl sm:text-4xl md:text-7xl font-bold text-[#1d1d1f] leading-tight tracking-tight mb-8">
               How we <span className="text-[#0071e3]">architect</span> success
             </h2>
             <p className="text-[#6e6e73] text-xl font-light max-w-2xl mx-auto leading-relaxed">
@@ -182,7 +192,6 @@ export default function Process() {
 
         {/* Timeline */}
         <div className="relative max-w-5xl mx-auto">
-
           {/* Animated SVG path — desktop only */}
           <div className="absolute left-1/2 top-0 bottom-0 w-px hidden md:block -translate-x-1/2 overflow-visible pointer-events-none">
             <svg
@@ -226,10 +235,10 @@ export default function Process() {
           </p>
           <Link
             href="/contact"
-            className="inline-flex items-center gap-3 px-10 py-5 rounded-full bg-[#0071e3] hover:bg-[#0077ed] text-white font-semibold text-lg transition-all duration-300 shadow-lg shadow-blue-500/20"
+            className="group glass-btn-primary shadow-lg shadow-blue-500/10 text-lg"
           >
             Start Your Project
-            <ArrowRight size={20} />
+            <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
           </Link>
         </motion.div>
       </div>

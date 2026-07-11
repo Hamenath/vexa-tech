@@ -80,6 +80,15 @@ function ServiceCard({ service, index }: { service: (typeof services)[0]; index:
   const isInView = useInView(ref, { once: true, margin: "-80px" });
   const Icon = service.icon;
 
+  const handleMouseMove = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    const card = e.currentTarget;
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    card.style.setProperty("--mouse-x", `${x}px`);
+    card.style.setProperty("--mouse-y", `${y}px`);
+  };
+
   return (
     <motion.div
       ref={ref}
@@ -90,12 +99,12 @@ function ServiceCard({ service, index }: { service: (typeof services)[0]; index:
     >
       <Link
         href={`/services/${service.slug}`}
-        className="block relative flex flex-col p-10 rounded-[32px] border border-black/5 bg-white hover:border-black/10 transition-all duration-500 overflow-hidden cursor-pointer shadow-sm hover:shadow-xl"
+        onMouseMove={handleMouseMove}
+        className="glass-card-interactive block relative flex flex-col p-6 sm:p-8 lg:p-10 rounded-[32px] transition-all duration-500 cursor-pointer"
       >
         <motion.div
           whileHover={{
             y: -4,
-            scale: 1.01,
           }}
           className="w-full h-full"
         >
@@ -124,7 +133,7 @@ function ServiceCard({ service, index }: { service: (typeof services)[0]; index:
             {["Scalable", "Modern", "Premium"].map((tag) => (
               <span
                 key={tag}
-                className="text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-slate-50 text-slate-500 border border-slate-100"
+                className="text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full glass-surface-subtle text-slate-600 border border-white/40"
               >
                 {tag}
               </span>
@@ -169,7 +178,7 @@ export default function Services() {
             transition={{ duration: 0.6 }}
           >
             <div className="section-tag mb-8">Our Services</div>
-            <h2 className="text-4xl md:text-5xl lg:text-7xl font-bold text-[#1d1d1f] leading-[1.1] tracking-tight mb-8">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold text-[#1d1d1f] leading-[1.1] tracking-tight mb-8">
               Solutions <span className="text-[#0071e3]">designed</span> for growth
             </h2>
             <p className="text-[#6e6e73] text-xl font-light leading-relaxed max-w-xl">
@@ -191,18 +200,18 @@ export default function Services() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.5 }}
-            className="sm:col-span-2 lg:col-span-2 relative flex flex-col items-center justify-center p-16 rounded-[40px] overflow-hidden text-center bg-white border border-slate-100 shadow-sm"
+            className="sm:col-span-2 lg:col-span-2 relative flex flex-col items-center justify-center p-8 sm:p-12 lg:p-16 rounded-[40px] overflow-hidden text-center glass-surface border border-white/60 shadow-lg"
           >
             <div className="relative z-10">
               <p className="text-slate-400 text-xs font-bold uppercase tracking-widest mb-6">Ready to start?</p>
-              <h3 className="text-3xl md:text-5xl font-bold text-[#1d1d1f] mb-8">
+              <h3 className="text-2xl sm:text-3xl md:text-5xl font-bold text-[#1d1d1f] mb-8">
                 Let&apos;s build something <span className="text-[#0071e3]">extraordinary.</span>
               </h3>
               <Link
                 href="/contact"
-                className="inline-flex items-center gap-2.5 px-10 py-5 rounded-full bg-[#0071e3] hover:bg-[#0077ed] text-white font-semibold text-base transition-all duration-300"
+                className="group glass-btn-primary shadow-lg shadow-blue-500/10 text-base"
               >
-                Start a Project <ArrowRight size={18} />
+                Start a Project <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
               </Link>
             </div>
           </motion.div>

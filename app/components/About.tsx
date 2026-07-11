@@ -41,7 +41,7 @@ export default function About() {
               About Vexa Tech
             </div>
 
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-8 text-[#1d1d1f] leading-[1.1] tracking-tight">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-8 text-[#1d1d1f] tracking-tight leading-[1.15]">
               We architect{" "}
               <span className="text-[#0071e3]">digital</span>{" "}
               ecosystems
@@ -67,7 +67,7 @@ export default function About() {
                   initial={{ opacity: 0, y: 10 }}
                   animate={isInView ? { opacity: 1, y: 0 } : {}}
                   transition={{ duration: 0.5, delay: 0.3 + i * 0.1 }}
-                  className="group flex items-center gap-4 px-5 py-4 rounded-2xl border border-slate-100 bg-white hover:border-slate-200 hover:shadow-sm transition-all duration-300 cursor-default"
+                  className="group flex items-center gap-4 px-5 py-4 rounded-2xl border border-white/40 glass-surface-subtle hover:border-[#0071e3]/30 hover:shadow-xs transition-all duration-300 cursor-default"
                 >
                   <div className="w-1.5 h-1.5 rounded-full bg-[#0071e3]" />
                   <span className="text-[15px] font-medium text-[#1d1d1f]">
@@ -101,7 +101,7 @@ export default function About() {
             className="relative"
           >
             {/* Card */}
-            <div className="glass-card w-full aspect-square max-w-[480px] mx-auto lg:ml-auto p-4 rounded-[40px] bg-white border-slate-100 shadow-xl">
+            <div className="glass-card w-full aspect-square max-w-[480px] mx-auto lg:ml-auto p-4 rounded-[40px] shadow-xl">
               {/* Inner frame */}
               <div className="w-full h-full rounded-[32px] bg-slate-50 flex items-center justify-center relative overflow-hidden group">
                 {/* Subtle light */}
@@ -121,7 +121,7 @@ export default function About() {
 
             {/* Floating stat badges — CSS animations avoid React removeChild conflicts */}
             <div
-              className="absolute -top-4 -right-4 glass-card rounded-2xl px-6 py-4 text-center bg-white border-slate-100 shadow-lg"
+              className="absolute -top-4 right-0 lg:-right-4 glass-card rounded-2xl px-6 py-4 text-center shadow-lg"
               style={{ animation: "floatUp 4s ease-in-out infinite" }}
             >
               <div className="text-2xl font-bold text-[#1d1d1f]">150+</div>
@@ -129,7 +129,7 @@ export default function About() {
             </div>
 
             <div
-              className="absolute -bottom-4 -left-4 glass-card rounded-2xl px-6 py-4 text-center bg-white border-slate-100 shadow-lg"
+              className="absolute -bottom-4 left-0 lg:-left-4 glass-card rounded-2xl px-6 py-4 text-center shadow-lg"
               style={{ animation: "floatDown 5s ease-in-out infinite 1s" }}
             >
               <div className="text-2xl font-bold text-[#0071e3]">99%</div>

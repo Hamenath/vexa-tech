@@ -84,7 +84,7 @@ export default function SupportCenter() {
                 <HelpCircle size={14} /> VEXA TECH Care
               </p>
             </div>
-            <h1 className="text-5xl md:text-7xl font-black text-gray-900 mb-8 tracking-tight">
+            <h1 className="text-3xl sm:text-4xl md:text-7xl font-black text-gray-900 mb-8 tracking-tight">
               How can we <span className="bg-clip-text text-transparent bg-linear-to-r from-blue-600 to-indigo-600">help</span> you?
             </h1>
             
@@ -182,16 +182,16 @@ export default function SupportCenter() {
             <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
               <Link 
                 href="mailto:vexatech.connect@gmail.com"
-                className="w-full sm:w-auto px-10 py-5 rounded-fill bg-white text-blue-600 rounded-full font-black flex items-center justify-center gap-3 hover:bg-gray-50 transition-all shadow-xl shadow-blue-500 group"
+                className="w-full sm:w-auto group glass-btn-secondary px-10 py-5 rounded-full font-bold shadow-md hover:shadow-lg transition-all"
               >
-                <Mail size={18} />
+                <Mail size={18} className="shrink-0" />
                 Email Support
               </Link>
               <Link 
                 href="#contact"
-                className="w-full sm:w-auto px-10 py-5 rounded-fill bg-blue-500 rounded-full font-black flex items-center justify-center gap-3 border border-white/20 hover:bg-blue-400 transition-all group"
+                className="w-full sm:w-auto group glass-btn-primary px-10 py-5 rounded-full font-bold shadow-lg shadow-blue-500/10 transition-all"
               >
-                <Calendar size={18} />
+                <Calendar size={18} className="shrink-0" />
                 Book a Call
               </Link>
             </div>
