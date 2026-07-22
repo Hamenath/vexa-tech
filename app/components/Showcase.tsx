@@ -53,7 +53,7 @@ export default function Showcase() {
       
       {/* Background ambient glow */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-0">
-        <div className="w-[80vw] h-[80vw] max-w-250 max-h-250 bg-brand-accent/3 rounded-full blur-40" />
+        <div className="w-[80vw] h-[80vw] max-w-250 max-h-250 bg-brand-accent/3 rounded-full blur-[160px]" />
       </div>
 
       {/* 3D Mockup Wrapper */}
@@ -78,7 +78,7 @@ export default function Showcase() {
             
             <div 
               ref={contentRef}
-              className="relative z-10 text-center opacity-0 translate-y-16 blur-5"
+              className="relative z-10 text-center opacity-0 translate-y-16 blur-[20px]"
             >
               <div className="system-tag mb-6 mx-auto bg-white/50 backdrop-blur shadow-sm">
                 <span className="status-dot" />
@@ -94,7 +94,7 @@ export default function Showcase() {
             </div>
 
             {/* Glowing Core Inside Mockup */}
-            <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 w-[80vw] max-w-200 h-[80vw] max-h-200 bg-brand-accent/4 blur-35 rounded-full pointer-events-none" />
+            <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 w-[80vw] max-w-200 h-[80vw] max-h-200 bg-brand-accent/4 blur-[140px] rounded-full pointer-events-none" />
           </div>
         </div>
       </div>

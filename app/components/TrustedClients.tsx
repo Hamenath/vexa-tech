@@ -14,7 +14,7 @@ export default function TrustedClients() {
   return (
     <section className="relative py-20 md:py-24 bg-bg-base text-text-primary border-t border-border-subtle overflow-hidden">
       {/* Light Ambient Glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-150 h-100 bg-brand-accent/2 rounded-full blur-35 pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-150 h-100 bg-brand-accent/2 rounded-full blur-[140px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         

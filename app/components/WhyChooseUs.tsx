@@ -59,7 +59,7 @@ export default function WhyChooseUs() {
   return (
     <section id="why-us" className="relative py-32 md:py-40 bg-bg-base text-text-primary border-t border-border-subtle overflow-hidden">
       {/* Background Radial */}
-      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-225 h-150 bg-brand-accent/3 rounded-full blur-40 pointer-events-none" />
+      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-225 h-150 bg-brand-accent/3 rounded-full blur-[160px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-6 md:px-8 lg:px-12 relative z-10">
 
@@ -116,7 +116,7 @@ export default function WhyChooseUs() {
                   </p>
                 </div>
 
-                <div className="w-8 h-[2px] bg-brand-accent/20 group-hover:w-16 group-hover:bg-brand-accent transition-all duration-500 rounded-full" />
+                <div className="w-8 h-0.5 bg-brand-accent/20 group-hover:w-16 group-hover:bg-brand-accent transition-all duration-500 rounded-full" />
               </motion.div>
             );
           })}

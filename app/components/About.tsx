@@ -24,8 +24,8 @@ export default function About() {
       className="relative py-32 md:py-40 bg-bg-base text-text-primary border-t border-border-subtle overflow-hidden"
     >
       {/* Radial lighting background */}
-      <div className="absolute top-0 right-0 w-200 h-200 bg-brand-accent/3 rounded-full blur-40 pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-150 h-150 bg-emerald-500/2 rounded-full blur-35 pointer-events-none" />
+      <div className="absolute top-0 right-0 w-200 h-200 bg-brand-accent/3 rounded-full blur-[160px] pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-150 h-150 bg-emerald-500/2 rounded-full blur-[140px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-6 md:px-8 lg:px-12 relative z-10">
         <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">

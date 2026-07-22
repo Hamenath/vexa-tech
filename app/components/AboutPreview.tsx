@@ -15,7 +15,7 @@ export default function AboutPreview() {
       ref={containerRef}
       className="relative py-24 md:py-32 bg-bg-base text-text-primary border-t border-border-subtle overflow-hidden"
     >
-      <div className="absolute top-1/2 right-0 -translate-y-1/2 w-150 h-125 bg-brand-accent/3 rounded-full blur-35 pointer-events-none" />
+      <div className="absolute top-1/2 right-0 -translate-y-1/2 w-150 h-125 bg-brand-accent/3 rounded-full blur-[140px] pointer-events-none" />
       
       <div className="max-w-7xl mx-auto px-6 md:px-8 lg:px-12 relative z-10">
         <div className="grid lg:grid-cols-2 gap-16 items-center">

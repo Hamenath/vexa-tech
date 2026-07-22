@@ -86,7 +86,7 @@ function ServiceCard({ service, index }: { service: (typeof services)[0]; index:
       <Link
         href={`/services/${service.slug}`}
         onMouseMove={handleMouseMove}
-        className="glass-card-interactive block relative flex flex-col p-8 lg:p-10 rounded-3xl bg-white border border-border-subtle hover:border-brand-accent/20 hover:shadow-md transition-all duration-500 cursor-pointer h-full"
+        className="glass-card-interactive relative flex flex-col p-8 lg:p-10 rounded-3xl bg-white border border-border-subtle hover:border-brand-accent/20 hover:shadow-md transition-all duration-500 cursor-pointer h-full"
       >
         <div className="flex items-start justify-between mb-8">
           <div className="w-14 h-14 rounded-2xl flex items-center justify-center bg-black/5 border border-black/5 group-hover:border-brand-accent/20 group-hover:bg-brand-accent/5 transition-all duration-500">
@@ -136,7 +136,7 @@ export default function Services() {
       className="relative py-32 md:py-40 bg-bg-base text-text-primary overflow-hidden border-t border-border-subtle"
     >
       {/* Radial Background */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-250 h-175 bg-brand-accent/3 rounded-full blur-40 pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-250 h-175 bg-brand-accent/3 rounded-full blur-[160px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-6 md:px-8 lg:px-12 relative z-10">
 

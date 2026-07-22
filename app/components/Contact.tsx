@@ -164,7 +164,7 @@ export default function Contact() {
       className="relative py-32 md:py-40 bg-bg-base text-text-primary border-t border-border-subtle overflow-hidden"
     >
       {/* Background Radial Glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-225 h-150 bg-brand-accent/3 rounded-full blur-40 pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-225 h-150 bg-brand-accent/3 rounded-full blur-[160px] pointer-events-none" />
 
       {/* Toast */}
       <AnimatePresence>
@@ -433,7 +433,7 @@ export default function Contact() {
                           required
                           rows={4}
                           placeholder="Describe what you want to build..."
-                          className={`${inputBase} resize-none min-h-[110px]`}
+                          className={`${inputBase} resize-none min-h-27.5`}
                           value={form.message}
                           onChange={set("message")}
                         />

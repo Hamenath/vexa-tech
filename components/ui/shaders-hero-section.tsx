@@ -13,8 +13,8 @@ export function ShaderBackground({ children }: ShaderBackgroundProps) {
   return (
     <div className="min-h-screen w-full relative overflow-hidden bg-bg-base text-text-primary">
       {/* ── Ambient Radial Lighting (Light Theme Adaptation) ── */}
-      <div className="absolute top-[-20%] left-1/2 -translate-x-1/2 w-250 h-175 bg-linear-to-b from-brand-accent/5 via-brand-accent/2 to-transparent blur-35 pointer-events-none" />
-      <div className="absolute bottom-[-10%] right-[-10%] w-150 h-150 bg-emerald-500/3 blur-30 pointer-events-none" />
+      <div className="absolute top-[-20%] left-1/2 -translate-x-1/2 w-250 h-175 bg-linear-to-b from-brand-accent/5 via-brand-accent/2 to-transparent blur-[140px] pointer-events-none" />
+      <div className="absolute bottom-[-10%] right-[-10%] w-150 h-150 bg-emerald-500/3 blur-[120px] pointer-events-none" />
 
       {/* ── Technical Fine Grid Overlay ── */}
       <div className="absolute inset-0 bg-tech-grid opacity-25 pointer-events-none" />

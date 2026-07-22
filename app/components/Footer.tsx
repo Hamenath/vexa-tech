@@ -88,10 +88,10 @@ export default function Footer() {
       className="relative bg-bg-base text-text-primary pt-24 pb-12 overflow-hidden border-t border-border-subtle"
     >
       {/* Subtle light ambient glow */}
-      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-250 h-125 bg-linear-to-t from-brand-accent/5 to-transparent blur-35 pointer-events-none z-0" />
+      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-250 h-125 bg-linear-to-t from-brand-accent/5 to-transparent blur-[140px] pointer-events-none z-0" />
 
       {/* Large watermark background */}
-      <div className="absolute bottom-20 left-1/2 -translate-x-1/2 text-[14vw] font-black text-black/2 tracking-tighter uppercase select-none pointer-events-none z-0 text-center w-full">
+      <div className="absolute bottom-20 left-1/2 -translate-x-1/2 text-[14vw] font-black text-black/1.5 tracking-tighter uppercase select-none pointer-events-none z-0 text-center w-full">
         VEXA TECH
       </div>
 

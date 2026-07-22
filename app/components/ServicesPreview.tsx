@@ -45,7 +45,7 @@ export default function ServicesPreview() {
   return (
     <section className="relative py-24 md:py-32 bg-bg-base text-text-primary border-t border-border-subtle overflow-hidden">
       {/* Background radial glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-200 h-125 bg-brand-accent/3 rounded-full blur-35 pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-200 h-125 bg-brand-accent/3 rounded-full blur-[140px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         <div ref={headerRef} className="mb-16">

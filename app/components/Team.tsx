@@ -73,7 +73,7 @@ export default function Team() {
       className="relative py-32 md:py-40 bg-bg-base text-text-primary border-t border-border-subtle overflow-hidden"
     >
       {/* Light Ambient Background */}
-      <div className="absolute top-0 left-1/4 w-150 h-150 bg-brand-accent/3 rounded-full blur-40 pointer-events-none" />
+      <div className="absolute top-0 left-1/4 w-150 h-150 bg-brand-accent/3 rounded-full blur-[160px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-6 md:px-8 lg:px-12 relative z-10">
 

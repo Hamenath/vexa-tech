@@ -9,7 +9,7 @@ export default function CTASection() {
     <section className="relative py-24 md:py-32 bg-bg-base text-text-primary overflow-hidden border-t border-border-subtle">
       {/* Grid & Light Radial Glow */}
       <div className="absolute inset-0 bg-tech-grid opacity-[0.03] pointer-events-none" />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-200 h-125 bg-brand-accent/4 rounded-full blur-35 pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-200 h-125 bg-brand-accent/4 rounded-full blur-[140px] pointer-events-none" />
       
       <div className="max-w-7xl mx-auto px-6 relative z-10 text-center">
         <motion.div

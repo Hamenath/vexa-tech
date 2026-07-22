@@ -49,7 +49,7 @@ export default function CareersPage() {
         
         {/* Hero */}
         <section className="relative py-24 md:py-32 overflow-hidden border-b border-border-subtle bg-bg-light">
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-200 h-125 bg-brand-accent/3 rounded-full blur-35 pointer-events-none" />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-200 h-125 bg-brand-accent/3 rounded-full blur-[140px] pointer-events-none" />
           
           <div className="max-w-4xl mx-auto px-6 relative z-10 text-center">
             <motion.div

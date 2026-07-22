@@ -168,7 +168,7 @@ export default function Process() {
       className="relative py-32 md:py-44 bg-bg-base text-text-primary border-t border-border-subtle overflow-hidden"
     >
       {/* Light Ambient background */}
-      <div className="absolute top-[15%] left-1/2 -translate-x-1/2 w-200 h-150 bg-brand-accent/3 rounded-full blur-40 pointer-events-none" />
+      <div className="absolute top-[15%] left-1/2 -translate-x-1/2 w-200 h-150 bg-brand-accent/3 rounded-full blur-[160px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
 

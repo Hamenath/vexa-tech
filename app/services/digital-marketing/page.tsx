@@ -20,8 +20,8 @@ export default function DigitalMarketingPage() {
     <PageTransition>
       <main className="min-h-screen bg-white pt-32 pb-24 relative overflow-hidden">
         {/* Background decoration */}
-        <div className="absolute top-0 right-0 w-200 h-200 bg-blue-50/50 rounded-full blur-30 pointer-events-none" />
-        <div className="absolute bottom-0 left-0 w-150 h-150 bg-slate-50/50 rounded-full blur-25 pointer-events-none" />
+        <div className="absolute top-0 right-0 w-200 h-200 bg-blue-50/50 rounded-full blur-[120px] pointer-events-none" />
+        <div className="absolute bottom-0 left-0 w-150 h-150 bg-slate-50/50 rounded-full blur-[100px] pointer-events-none" />
 
         <div className="max-w-5xl mx-auto px-6 relative z-10">
           {/* Back Link */}

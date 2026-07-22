@@ -9,7 +9,7 @@ export default function HiringBanner() {
     <section className="relative py-16 md:py-20 bg-bg-base text-text-primary border-t border-border-subtle overflow-hidden">
       {/* Light glow backdrops */}
       <div className="absolute inset-0 bg-tech-grid opacity-[0.02] pointer-events-none" />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-150 h-80 bg-brand-accent/2 rounded-full blur-30 pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-150 h-80 bg-brand-accent/2 rounded-full blur-[120px] pointer-events-none" />
 
       <div className="max-w-5xl mx-auto px-6 relative z-10">
         <motion.div
