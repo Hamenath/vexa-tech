@@ -31,8 +31,9 @@ export async function POST(req: NextRequest) {
 
     return NextResponse.json({ success: true, message: `Notification sent for ${lead.fullName}` });
 
-  } catch (error: any) {
+  } catch (error: unknown) {
+    const errMsg = error instanceof Error ? error.message : "Unknown error";
     console.error("Dashboard notification failure:", error);
-    return NextResponse.json({ error: "Failed to send notification", details: error.message }, { status: 500 });
+    return NextResponse.json({ error: "Failed to send notification", details: errMsg }, { status: 500 });
   }
 }

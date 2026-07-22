@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { motion, Variants } from "framer-motion";
 import { useRef } from "react";
 import { useInView } from "framer-motion";
@@ -10,35 +11,29 @@ const team = [
   {
     name: "Srinivas K A",
     role: "CEO & Founder",
+    sysCode: "EXEC // 01",
     desc: "A visionary leader with a passion for innovation and digital transformation. Srinivas drives VEXA TECH's mission with strategic clarity, ensuring every solution delivers real value, scalability, and long-term impact for clients.",
     linkedin: "https://www.linkedin.com/in/srinivas-k-a-83a027372/",
     instagram: "https://www.instagram.com/srini_xolo_?igsh=bDl5ajBseGh4eWVt",
-    initial: "S",
-    gradient: "from-violet-600 to-indigo-600",
-    glow: "rgba(124,58,237,0.5)",
-    accent: "#a78bfa",
+    avatar: "/team/ceo.png",
   },
   {
     name: "Hamenath B",
     role: "Chief Technology Officer",
+    sysCode: "EXEC // 02",
     desc: "A technology-driven problem solver focused on building modern, scalable, and high-performance digital solutions. Hamenath leads development with precision, ensuring every product meets the highest standards of performance and reliability.",
     linkedin: "https://www.linkedin.com/in/hamenathbdesigner/",
     instagram: "https://www.instagram.com/editor_ak._?igsh=MXI0MmlhajI1YWRvNg%3D%3D",
-    initial: "H",
-    gradient: "from-blue-600 to-cyan-500",
-    glow: "rgba(59,130,246,0.5)",
-    accent: "#60a5fa",
+    avatar: "/team/cto.png",
   },
   {
     name: "Jeya Jothi D",
     role: "Human Resource",
+    sysCode: "EXEC // 03",
     desc: "Dedicated to building a strong, collaborative, and growth-oriented work culture. Jeya Jothi ensures seamless team coordination, talent development, and a people-first approach that strengthens the foundation of VEXA TECH.",
     linkedin: "https://www.linkedin.com/in/jeyajothi-d-a99544299/",
     instagram: "https://www.instagram.com/itzz_me_jo18?igsh=MXJjdGU2MDAzbWY3Ng%3D%3D",
-    initial: "J",
-    gradient: "from-pink-600 to-rose-500",
-    glow: "rgba(236,72,153,0.5)",
-    accent: "#f472b6",
+    avatar: "/team/hr.png",
   },
 ];
 
@@ -75,11 +70,10 @@ export default function Team() {
   return (
     <section
       id="team"
-      className="relative py-32 md:py-40 bg-[#f5f5f7] overflow-hidden"
+      className="relative py-32 md:py-40 bg-bg-base text-text-primary border-t border-border-subtle overflow-hidden"
     >
-      {/* Background */}
-      <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-blue-50/50 rounded-full blur-[120px] pointer-events-none" />
-      <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-slate-50/50 rounded-full blur-[100px] pointer-events-none" />
+      {/* Light Ambient Background */}
+      <div className="absolute top-0 left-1/4 w-150 h-150 bg-brand-accent/3 rounded-full blur-40 pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-6 md:px-8 lg:px-12 relative z-10">
 
@@ -91,13 +85,15 @@ export default function Team() {
             transition={{ duration: 0.6 }}
             className="text-center mb-20 md:mb-28 max-w-4xl mx-auto"
           >
-            <div className="section-tag mb-8 mx-auto w-fit">Visionary Leadership</div>
-            <h2 className="text-3xl sm:text-4xl md:text-6xl font-bold text-[#1d1d1f] leading-[1.1] tracking-tight mb-8">
-              The <span className="text-[#0071e3]">minds</span> behind VEXA TECH
+            <div className="system-tag mb-8 mx-auto w-fit bg-white/50 backdrop-blur shadow-sm">
+              <span className="status-dot" />
+              SYS // EXECUTIVE LEADERSHIP
+            </div>
+            <h2 className="text-4xl sm:text-5xl md:text-6xl font-black text-text-primary leading-tight tracking-tight mb-8">
+              The <span className="text-gradient-blue">minds</span> behind VEXA TECH
             </h2>
-            <p className="text-[#6e6e73] text-lg md:text-xl leading-relaxed max-w-2xl mx-auto font-light">
-              Building the future of digital experiences with a relentless commitment
-              to innovation and excellence.
+            <p className="text-text-muted text-lg md:text-xl leading-relaxed max-w-2xl mx-auto font-normal">
+              Building the future of enterprise digital experiences with a relentless commitment to innovation and engineering precision.
             </p>
           </motion.div>
         </div>
@@ -114,57 +110,49 @@ export default function Team() {
             <motion.div
               key={index}
               variants={cardVariants}
-              whileHover={{ y: -4, transition: { duration: 0.3 } }}
+              whileHover={{ y: -6, transition: { duration: 0.3 } }}
               onMouseMove={handleMouseMove}
-              className="group glass-card-interactive flex flex-col p-6 sm:p-8 lg:p-10 rounded-[32px] transition-all duration-500"
+              className="group glass-card-interactive flex flex-col p-8 lg:p-10 rounded-3xl bg-white border border-border-subtle hover:border-brand-accent/20 hover:shadow-[0_8px_30px_rgba(0,113,227,0.06)] transition-all duration-500 relative"
             >
-              {/* Top gradient accent line */}
-              <div
-                className={`absolute top-0 left-0 right-0 h-[2px] bg-linear-to-r ${member.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500`}
-              />
-
-              {/* Inner glow */}
-              <div
-                className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none rounded-[32px]"
-                style={{
-                  background: `radial-gradient(ellipse at top, ${member.glow}12 0%, transparent 60%)`,
-                }}
-              />
-
-              {/* Monogram */}
-              <div className="relative mb-8">
-                <div
-                  className="w-16 h-16 rounded-2xl bg-white/70 border border-slate-100 flex items-center justify-center text-[#1d1d1f] text-2xl font-bold transition-all duration-500 group-hover:bg-[#0071e3] group-hover:text-white shadow-xs"
-                >
-                  {member.initial}
+              {/* Avatar & Code */}
+              <div className="flex items-center justify-between mb-8">
+                <div className="w-14 h-14 rounded-full border border-border-subtle overflow-hidden relative shrink-0 shadow-sm">
+                  <Image
+                    src={member.avatar}
+                    alt={member.name}
+                    fill
+                    className="object-cover transition-transform duration-500 group-hover:scale-[1.05]"
+                  />
                 </div>
+                <span className="text-[10px] font-mono text-text-muted/65 tracking-wider">
+                  {member.sysCode}
+                </span>
               </div>
 
               {/* Name & Role */}
               <div className="mb-6">
-                <h3 className="text-2xl font-bold text-[#1d1d1f] tracking-tight mb-2">
+                <h3 className="text-2xl font-black text-text-primary tracking-tight mb-1.5 group-hover:text-brand-accent transition-colors">
                   {member.name}
                 </h3>
-                <p className="font-semibold text-xs uppercase tracking-wider text-[#0071e3]">
+                <p className="font-bold text-xs uppercase tracking-wider text-brand-accent">
                   {member.role}
                 </p>
               </div>
 
-              {/* Divider */}
-              <div className="w-12 h-px bg-slate-100 mb-8" />
+              <div className="w-full h-px bg-black/5 mb-6" />
 
               {/* Description */}
-              <p className="grow text-[#6e6e73] text-base leading-relaxed mb-10 font-light">
+              <p className="grow text-text-muted text-base leading-relaxed mb-8 font-normal">
                 {member.desc}
               </p>
 
-              {/* Social */}
+              {/* Social links */}
               <div className="flex items-center gap-3 mt-auto">
                 <Link
                   href={member.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex-1 inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-white/50 border border-slate-200 text-[#6e6e73] hover:text-white hover:bg-[#1d1d1f] hover:border-[#1d1d1f] transition-all duration-300 text-xs font-semibold uppercase tracking-wider shadow-xs"
+                  className="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-black/5 border border-black/5 text-text-primary hover:text-white hover:bg-brand-accent hover:border-brand-accent transition-all duration-300 text-xs font-bold uppercase tracking-wider"
                 >
                   LinkedIn
                 </Link>
@@ -172,7 +160,8 @@ export default function Team() {
                   href={member.instagram}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-2.5 rounded-xl bg-white/50 border border-slate-200 text-[#6e6e73] hover:text-white hover:bg-[#1d1d1f] hover:border-[#1d1d1f] transition-all duration-300 shadow-xs"
+                  className="p-2.5 rounded-xl bg-black/5 border border-black/5 text-text-primary hover:text-white hover:bg-brand-accent hover:border-brand-accent transition-all duration-300 flex items-center justify-center"
+                  aria-label="Instagram Profile"
                 >
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24">
                     <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
@@ -194,9 +183,9 @@ export default function Team() {
         >
           <Link
             href="/contact"
-            className="inline-flex items-center gap-2 text-[15px] font-semibold text-[#6e6e73] hover:text-[#0071e3] transition-colors group"
+            className="inline-flex items-center gap-2 text-sm font-bold text-text-muted hover:text-brand-accent transition-colors group"
           >
-            Working with the best{" "}
+            Work with our leadership team{" "}
             <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
           </Link>
         </motion.div>

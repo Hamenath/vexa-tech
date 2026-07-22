@@ -7,10 +7,10 @@ import { motion, useInView } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 
 const values = [
-  "Strategic Design Thinking",
-  "Advanced Web Architecture",
+  "Strategic Engineering Thinking",
+  "Advanced Next.js Web Architecture",
   "Brand-Focused Execution",
-  "Scalable Digital Systems",
+  "Scalable Enterprise Systems",
 ];
 
 export default function About() {
@@ -21,11 +21,11 @@ export default function About() {
     <section
       id="about"
       ref={containerRef}
-      className="relative py-32 md:py-40 bg-white overflow-hidden"
+      className="relative py-32 md:py-40 bg-bg-base text-text-primary border-t border-border-subtle overflow-hidden"
     >
-      {/* ── Minimal background ── */}
-      <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-slate-50 rounded-full blur-[120px] pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-blue-50/30 rounded-full blur-[100px] pointer-events-none" />
+      {/* Radial lighting background */}
+      <div className="absolute top-0 right-0 w-200 h-200 bg-brand-accent/3 rounded-full blur-40 pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-150 h-150 bg-emerald-500/2 rounded-full blur-35 pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-6 md:px-8 lg:px-12 relative z-10">
         <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
@@ -37,40 +37,38 @@ export default function About() {
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             className="flex flex-col"
           >
-            <div className="section-tag mb-8">
-              About Vexa Tech
+            <div className="system-tag mb-8 bg-white/50 backdrop-blur shadow-sm">
+              <span className="status-dot" />
+              SYS // ABOUT VEXA TECH
             </div>
 
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-8 text-[#1d1d1f] tracking-tight leading-[1.15]">
+            <h2 className="text-4xl sm:text-5xl md:text-6xl font-black mb-8 text-text-primary tracking-tight leading-tight">
               We architect{" "}
-              <span className="text-[#0071e3]">digital</span>{" "}
+              <span className="text-gradient-blue">digital</span>{" "}
               ecosystems
             </h2>
 
-            <div className="space-y-6 text-[#6e6e73] text-lg leading-relaxed font-light mb-12">
+            <div className="space-y-6 text-text-muted text-[18px] leading-relaxed font-normal mb-12">
               <p>
-                VEXA TECH is an elite digital engineering firm specialized in 
-                high-performance web architecture, strategic UI/UX design, 
-                and scalable business systems.
+                VEXA TECH is a premium digital services company helping businesses grow through modern websites, strategic branding, software development, digital marketing, and intelligent business solutions.
               </p>
               <p>
-                We build premium digital experiences that command authority, 
-                optimize workflows, and drive definitive market growth.
+                We combine creativity, technology, and strategy to build experiences that create measurable business value.
               </p>
             </div>
 
             {/* Value points */}
-            <div className="grid sm:grid-cols-2 gap-3">
+            <div className="grid sm:grid-cols-2 gap-4">
               {values.map((point, i) => (
                 <motion.div
                   key={i}
                   initial={{ opacity: 0, y: 10 }}
                   animate={isInView ? { opacity: 1, y: 0 } : {}}
                   transition={{ duration: 0.5, delay: 0.3 + i * 0.1 }}
-                  className="group flex items-center gap-4 px-5 py-4 rounded-2xl border border-white/40 glass-surface-subtle hover:border-[#0071e3]/30 hover:shadow-xs transition-all duration-300 cursor-default"
+                  className="group flex items-center gap-3.5 px-5 py-4 rounded-2xl border border-border-subtle bg-white hover:border-brand-accent/40 hover:shadow-md transition-all duration-300 cursor-default"
                 >
-                  <div className="w-1.5 h-1.5 rounded-full bg-[#0071e3]" />
-                  <span className="text-[15px] font-medium text-[#1d1d1f]">
+                  <div className="w-2 h-2 rounded-full bg-brand-accent shadow-sm" />
+                  <span className="text-sm font-semibold text-text-primary">
                     {point}
                   </span>
                 </motion.div>
@@ -85,7 +83,7 @@ export default function About() {
             >
               <Link
                 href="/contact"
-                className="inline-flex items-center gap-1.5 text-[15px] font-semibold text-[#0071e3] hover:underline group transition-all duration-300"
+                className="inline-flex items-center gap-2 text-base font-bold text-brand-accent hover:text-brand-accent-hover transition-colors"
               >
                 Work with us
                 <ArrowUpRight size={18} />
@@ -100,40 +98,39 @@ export default function About() {
             transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
             className="relative"
           >
-            {/* Card */}
-            <div className="glass-card w-full aspect-square max-w-[480px] mx-auto lg:ml-auto p-4 rounded-[40px] shadow-xl">
-              {/* Inner frame */}
-              <div className="w-full h-full rounded-[32px] bg-slate-50 flex items-center justify-center relative overflow-hidden group">
-                {/* Subtle light */}
-                <div className="absolute inset-0 bg-linear-to-br from-blue-500/5 to-transparent pointer-events-none" />
+            {/* White Glass Card */}
+            <div className="bg-white border border-border-subtle w-full aspect-square max-w-120 mx-auto lg:ml-auto p-4 rounded-[40px] shadow-sm relative">
+              <div className="w-full h-full rounded-4xl bg-bg-light flex items-center justify-center relative overflow-hidden group border border-border-subtle">
+                <div className="absolute inset-0 bg-tech-grid opacity-[0.03] pointer-events-none" />
+                <div className="absolute inset-0 bg-linear-to-br from-brand-accent/5 via-transparent to-transparent pointer-events-none" />
 
                 {/* Logo */}
-                <div className="relative w-1/2 h-1/2 transform transition-all duration-1000 group-hover:scale-105">
+                <div className="relative w-1/2 h-1/2 transform transition-all duration-1000 group-hover:scale-105 drop-shadow-[0_4px_16px_rgba(124,58,237,0.2)]">
                   <Image
                     src="/vexatechlogo.svg"
                     alt="VEXA TECH Logo"
                     fill
-                    className="object-contain opacity-80"
+                    className="object-contain"
                   />
                 </div>
               </div>
             </div>
 
-            {/* Floating stat badges — CSS animations avoid React removeChild conflicts */}
+            {/* Floating stat badges */}
             <div
-              className="absolute -top-4 right-0 lg:-right-4 glass-card rounded-2xl px-6 py-4 text-center shadow-lg"
+              className="absolute -top-4 right-0 lg:-right-4 bg-white border border-border-subtle rounded-2xl px-6 py-4 text-center shadow-sm z-20"
               style={{ animation: "floatUp 4s ease-in-out infinite" }}
             >
-              <div className="text-2xl font-bold text-[#1d1d1f]">150+</div>
-              <div className="text-[10px] font-bold uppercase tracking-wider text-[#6e6e73]">Projects</div>
+              <div className="text-2xl font-extrabold text-text-primary">150+</div>
+              <div className="text-[10px] font-mono uppercase tracking-wider text-text-muted opacity-60">Projects</div>
             </div>
 
             <div
-              className="absolute -bottom-4 left-0 lg:-left-4 glass-card rounded-2xl px-6 py-4 text-center shadow-lg"
+              className="absolute -bottom-4 left-0 lg:-left-4 bg-white border border-border-subtle rounded-2xl px-6 py-4 text-center shadow-sm z-20"
               style={{ animation: "floatDown 5s ease-in-out infinite 1s" }}
             >
-              <div className="text-2xl font-bold text-[#0071e3]">99%</div>
-              <div className="text-[10px] font-bold uppercase tracking-wider text-[#6e6e73]">Satisfaction</div>
+              <div className="text-2xl font-extrabold text-brand-accent">99%</div>
+              <div className="text-[10px] font-mono uppercase tracking-wider text-text-muted opacity-60">Satisfaction</div>
             </div>
           </motion.div>
 

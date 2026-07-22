@@ -4,8 +4,6 @@ import { Lead } from "@/app/types/lead";
 import { 
   User, 
   ArrowRight, 
-  Mail, 
-  Phone,
   MessageCircle,
   Calendar
 } from "lucide-react";
@@ -25,7 +23,7 @@ export default function RecentLeads({ leads, onViewDetails }: RecentLeadsProps) 
   };
 
   return (
-    <div className="bg-white rounded-[32px] border border-gray-100 shadow-sm p-8 h-full flex flex-col">
+    <div className="bg-white rounded-4xl border border-gray-100 shadow-sm p-8 h-full flex flex-col">
       <div className="flex items-center justify-between mb-8">
         <div>
           <h3 className="text-xl font-bold text-gray-900 tracking-tight">Recent Leads</h3>

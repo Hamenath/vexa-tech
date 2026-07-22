@@ -6,34 +6,40 @@ import { Target, Sparkles, TrendingUp, BarChart2, Users, CheckCircle } from "luc
 
 const features = [
   {
-    icon: Target,
-    title: "Strategic Approach",
-    desc: "We align every project with your brand goals, audience needs, and growth vision.",
-  },
-  {
+    sysCode: "PILLAR // 01",
     icon: Sparkles,
-    title: "Premium Design",
-    desc: "We craft clean, modern, and intuitive experiences that build trust and engagement.",
+    title: "Premium Quality",
+    desc: "We design and develop immaculate, high-end digital products that establish trust and command market authority.",
   },
   {
-    icon: TrendingUp,
-    title: "Scalable Development",
-    desc: "Our digital solutions are built for performance, flexibility, and long-term growth.",
+    sysCode: "PILLAR // 02",
+    icon: Target,
+    title: "Business-Focused Solutions",
+    desc: "Every technical and strategic decision is aligned with your business model, corporate goals, and market demands.",
   },
   {
-    icon: BarChart2,
-    title: "Business Impact",
-    desc: "Every design and development decision is made to support real business results.",
-  },
-  {
+    sysCode: "PILLAR // 03",
     icon: Users,
-    title: "Strong Collaboration",
-    desc: "We work with clarity, consistency, and partnership throughout the project journey.",
+    title: "Long-Term Partnership",
+    desc: "We operate with radical transparency, supporting your business scale, iterations, and constant evolution over time.",
   },
   {
+    sysCode: "PILLAR // 04",
     icon: CheckCircle,
-    title: "Quality Execution",
-    desc: "We focus on polished details, modern standards, and high-value digital experiences.",
+    title: "Modern Technologies",
+    desc: "Built with the latest frameworks like Next.js 16, TypeScript, and modern tools to prevent technical debt.",
+  },
+  {
+    sysCode: "PILLAR // 05",
+    icon: TrendingUp,
+    title: "Performance & Scalability",
+    desc: "Engineered for lightning-fast speeds, global content delivery, robust security, and uncompromised uptime.",
+  },
+  {
+    sysCode: "PILLAR // 06",
+    icon: BarChart2,
+    title: "Growth-Oriented Strategy",
+    desc: "We optimize user journeys, SEO architectures, and campaign dynamics to drive clear, measurable business growth.",
   },
 ];
 
@@ -51,25 +57,28 @@ export default function WhyChooseUs() {
   };
 
   return (
-    <section id="why-us" className="relative py-32 md:py-40 bg-white overflow-hidden">
-      {/* Background */}
-      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-blue-50/50 rounded-full blur-[120px] pointer-events-none" />
+    <section id="why-us" className="relative py-32 md:py-40 bg-bg-base text-text-primary border-t border-border-subtle overflow-hidden">
+      {/* Background Radial */}
+      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-225 h-150 bg-brand-accent/3 rounded-full blur-40 pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-6 md:px-8 lg:px-12 relative z-10">
 
         {/* Header */}
         <div ref={headerRef} className="max-w-3xl mb-20">
           <motion.div
-            initial={{ opacity: 0, y: 10 }}
+            initial={{ opacity: 0, y: 15 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6 }}
           >
-            <div className="section-tag mb-8">Why Vexa Tech</div>
-            <h2 className="text-3xl sm:text-4xl md:text-6xl font-bold text-[#1d1d1f] leading-[1.1] tracking-tight mb-8">
-              The VEXA TECH <span className="text-[#0071e3]">Advantage</span>
+            <div className="system-tag mb-8 bg-white/50 backdrop-blur shadow-sm">
+              <span className="status-dot" />
+              SYS // THE ADVANTAGE
+            </div>
+            <h2 className="text-4xl sm:text-5xl md:text-6xl font-black text-text-primary leading-tight tracking-tight mb-8">
+              The VEXA TECH <span className="text-gradient-blue">Advantage</span>
             </h2>
-            <p className="text-[#6e6e73] text-xl font-light leading-relaxed">
-              Six pillars that define our commitment to elite digital engineering.
+            <p className="text-text-muted text-xl font-normal leading-relaxed">
+              Six core pillars defining our relentless commitment to enterprise engineering excellence.
             </p>
           </motion.div>
         </div>
@@ -87,31 +96,27 @@ export default function WhyChooseUs() {
                 transition={{ duration: 0.5, delay: index * 0.08 }}
                 whileHover={{ y: -4 }}
                 onMouseMove={handleMouseMove}
-                className="group glass-card-interactive p-6 sm:p-8 lg:p-10 rounded-[32px] transition-all duration-400"
+                className="group glass-card-interactive p-8 lg:p-10 rounded-3xl bg-white border border-border-subtle hover:border-brand-accent/20 hover:shadow-md transition-all duration-300 relative flex flex-col justify-between"
               >
-                {/* Icon */}
-                <div
-                  className="w-12 h-12 rounded-2xl flex items-center justify-center mb-8 bg-slate-50 border border-slate-100 transition-all duration-500 group-hover:bg-blue-50 group-hover:border-blue-100"
-                >
-                  <Icon
-                    size={22}
-                    className="text-[#0071e3]"
-                    strokeWidth={1.5}
-                  />
+                <div>
+                  <div className="flex items-center justify-between mb-8">
+                    <div className="w-12 h-12 rounded-2xl flex items-center justify-center bg-black/5 border border-black/5 group-hover:border-brand-accent/20 group-hover:bg-brand-accent/5 transition-all duration-500">
+                      <Icon size={22} className="text-text-primary group-hover:text-brand-accent transition-colors" strokeWidth={1.5} />
+                    </div>
+                    <span className="text-[10px] font-mono text-text-muted/65 tracking-wider">
+                      {feature.sysCode}
+                    </span>
+                  </div>
+
+                  <h3 className="text-xl font-bold text-text-primary mb-4 tracking-tight group-hover:text-brand-accent transition-colors">
+                    {feature.title}
+                  </h3>
+                  <p className="text-text-muted text-base leading-relaxed font-normal mb-8">
+                    {feature.desc}
+                  </p>
                 </div>
 
-                {/* Text */}
-                <h3 className="text-xl font-bold text-[#1d1d1f] mb-4 tracking-tight">
-                  {feature.title}
-                </h3>
-                <p className="text-[#6e6e73] text-base leading-relaxed font-light">
-                  {feature.desc}
-                </p>
-
-                {/* Accent line */}
-                <div
-                  className="absolute bottom-8 left-10 w-6 h-[2px] bg-[#0071e3]/30 group-hover:w-12 group-hover:bg-[#0071e3] transition-all duration-500 rounded-full"
-                />
+                <div className="w-8 h-[2px] bg-brand-accent/20 group-hover:w-16 group-hover:bg-brand-accent transition-all duration-500 rounded-full" />
               </motion.div>
             );
           })}

@@ -1,7 +1,7 @@
 "use client";
 
+import React from "react";
 import { RotateCcw, RefreshCw, Plus } from "lucide-react";
-import { cn } from "@/app/lib/utils";
 
 interface PageHeaderProps {
   title: string;
@@ -11,7 +11,7 @@ interface PageHeaderProps {
   primaryAction?: {
     label: string;
     onClick: () => void;
-    icon?: any;
+    icon?: React.ReactNode;
   };
 }
 

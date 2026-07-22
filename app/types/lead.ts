@@ -5,6 +5,7 @@ export interface Lead {
   fullName: string;
   email: string;
   phone: string;
+  countryCode?: string;
   serviceRequired: string;
   projectBudget: string;
   message: string;
@@ -12,5 +13,6 @@ export interface Lead {
   updatedAt: number;
   status: LeadStatus;
   source: string;
+  notes?: string;
   adminNotes?: string;
 }

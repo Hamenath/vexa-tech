@@ -1,0 +1,66 @@
+import { NextResponse } from "next/server";
+import { db } from "../../../lib/firebase-admin";
+import { cookies } from "next/headers";
+import { verifyToken } from "../../../lib/auth";
+
+async function isAuthorized() {
+  const cookieStore = await cookies();
+  const token = cookieStore.get("admin_token")?.value;
+  if (!token) return false;
+  return verifyToken(token);
+}
+
+export async function GET() {
+  if (!await isAuthorized()) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+
+  try {
+    const snapshot = await db.collection("careerApplications").orderBy("createdAt", "desc").get();
+    const applications = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+    return NextResponse.json(applications);
+  } catch (error) {
+    console.error("Failed to fetch applications:", error);
+    return NextResponse.json({ error: "Failed to fetch applications" }, { status: 500 });
+  }
+}
+
+export async function PATCH(req: Request) {
+  if (!await isAuthorized()) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+
+  try {
+    const { id, ...updates } = await req.json();
+    if (!id) return NextResponse.json({ error: "Missing ID" }, { status: 400 });
+
+    await db.collection("careerApplications").doc(id).update({
+      ...updates,
+      updatedAt: Date.now(),
+    });
+
+    return NextResponse.json({ success: true });
+  } catch (error) {
+    console.error("Failed to update application:", error);
+    return NextResponse.json({ error: "Failed to update application" }, { status: 500 });
+  }
+}
+
+export async function DELETE(req: Request) {
+  if (!await isAuthorized()) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+
+  try {
+    const { searchParams } = new URL(req.url);
+    const id = searchParams.get("id");
+    if (!id) return NextResponse.json({ error: "Missing ID parameter" }, { status: 400 });
+
+    await db.collection("careerApplications").doc(id).delete();
+
+    return NextResponse.json({ success: true });
+  } catch (error) {
+    console.error("Failed to delete application:", error);
+    return NextResponse.json({ error: "Failed to delete application" }, { status: 500 });
+  }
+}

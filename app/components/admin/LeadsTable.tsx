@@ -5,16 +5,12 @@ import {
   Eye, 
   Trash2, 
   Search, 
-  Filter, 
   ArrowUpDown, 
-  Download,
   Mail,
   Phone,
   PackageSearch,
   ChevronLeft,
-  ChevronRight,
-  TrendingUp,
-  UserCheck
+  ChevronRight
 } from "lucide-react";
 import { Lead, LeadStatus } from "@/app/types/lead";
 import { cn, formatDate } from "@/app/lib/utils";
@@ -29,7 +25,7 @@ const statusColors = {
   new: "text-blue-600 bg-blue-50 border-blue-100",
   contacted: "text-amber-600 bg-amber-50 border-amber-100",
   in_progress: "text-purple-600 bg-purple-50 border-purple-100",
-  closed: "text-green-600 bg-green-50 border-green-100",
+  closed: "text-emerald-600 bg-emerald-50 border-emerald-100",
 };
 
 export default function LeadsTable({ leads, onViewDetails }: LeadsTableProps) {
@@ -73,7 +69,7 @@ export default function LeadsTable({ leads, onViewDetails }: LeadsTableProps) {
           <select 
             className="bg-white border border-gray-100 rounded-2xl px-6 py-3.5 text-xs font-bold outline-none cursor-pointer hover:bg-gray-50 transition-all text-gray-500 hover:text-gray-900 shadow-sm"
             value={statusFilter}
-            onChange={(e) => setStatusFilter(e.target.value as any)}
+            onChange={(e) => setStatusFilter(e.target.value as LeadStatus | "all")}
           >
             <option value="all">All Pipeline Stages</option>
             <option value="new">Fresh Inquiries</option>
@@ -88,8 +84,8 @@ export default function LeadsTable({ leads, onViewDetails }: LeadsTableProps) {
       </div>
 
       {/* Main Table Structure */}
-      <div className="bg-white rounded-[32px] border border-gray-100 shadow-sm overflow-hidden overflow-x-auto relative group">
-        <table className="w-full text-left border-collapse min-w-[900px]">
+      <div className="bg-white rounded-4xl border border-gray-100 shadow-sm overflow-hidden overflow-x-auto relative group">
+        <table className="w-full text-left border-collapse min-w-225">
           <thead>
             <tr className="bg-gray-50/50 border-b border-gray-100">
               <th className="px-10 py-6 text-[10px] font-black uppercase text-gray-400 tracking-[0.2em]">Prospect Details</th>
@@ -168,7 +164,7 @@ export default function LeadsTable({ leads, onViewDetails }: LeadsTableProps) {
         {/* Empty Visual State */}
         {currentLeads.length === 0 && (
           <div className="p-24 flex flex-col items-center justify-center text-center">
-            <div className="w-24 h-24 rounded-[32px] bg-gray-50 flex items-center justify-center border border-gray-100 mb-6 text-gray-200">
+            <div className="w-24 h-24 rounded-4xl bg-gray-50 flex items-center justify-center border border-gray-100 mb-6 text-gray-200">
                <PackageSearch size={48} />
             </div>
             <h3 className="text-lg font-bold text-gray-900 mb-1">No matches found in pipeline</h3>

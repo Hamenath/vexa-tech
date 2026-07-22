@@ -3,23 +3,15 @@
 import { useEffect, useState } from "react";
 import { db } from "@/app/lib/firebase";
 import { collection, onSnapshot, query, orderBy, getDocs, deleteDoc, doc } from "firebase/firestore";
-import { motion } from "framer-motion";
 import { 
   Users, 
   UserPlus, 
   CheckCircle2, 
   Clock,
-  TrendingUp,
-  TrendingDown,
-  LayoutDashboard,
-  ShieldCheck,
-  RefreshCw,
-  RotateCcw,
   Download
 } from "lucide-react";
-import { format } from "date-fns";
 import { Lead } from "@/app/types/lead";
-import { cn, formatDate } from "@/app/lib/utils";
+import { formatDate } from "@/app/lib/utils";
 import StatsCard from "@/app/components/admin/StatsCard";
 import RecentLeads from "@/app/components/admin/RecentLeads";
 import ActivityPanel from "@/app/components/admin/ActivityPanel";

@@ -1,12 +1,12 @@
 "use client";
 
+import React from "react";
 import { 
   User, 
   Bell, 
   Shield, 
   Palette, 
   LogOut, 
-  ShieldCheck,
   Database
 } from "lucide-react";
 import PageHeader from "@/app/components/admin/PageHeader";
@@ -22,7 +22,7 @@ interface SettingsItem {
 
 interface SettingsSection {
   title: string;
-  icon: any;
+  icon: React.ComponentType<{ size?: number }>;
   description: string;
   items: SettingsItem[];
 }
@@ -78,7 +78,7 @@ export default function SettingsPage() {
 
       <div className="max-w-4xl space-y-8">
         {sections.map((section, idx) => (
-          <div key={idx} className="bg-white rounded-[32px] border border-gray-100 shadow-sm overflow-hidden">
+          <div key={idx} className="bg-white rounded-4xl border border-gray-100 shadow-sm overflow-hidden">
             <div className="p-8 border-b border-gray-50 flex items-start gap-5">
               <div className="w-12 h-12 rounded-2xl bg-blue-50 flex items-center justify-center text-blue-600 shrink-0">
                 <section.icon size={24} />
@@ -99,7 +99,7 @@ export default function SettingsPage() {
                   </div>
                   
                   {item.type === "toggle" && (
-                    <button className={`w-12 h-6 rounded-full transition-all relative ${item.value ? 'bg-blue-600' : 'bg-gray-200'}`}>
+                    <button className={`w-12 h-6 rounded-full transition-all relative ${item.value ? 'bg-blue-600' : 'bg-gray-200'}`} aria-label={`${item.label} Toggle`}>
                        <div className={`absolute top-1 w-4 h-4 bg-white rounded-full transition-all ${item.value ? 'left-7' : 'left-1'}`} />
                     </button>
                   )}
@@ -123,7 +123,7 @@ export default function SettingsPage() {
 
         {/* System Settings Mini Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-12">
-           <div className="bg-gray-50 rounded-[32px] p-8 border border-gray-100 group hover:bg-white hover:shadow-xl hover:shadow-gray-200/40 transition-all duration-500">
+           <div className="bg-gray-50 rounded-4xl p-8 border border-gray-100 group hover:bg-white hover:shadow-xl hover:shadow-gray-200/40 transition-all duration-500">
               <div className="flex items-center gap-3 mb-4">
                  <Palette className="text-gray-400 group-hover:text-blue-600 transition-colors" size={20} />
                  <h4 className="text-[15px] font-bold text-gray-900">Theme Preference</h4>
@@ -138,7 +138,7 @@ export default function SettingsPage() {
               </div>
            </div>
 
-           <div className="bg-gray-50 rounded-[32px] p-8 border border-gray-100 group hover:bg-white hover:shadow-xl hover:shadow-gray-200/40 transition-all duration-500">
+           <div className="bg-gray-50 rounded-4xl p-8 border border-gray-100 group hover:bg-white hover:shadow-xl hover:shadow-gray-200/40 transition-all duration-500">
               <div className="flex items-center gap-3 mb-4">
                  <Database className="text-gray-400 group-hover:text-blue-600 transition-colors" size={20} />
                  <h4 className="text-[15px] font-bold text-gray-900">Diagnostic Reset</h4>

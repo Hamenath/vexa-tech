@@ -1,8 +1,6 @@
 "use client";
 
 import { 
-  LineChart, 
-  Line, 
   XAxis, 
   YAxis, 
   CartesianGrid, 
@@ -18,7 +16,7 @@ import {
 } from "recharts";
 import { Lead } from "@/app/types/lead";
 import { useMemo } from "react";
-import { format, startOfDay, subDays, eachDayOfInterval } from "date-fns";
+import { format, subDays, eachDayOfInterval } from "date-fns";
 import { formatDate } from "@/app/lib/utils";
 
 interface AnalyticsChartsProps {
@@ -68,9 +66,9 @@ export default function AnalyticsCharts({ leads }: AnalyticsChartsProps) {
     <div className="space-y-8">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         {/* Leads Growth Chart */}
-        <div className="bg-white p-8 rounded-[32px] border border-gray-100 shadow-sm">
+        <div className="bg-white p-8 rounded-4xl border border-gray-100 shadow-sm">
           <h3 className="text-lg font-bold text-gray-900 mb-8">Leads Growth (Last 7 Days)</h3>
-          <div className="h-[300px] w-full">
+          <div className="h-75 w-full">
             <ResponsiveContainer width="100%" height="100%">
               <AreaChart data={leadsOverTime}>
                 <defs>
@@ -115,9 +113,9 @@ export default function AnalyticsCharts({ leads }: AnalyticsChartsProps) {
         </div>
 
         {/* Status Distribution */}
-        <div className="bg-white p-8 rounded-[32px] border border-gray-100 shadow-sm">
+        <div className="bg-white p-8 rounded-4xl border border-gray-100 shadow-sm">
           <h3 className="text-lg font-bold text-gray-900 mb-8">Status Distribution</h3>
-          <div className="h-[300px] w-full flex items-center justify-center">
+          <div className="h-75 w-full flex items-center justify-center">
             <ResponsiveContainer width="100%" height="100%">
               <PieChart>
                 <Pie
@@ -152,9 +150,9 @@ export default function AnalyticsCharts({ leads }: AnalyticsChartsProps) {
       </div>
 
       {/* Service Distribution Bar Chart */}
-      <div className="bg-white p-8 rounded-[32px] border border-gray-100 shadow-sm">
+      <div className="bg-white p-8 rounded-4xl border border-gray-100 shadow-sm">
         <h3 className="text-lg font-bold text-gray-900 mb-8">Top Requested Services</h3>
-        <div className="h-[300px] w-full">
+        <div className="h-75 w-full">
           <ResponsiveContainer width="100%" height="100%">
             <ReBarChart data={serviceDistribution} layout="vertical" margin={{ left: 40 }}>
               <CartesianGrid strokeDasharray="3 3" horizontal={false} stroke="#f1f5f9" />

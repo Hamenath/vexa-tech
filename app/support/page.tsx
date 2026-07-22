@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState } from "react";
-import Link from "next/link";
 import { motion } from "framer-motion";
 import { 
   Search, 
@@ -9,27 +8,23 @@ import {
   CreditCard, 
   Cpu, 
   ChevronDown, 
-  Mail, 
-  Calendar,
-  ExternalLink,
-  MessageCircle,
-  HelpCircle
+  ExternalLink
 } from "lucide-react";
 import { cn } from "@/app/lib/utils";
 
-const SupportCard = ({ icon: Icon, title, desc }: { icon: any, title: string, desc: string }) => (
+const SupportCard = ({ icon: Icon, title, desc }: { icon: React.ComponentType<{ size?: number }>, title: string, desc: string }) => (
   <motion.div
-    whileHover={{ y: -8, scale: 1.02 }}
-    className="p-10 rounded-[32px] bg-white border border-gray-100 shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_20px_50px_rgba(0,0,0,0.08)] transition-all duration-500 flex flex-col items-start group cursor-pointer"
+    whileHover={{ y: -6 }}
+    className="p-8 rounded-3xl bg-white border border-border-subtle hover:border-brand-accent/20 hover:shadow-md transition-all duration-300 flex flex-col items-start group cursor-pointer h-full"
   >
-    <div className="w-14 h-14 rounded-2xl bg-blue-50 border border-blue-100 flex items-center justify-center text-blue-600 mb-8 transition-transform group-hover:rotate-6">
-      <Icon size={28} />
+    <div className="w-12 h-12 rounded-2xl bg-black/5 border border-black/5 flex items-center justify-center text-text-primary group-hover:bg-brand-accent group-hover:border-brand-accent group-hover:text-white mb-6 transition-all duration-300 shadow-sm">
+      <Icon size={24} />
     </div>
-    <h3 className="text-2xl font-bold text-gray-900 mb-4">{title}</h3>
-    <p className="text-gray-500 font-medium text-base mb-8 grow leading-relaxed">
+    <h3 className="text-xl font-bold text-text-primary mb-3 group-hover:text-brand-accent transition-colors">{title}</h3>
+    <p className="text-text-muted font-normal text-sm mb-6 grow leading-relaxed">
       {desc}
     </p>
-    <div className="text-blue-600 font-bold text-xs uppercase tracking-widest flex items-center gap-2 group-hover:gap-4 transition-all">
+    <div className="text-brand-accent font-bold text-xs uppercase tracking-widest flex items-center gap-2 group-hover:gap-3 transition-all">
       Learn More <ExternalLink size={14} />
     </div>
   </motion.div>
@@ -43,23 +38,23 @@ const FAQItem = ({ question, answer }: { question: string, answer: React.ReactNo
       <button 
         onClick={() => setIsOpen(!isOpen)}
         className={cn(
-          "w-full p-8 rounded-3xl text-left transition-all duration-300 border flex justify-between items-center",
-          isOpen ? "bg-white border-blue-100 shadow-lg" : "bg-zinc-50 border-transparent hover:bg-white hover:border-gray-100"
+          "w-full p-6 md:p-8 rounded-2xl text-left transition-all duration-300 border flex justify-between items-center",
+          isOpen ? "bg-white border-brand-accent/30 shadow-sm" : "bg-white border-border-subtle hover:border-black/10"
         )}
       >
-        <span className="text-xl font-bold text-gray-900 pr-8">{question}</span>
+        <span className="text-lg md:text-xl font-bold text-text-primary pr-6">{question}</span>
         <ChevronDown 
           size={20} 
-          className={cn("text-blue-600 transition-transform duration-500", isOpen && "rotate-180")} 
+          className={cn("text-brand-accent transition-transform duration-300 shrink-0", isOpen && "rotate-180")} 
         />
       </button>
       <div 
         className={cn(
-          "overflow-hidden transition-all duration-500",
-          isOpen ? "max-h-[500px] opacity-100 mt-4 px-8 pb-8" : "max-h-0 opacity-0"
+          "overflow-hidden transition-all duration-300",
+          isOpen ? "max-h-120 opacity-100 mt-2 px-8 pb-6" : "max-h-0 opacity-0"
         )}
       >
-        <div className="text-lg text-gray-500 font-medium leading-relaxed">
+        <div className="text-base text-text-muted font-normal leading-relaxed">
           {answer}
         </div>
       </div>
@@ -69,133 +64,77 @@ const FAQItem = ({ question, answer }: { question: string, answer: React.ReactNo
 
 export default function SupportCenter() {
   return (
-    <main className="min-h-screen bg-white">
+    <main className="min-h-screen bg-bg-base text-text-primary pt-20">
       {/* Search Header */}
-      <section className="relative pt-32 pb-24 overflow-hidden border-b border-gray-50">
-        <div className="absolute inset-x-0 bottom-0 h-24 bg-linear-to-t from-gray-50/50 to-transparent pointer-events-none" />
+      <section className="relative pt-24 pb-20 overflow-hidden border-b border-border-subtle bg-bg-light">
         <div className="max-w-4xl mx-auto px-6 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             className="text-center"
           >
-            <div className="inline-block px-4 py-1.5 mb-8 rounded-full bg-blue-50 border border-blue-100/50 shadow-sm">
-              <p className="text-blue-600 font-bold tracking-[0.2em] uppercase text-[10px] md:text-xs flex items-center gap-2">
-                <HelpCircle size={14} /> VEXA TECH Care
-              </p>
+            <div className="system-tag mb-8 mx-auto w-fit bg-white/80 backdrop-blur shadow-sm">
+              <span className="status-dot" />
+              SYS // VEXA TECH CARE
             </div>
-            <h1 className="text-3xl sm:text-4xl md:text-7xl font-black text-gray-900 mb-8 tracking-tight">
-              How can we <span className="bg-clip-text text-transparent bg-linear-to-r from-blue-600 to-indigo-600">help</span> you?
+            <h1 className="text-4xl sm:text-5xl md:text-7xl font-black text-text-primary mb-6 tracking-tight">
+              How can we <span className="text-gradient-blue">help</span> you?
             </h1>
             
             {/* Search Input */}
-            <div className="max-w-2xl mx-auto mt-12 relative group">
-              <Search className="absolute left-6 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-blue-600 transition-colors" size={24} />
+            <div className="max-w-2xl mx-auto mt-10 relative group">
+              <Search className="absolute left-6 top-1/2 -translate-y-1/2 text-text-muted/40 group-focus-within:text-brand-accent transition-colors" size={22} />
               <input 
                 type="text" 
-                placeholder="Search for answers (e.g., 'pricing', 'support')..."
-                className="w-full pl-16 pr-8 py-6 rounded-full bg-white border border-gray-200 shadow-[0_8px_30px_rgba(0,0,0,0.04)] focus:shadow-[0_15px_40px_rgba(0,0,0,0.06)] outline-none transition-all text-lg font-medium focus:border-blue-200"
+                placeholder="Search knowledge base (e.g., 'web development', 'support')..."
+                className="w-full pl-16 pr-8 py-5 rounded-2xl bg-white border border-border-subtle text-text-primary placeholder-text-muted/40 shadow-sm outline-none transition-all text-base font-normal focus:border-brand-accent focus:ring-4 focus:ring-brand-accent/5"
               />
             </div>
           </motion.div>
         </div>
       </section>
 
-      {/* Main Support Sections */}
-      <section className="py-24">
-        <div className="max-w-7xl mx-auto px-6 lg:px-12">
-          <div className="grid md:grid-cols-3 gap-8">
-            <SupportCard 
-              icon={Rocket}
-              title="Getting Started"
-              desc="New to VEXA TECH? Learn about our collaborative design process, development phases, and onboarding journey."
-            />
-            <SupportCard 
-              icon={CreditCard}
-              title="Billing & Pricing"
-              desc="Detailed breakdown of our project pricing tables, deposit schedules, custom invoice queries, and accepted payment methods."
-            />
-            <SupportCard 
-              icon={Cpu}
-              title="Technical Support"
-              desc="Direct assistance for website deployment, AWS/Cloud hosting setup, custom domain mapping, or ongoing maintenance."
-            />
-          </div>
+      {/* Support Categories */}
+      <section className="py-20 max-w-6xl mx-auto px-6">
+        <div className="grid md:grid-cols-3 gap-6 mb-20">
+          <SupportCard 
+            icon={Rocket} 
+            title="Getting Started" 
+            desc="Guides on launching your project, submitting initial requirements, and timeline expectations." 
+          />
+          <SupportCard 
+            icon={Cpu} 
+            title="Technical Architecture" 
+            desc="Technical details on Next.js 16, Framer Motion, GSAP, and serverless infrastructure." 
+          />
+          <SupportCard 
+            icon={CreditCard} 
+            title="Billing & Milestones" 
+            desc="Information on payment milestones, invoices, and project scoping terms." 
+          />
         </div>
-      </section>
 
-      {/* FAQ Section */}
-      <section className="py-24 bg-zinc-50/50 border-y border-gray-100">
-        <div className="max-w-4xl mx-auto px-6">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-black text-gray-900 mb-4 tracking-tight">Frequently Asked Questions</h2>
-            <p className="text-gray-500 font-medium">Quick answers to the most common inquiries from our prospective and current clients.</p>
+        {/* FAQ Section */}
+        <div className="max-w-4xl mx-auto">
+          <div className="system-tag mb-6 mx-auto w-fit bg-white shadow-sm">
+            SYS // FREQUENTLY ASKED QUESTIONS
           </div>
-          
-          <div className="space-y-2">
-            <FAQItem 
-              question="What services does VEXA TECH offer?"
-              answer={
-                <div className="space-y-4">
-                  <p>We specialize in end-to-end digital solutions:</p>
-                  <ul className="space-y-2">
-                    <li><strong className="text-gray-900">Web Development:</strong> Custom landing pages, full-stack web apps, and CMS websites.</li>
-                    <li><strong className="text-gray-900">UI/UX Design:</strong> Modern, user-friendly digital architectures and prototypes.</li>
-                    <li><strong className="text-gray-900">Digital Marketing:</strong> Strategic SEO, social brand growth, and paid campaigns.</li>
-                    <li><strong className="text-gray-900">Business Analysis:</strong> Leveraging data to drive measurable business growth.</li>
-                  </ul>
-                </div>
-              }
-            />
-            <FAQItem 
-              question="How much does a website cost?"
-              answer="Pricing depends on the complexity of the project. A simple business landing page starts lower than a complex full-stack e-commerce platform. We offer a Free Consultation to assess your specific needs and provide a fixed custom quote."
-            />
-            <FAQItem 
-              question="How long does it take to complete a project?"
-              answer="Typically, a standard business website takes 2-4 weeks from initial design to final launch. More complex custom applications may take 6-8 weeks. We provide a detailed project timeline and phase breakdown before starting any engagement."
-            />
-            <FAQItem 
-              question="Do you offer support after the project is finished?"
-              answer="Yes! We offer various maintenance packages to keep your website secure, updated, and running smoothly. Every project also includes 30 days of free bug-fixing support after launch to ensure total stability."
-            />
-          </div>
-        </div>
-      </section>
+          <h2 className="text-3xl md:text-5xl font-black text-text-primary text-center mb-12">
+            Frequently Asked Questions
+          </h2>
 
-      {/* Help CTA Area */}
-      <section className="py-32">
-        <div className="max-w-4xl mx-auto px-6">
-          <motion.div 
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="p-12 lg:p-20 rounded-[40px] bg-blue-600 text-white text-center shadow-2xl relative overflow-hidden"
-          >
-            <div className="absolute top-0 right-0 w-[50%] h-[50%] bg-white/10 blur-[100px] rounded-full" />
-            
-            <h2 className="text-4xl md:text-6xl font-black mb-8 tracking-tight">Can&apos;t find what you&apos;re looking for?</h2>
-            <p className="text-blue-100 text-xl mb-12 font-medium max-w-xl mx-auto opacity-90">
-              Our dedicated support team is here to help you navigate any challenge, from project quotes to technical questions.
-            </p>
-            
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
-              <Link 
-                href="mailto:vexatech.connect@gmail.com"
-                className="w-full sm:w-auto group glass-btn-secondary px-10 py-5 rounded-full font-bold shadow-md hover:shadow-lg transition-all"
-              >
-                <Mail size={18} className="shrink-0" />
-                Email Support
-              </Link>
-              <Link 
-                href="#contact"
-                className="w-full sm:w-auto group glass-btn-primary px-10 py-5 rounded-full font-bold shadow-lg shadow-blue-500/10 transition-all"
-              >
-                <Calendar size={18} className="shrink-0" />
-                Book a Call
-              </Link>
-            </div>
-          </motion.div>
+          <FAQItem 
+            question="What is the average timeline for a custom web development project?"
+            answer="Project timelines vary based on scope. Standard high-performance landing pages and corporate platforms typically take 2-4 weeks, while complex full-stack web applications range from 4-8 weeks."
+          />
+          <FAQItem 
+            question="Do you provide ongoing support after project launch?"
+            answer="Yes! VEXA TECH provides 24/7 technical monitoring, security updates, feature enhancements, and continuous optimization plans post-launch."
+          />
+          <FAQItem 
+            question="How do we get started with VEXA TECH?"
+            answer="Simply fill out our contact form or send us an email. Our team will review your requirements and schedule an initial consultation within 24 business hours."
+          />
         </div>
       </section>
     </main>

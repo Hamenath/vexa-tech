@@ -1,8 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { format } from "date-fns";
-import { User, Mail, MessageSquareText, ChevronRight } from "lucide-react";
+import { Mail, ChevronRight } from "lucide-react";
 import { Lead } from "@/app/types/lead";
 import { cn } from "@/app/lib/utils";
 
@@ -10,14 +9,14 @@ const statusColors = {
   new: "text-blue-600 bg-blue-50 border-blue-100",
   contacted: "text-amber-600 bg-amber-50 border-amber-100",
   in_progress: "text-purple-600 bg-purple-50 border-purple-100",
-  closed: "text-green-600 bg-green-50 border-green-100",
+  closed: "text-emerald-600 bg-emerald-50 border-emerald-100",
 };
 
 export default function RecentMessages({ leads }: { leads: Lead[] }) {
   const recentLeads = leads.slice(0, 5);
 
   return (
-    <div className="bg-white rounded-[32px] border border-gray-100 shadow-sm p-8 flex flex-col h-full">
+    <div className="bg-white rounded-4xl border border-gray-100 shadow-sm p-8 flex flex-col h-full">
       <div className="flex items-center justify-between mb-8">
         <div>
           <h3 className="text-xl font-bold text-gray-900 tracking-tight">Recent Feedback</h3>
@@ -55,14 +54,14 @@ export default function RecentMessages({ leads }: { leads: Lead[] }) {
                 <span className="text-xs font-medium text-gray-400 truncate">{lead.email}</span>
               </div>
               <p className="text-xs font-medium text-gray-500 line-clamp-1 italic tracking-tight">
-                "{lead.message.length > 80 ? lead.message.substring(0, 80) + '...' : lead.message}"
+                &quot;{lead.message.length > 80 ? lead.message.substring(0, 80) + '...' : lead.message}&quot;
               </p>
             </div>
           </motion.div>
         ))}
 
         {recentLeads.length === 0 && (
-          <div className="flex flex-col items-center justify-center h-[300px] text-zinc-400 italic font-medium">
+          <div className="flex flex-col items-center justify-center h-75 text-zinc-400 italic font-medium">
             No inquiries logged yet...
           </div>
         )}

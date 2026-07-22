@@ -37,11 +37,12 @@ export async function POST(req: Request) {
       message: "Notification trigger complete" 
     }, { status: 200 });
 
-  } catch (error: any) {
+  } catch (error: unknown) {
+    const errMsg = error instanceof Error ? error.message : "Unknown error occurred";
     console.error("Notification API failure:", error);
     return NextResponse.json({ 
       error: "Internal Server Error", 
-      details: error.message || "Unknown error occurred" 
+      details: errMsg 
     }, { status: 500 });
   }
 }

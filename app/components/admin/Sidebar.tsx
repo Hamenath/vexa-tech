@@ -10,8 +10,8 @@ import {
   BarChart3, 
   Settings, 
   LogOut,
-  ChevronRight,
-  ShieldCheck
+  ShieldCheck,
+  Briefcase
 } from "lucide-react";
 import { cn } from "@/app/lib/utils";
 
@@ -19,6 +19,7 @@ const menuItems = [
   { icon: LayoutDashboard, label: "Dashboard", href: "/admin/dashboard" },
   { icon: Users, label: "Leads", href: "/admin/leads" },
   { icon: MessageSquare, label: "Messages", href: "/admin/messages" },
+  { icon: Briefcase, label: "Applications", href: "/admin/careers" },
   { icon: BarChart3, label: "Analytics", href: "/admin/analytics" },
   { icon: Settings, label: "Settings", href: "/admin/settings" },
 ];

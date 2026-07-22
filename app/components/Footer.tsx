@@ -6,7 +6,7 @@ import Link from "next/link";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ArrowUpRight, Mail, ChevronRight } from "lucide-react";
-import { cn, getGmailLink } from "../lib/utils";
+import { getGmailLink } from "../lib/utils";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -27,7 +27,6 @@ const socialLinks = [
         <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
       </svg>
     ),
-    hoverBg: "hover:bg-red-600",
   },
   {
     name: "X (Twitter)",
@@ -37,7 +36,6 @@ const socialLinks = [
         <path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932 6.064-6.932zm-1.292 19.494h2.039L6.486 3.24H4.298l13.311 17.407z" />
       </svg>
     ),
-    hoverBg: "hover:bg-white hover:text-black",
   },
   {
     name: "Instagram",
@@ -49,7 +47,6 @@ const socialLinks = [
         <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
       </svg>
     ),
-    hoverBg: "hover:bg-gradient-to-tr hover:from-yellow-400 hover:via-red-500 hover:to-purple-600",
   },
   {
     name: "LinkedIn",
@@ -59,7 +56,6 @@ const socialLinks = [
         <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.238 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
       </svg>
     ),
-    hoverBg: "hover:bg-[#0077b5]",
   },
 ];
 
@@ -72,13 +68,13 @@ export default function Footer() {
     const ctx = gsap.context(() => {
       if (ctaRef.current) {
         gsap.from(ctaRef.current, {
-          y: 60, opacity: 0, duration: 1.2, ease: "power4.out",
+          y: 50, opacity: 0, duration: 1, ease: "power3.out",
           scrollTrigger: { trigger: ctaRef.current, start: "top 95%" },
         });
       }
       if (linksRef.current) {
         gsap.from(linksRef.current.querySelectorAll(".footer-col"), {
-          y: 40, opacity: 0, stagger: 0.12, duration: 0.8, ease: "power3.out",
+          y: 30, opacity: 0, stagger: 0.1, duration: 0.8, ease: "power3.out",
           scrollTrigger: { trigger: linksRef.current, start: "top 92%" },
         });
       }
@@ -89,33 +85,38 @@ export default function Footer() {
   return (
     <footer
       ref={footerRef}
-      className="relative bg-[#fbfbfd] pt-24 pb-12 overflow-hidden border-t border-black/5"
+      className="relative bg-bg-base text-text-primary pt-24 pb-12 overflow-hidden border-t border-border-subtle"
     >
-      {/* Background decoration */}
-      <div className="absolute bottom-[10%] -left-[10%] w-[800px] h-[800px] bg-blue-50/50 blur-[120px] rounded-full pointer-events-none" />
-      <div className="absolute top-[10%] -right-[10%] w-[600px] h-[600px] bg-slate-50/50 blur-[100px] rounded-full pointer-events-none" />
+      {/* Subtle light ambient glow */}
+      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-250 h-125 bg-linear-to-t from-brand-accent/5 to-transparent blur-35 pointer-events-none z-0" />
+
+      {/* Large watermark background */}
+      <div className="absolute bottom-20 left-1/2 -translate-x-1/2 text-[14vw] font-black text-black/2 tracking-tighter uppercase select-none pointer-events-none z-0 text-center w-full">
+        VEXA TECH
+      </div>
 
       <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-20 relative z-10">
 
         {/* ── TOP CTA ── */}
-        <div ref={ctaRef} className="mb-24 lg:mb-32">
-          <div className="grid lg:grid-cols-2 gap-12 items-center border-b border-black/5 pb-20">
-            <div>
-              <p className="text-[#0071e3] font-bold uppercase tracking-wider text-[11px] mb-6">
-                Ready to transform?
-              </p>
-              <h2 className="text-4xl md:text-5xl lg:text-7xl font-bold text-[#1d1d1f] leading-[1.1] tracking-tight mb-8">
-                Let&apos;s build <span className="text-[#0071e3]">what&apos;s next.</span>
+        <div ref={ctaRef} className="mb-20 lg:mb-28">
+          <div className="bg-bg-surface border border-border-subtle rounded-4xl p-8 md:p-14 relative overflow-hidden flex flex-col lg:flex-row items-center justify-between gap-10 shadow-sm">
+            <div className="absolute -right-20 -top-20 w-80 h-80 bg-brand-accent/5 rounded-full blur-[90px] pointer-events-none" />
+            <div className="max-w-2xl relative z-10">
+              <div className="system-tag mb-4">
+                <span className="status-dot" />
+                SYS // READY FOR DEPLOYMENT
+              </div>
+              <h2 className="text-3xl md:text-5xl font-extrabold text-text-primary leading-tight tracking-tight mb-4">
+                Let&apos;s build <span className="text-brand-accent">what&apos;s next.</span>
               </h2>
-              <p className="text-[#6e6e73] text-xl font-light leading-relaxed max-w-lg">
-                Your vision, our architecture. Together, we create digital ecosystems
-                that define industries.
+              <p className="text-text-muted text-base md:text-lg font-normal leading-relaxed">
+                Your vision, our enterprise architecture. Together, we engineer digital ecosystems that dominate markets.
               </p>
             </div>
-            <div className="flex flex-col sm:flex-row items-center gap-5 lg:justify-end">
+            <div className="flex flex-col sm:flex-row items-center gap-4 shrink-0 relative z-10 w-full sm:w-auto">
               <Link
                 href="/contact"
-                className="group glass-btn-primary shadow-lg shadow-blue-500/10"
+                className="group glass-btn-primary w-full sm:w-auto justify-center"
               >
                 Get Started
                 <ArrowUpRight
@@ -127,9 +128,9 @@ export default function Footer() {
                 href={getGmailLink("vexatech.connect@gmail.com", "Project Inquiry")}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group glass-btn-secondary"
+                className="group glass-btn-secondary w-full sm:w-auto justify-center"
               >
-                <Mail size={18} />
+                <Mail size={18} className="text-text-primary" />
                 Send Inquiry
               </Link>
             </div>
@@ -137,35 +138,34 @@ export default function Footer() {
         </div>
 
         {/* ── MAIN CONTENT ── */}
-        <div ref={linksRef} className="grid grid-cols-1 md:grid-cols-12 gap-12 lg:gap-16 mb-24">
+        <div ref={linksRef} className="grid grid-cols-1 md:grid-cols-12 gap-12 lg:gap-16 mb-20 relative z-10">
 
           {/* Brand */}
           <div className="footer-col md:col-span-12 lg:col-span-4">
-            <Link href="/" className="inline-flex items-center gap-4 group mb-8">
-              <div className="w-11 h-11 flex items-center justify-center bg-white border border-slate-100 rounded-2xl transition-all duration-500 group-hover:rotate-6 group-hover:scale-105 group-hover:border-[#0071e3]/30 group-hover:shadow-lg">
+            <Link href="/" className="inline-flex items-center gap-3.5 group mb-6">
+              <div className="w-10 h-10 flex items-center justify-center bg-black/5 border border-black/5 rounded-xl transition-all duration-300 group-hover:border-brand-accent">
                 <Image
                   src="/vexatechlogo.svg"
                   alt="VEXA TECH"
                   width={28}
                   height={28}
-                  className="w-7 h-7 object-contain opacity-80"
+                  className="w-7 h-7 object-contain"
                 />
               </div>
-              <span className="text-xl font-bold text-[#1d1d1f] tracking-tight group-hover:text-[#0071e3] transition-colors">
+              <span className="text-xl font-extrabold text-text-primary tracking-tight group-hover:text-brand-accent transition-colors">
                 VEXA TECH
               </span>
             </Link>
-            <p className="text-[#6e6e73] text-[15px] leading-relaxed font-light mb-10 max-w-xs">
-              VEXA TECH builds refined digital experiences through modern design,
-              scalable development, and growth-focused execution.
+            <p className="text-text-muted text-sm leading-relaxed mb-8 max-w-xs font-normal">
+              VEXA TECH architects high-performance digital experiences combining immersive design, enterprise engineering, and rapid scalability.
             </p>
 
             {/* Socials */}
-            <div className="flex flex-col gap-4">
-              <span className="text-[11px] font-bold uppercase tracking-wider text-slate-300">
-                Follow Us
+            <div className="flex flex-col gap-3">
+              <span className="text-[11px] font-bold uppercase tracking-wider text-text-muted opacity-60">
+                Connect // Global
               </span>
-              <div className="flex gap-3">
+              <div className="flex gap-2.5">
                 {socialLinks.map((social) => {
                   const Icon = social.icon;
                   return (
@@ -175,7 +175,7 @@ export default function Footer() {
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label={social.name}
-                      className="w-10 h-10 rounded-xl glass-surface-subtle text-slate-500 flex items-center justify-center transition-all duration-300 hover:border-[#0071e3] hover:text-[#0071e3] hover:shadow-md hover:-translate-y-0.5"
+                      className="w-10 h-10 rounded-xl bg-black/5 border border-black/5 text-text-muted flex items-center justify-center transition-all duration-300 hover:border-brand-accent hover:text-white hover:bg-brand-accent hover:-translate-y-1"
                     >
                       <Icon className="w-4 h-4" />
                     </Link>
@@ -187,22 +187,23 @@ export default function Footer() {
 
           {/* Company links */}
           <div className="footer-col md:col-span-6 lg:col-span-3 lg:col-start-6">
-            <h4 className="text-slate-400 font-bold mb-8 uppercase text-[11px] tracking-wider">Company</h4>
-            <ul className="space-y-4">
+            <h4 className="text-text-muted opacity-60 font-bold mb-6 uppercase text-[11px] tracking-wider">Company</h4>
+            <ul className="space-y-3.5">
               {[
                 { name: "About Us",       href: "/about" },
-                { name: "Our Process",    href: "/#process" }, // Keeping process as hash if it stays on home
-                { name: "The Advantage",  href: "/#why-us" },  // Keeping why-us as hash if it stays on home
+                { name: "Our Process",    href: "/#process" },
+                { name: "Recent Projects",href: "/#projects" },
                 { name: "Meet the Team",  href: "/team" },
+                { name: "Careers",        href: "/careers" },
                 { name: "Contact",        href: "/contact" },
               ].map((link) => (
                 <li key={link.name}>
                   <Link
                     href={link.href}
-                    className="group flex items-center text-[#6e6e73] hover:text-[#0071e3] transition-colors duration-300 text-[15px]"
+                    className="group flex items-center text-text-muted hover:text-brand-accent transition-colors duration-300 text-sm font-medium"
                   >
                     <ChevronRight
-                      className="w-0 opacity-0 overflow-hidden transition-all duration-300 group-hover:w-4 group-hover:opacity-100 group-hover:mr-2 text-[#0071e3] shrink-0"
+                      className="w-0 opacity-0 overflow-hidden transition-all duration-300 group-hover:w-4 group-hover:opacity-100 group-hover:mr-1.5 text-brand-accent shrink-0"
                       size={14}
                     />
                     {link.name}
@@ -214,8 +215,8 @@ export default function Footer() {
 
           {/* Services links */}
           <div className="footer-col md:col-span-6 lg:col-span-3">
-            <h4 className="text-slate-400 font-bold mb-8 uppercase text-[11px] tracking-wider">Services</h4>
-            <ul className="space-y-4">
+            <h4 className="text-text-muted opacity-60 font-bold mb-6 uppercase text-[11px] tracking-wider">Services</h4>
+            <ul className="space-y-3.5">
               {[
                 { name: "Web Development",  href: "/services/web-development" },
                 { name: "UI / UX Design",   href: "/services/ui-ux-design" },
@@ -226,10 +227,10 @@ export default function Footer() {
                 <li key={link.name}>
                   <Link
                     href={link.href}
-                    className="group flex items-center text-[#6e6e73] hover:text-[#0071e3] transition-colors duration-300 text-[15px]"
+                    className="group flex items-center text-text-muted hover:text-brand-accent transition-colors duration-300 text-sm font-medium"
                   >
                     <ChevronRight
-                      className="w-0 opacity-0 overflow-hidden transition-all duration-300 group-hover:w-4 group-hover:opacity-100 group-hover:mr-2 text-[#0071e3] shrink-0"
+                      className="w-0 opacity-0 overflow-hidden transition-all duration-300 group-hover:w-4 group-hover:opacity-100 group-hover:mr-1.5 text-brand-accent shrink-0"
                       size={14}
                     />
                     {link.name}
@@ -241,22 +242,20 @@ export default function Footer() {
         </div>
 
         {/* ── BOTTOM BAR ── */}
-        <div className="pt-10 border-t border-black/5 flex flex-col md:flex-row items-center justify-between gap-6">
-          <div className="flex flex-col md:flex-row items-center gap-4 md:gap-10">
-            <p className="text-slate-400 text-[13px]">
-              © {new Date().getFullYear()} VEXA TECH. All rights reserved.
-            </p>
-            <div className="flex items-center gap-6">
-              {footerLinks.support.map((link) => (
-                <a
-                  key={link.name}
-                  href={link.href}
-                  className="text-slate-400 hover:text-[#1d1d1f] transition-colors text-[13px]"
-                >
-                  {link.name}
-                </a>
-              ))}
-            </div>
+        <div className="pt-8 border-t border-border-subtle flex flex-col md:flex-row items-center justify-between gap-4 relative z-10">
+          <p className="text-text-muted opacity-60 text-xs">
+            © {new Date().getFullYear()} VEXA TECH. All rights reserved. Enterprise Redesign Edition.
+          </p>
+          <div className="flex items-center gap-6">
+            {footerLinks.support.map((link) => (
+              <Link
+                key={link.name}
+                href={link.href}
+                className="text-text-muted opacity-60 hover:text-text-primary transition-colors text-xs"
+              >
+                {link.name}
+              </Link>
+            ))}
           </div>
         </div>
       </div>

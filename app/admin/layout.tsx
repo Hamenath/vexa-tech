@@ -2,7 +2,6 @@
 
 import Sidebar from "@/app/components/admin/Sidebar";
 import { usePathname } from "next/navigation";
-import { metadata } from "@/app/layout";
 
 export default function AdminLayout({
   children,

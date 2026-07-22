@@ -5,20 +5,17 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { 
   Printer, 
-  HelpCircle, 
   Copy, 
   Check, 
-  FileText, 
-  ChevronRight,
-  Briefcase,
-  CreditCard,
-  Lock,
-  AlertCircle,
-  Mail
+  ShieldCheck, 
+  Database,
+  Eye,
+  Settings,
+  Mail,
+  AlertCircle
 } from "lucide-react";
-import { cn } from "@/app/lib/utils";
 
-const Section = ({ title, icon: Icon, children }: { title: string, icon: any, children: React.ReactNode }) => (
+const Section = ({ title, icon: Icon, children }: { title: string, icon: React.ComponentType<{ size?: number }>, children: React.ReactNode }) => (
   <motion.section 
     initial={{ opacity: 0, y: 30 }}
     whileInView={{ opacity: 1, y: 0 }}
@@ -26,10 +23,10 @@ const Section = ({ title, icon: Icon, children }: { title: string, icon: any, ch
     className="mb-16 last:mb-0"
   >
     <div className="flex items-center gap-4 mb-8">
-      <div className="w-12 h-12 rounded-2xl bg-indigo-50 border border-indigo-100 flex items-center justify-center text-indigo-600">
+      <div className="w-12 h-12 rounded-2xl bg-black/5 border border-black/5 flex items-center justify-center text-brand-accent shadow-sm">
         <Icon size={24} />
       </div>
-      <h2 className="text-3xl font-bold text-gray-900 tracking-tight">{title}</h2>
+      <h2 className="text-3xl font-black text-text-primary tracking-tight">{title}</h2>
     </div>
     <div className="pl-0 md:pl-16">
       {children}
@@ -52,43 +49,45 @@ export default function TermsOfService() {
   };
 
   return (
-    <main className="min-h-screen bg-white">
+    <main className="min-h-screen bg-bg-base text-text-primary pt-20">
       {/* Header Section */}
-      <section className="pt-32 pb-20 border-b border-gray-100 bg-zinc-50/50">
+      <section className="pt-24 pb-20 border-b border-border-subtle bg-bg-light">
         <div className="max-w-4xl mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             className="text-center"
           >
-            <p className="text-indigo-600 font-bold uppercase tracking-[0.2em] text-xs mb-6">
-              Legal Framework
-            </p>
-            <h1 className="text-3xl sm:text-4xl md:text-7xl font-black text-gray-900 mb-8 tracking-tight">
+            <div className="system-tag mb-6 mx-auto w-fit bg-white/80 backdrop-blur shadow-sm">
+              <span className="status-dot" />
+              SYS // LEGAL FRAMEWORK
+            </div>
+            <h1 className="text-4xl sm:text-5xl md:text-7xl font-black text-text-primary mb-6 tracking-tight">
               Terms of Service
             </h1>
-            <p className="text-xl text-gray-500 font-medium max-w-2xl mx-auto leading-relaxed mb-10">
-              Please read these terms carefully before using our services. They define the rules and regulations for the use of VEXA TECH's Website.
+            <p className="text-xl text-text-muted font-normal max-w-2xl mx-auto leading-relaxed mb-10">
+              Please read these terms carefully before engaging with VEXA TECH services and digital architecture.
             </p>
 
             <div className="flex flex-wrap items-center justify-center gap-4">
               <button 
                 onClick={handlePrint}
-                className="group glass-btn-secondary px-6 py-3 text-sm font-bold shadow-sm"
+                className="group glass-btn-secondary px-6 py-3 text-sm font-bold shadow-sm h-auto"
               >
                 <Printer size={18} className="shrink-0" />
                 Print Terms
               </button>
-              <button 
-                className="group glass-btn-primary px-6 py-3 text-sm font-bold shadow-lg shadow-blue-500/10"
+              <Link 
+                href="/contact"
+                className="group glass-btn-primary px-6 py-3 text-sm font-bold shadow-sm h-auto"
               >
                 <AlertCircle size={18} className="shrink-0" />
                 Contact Legal
-              </button>
+              </Link>
             </div>
             
-            <p className="mt-12 text-sm text-gray-400 font-medium">
-              Effective Date: <span className="text-gray-900">January 15, 2026</span>
+            <p className="mt-10 text-sm text-text-muted font-mono">
+              Effective Date: <span className="text-text-primary font-bold">January 15, 2026</span>
             </p>
           </motion.div>
         </div>
@@ -98,86 +97,39 @@ export default function TermsOfService() {
       <section className="py-24">
         <div className="max-w-4xl mx-auto px-6">
           
-          <Section title="1. Agreement to Terms" icon={FileText}>
-            <p className="text-gray-600 text-lg leading-relaxed mb-6 font-medium">
-              By accessing or using the website and services of VEXA TECH (&quot;we&quot;, &quot;us&quot;, or &quot;our&quot;), you agree to be bound by these Terms of Service. If you disagree with any part of these terms, you may not access our services.
+          <Section title="1. Agreement to Terms" icon={ShieldCheck}>
+            <p className="text-text-muted text-lg leading-relaxed mb-6 font-normal">
+              By accessing or using the VEXA TECH website, tools, or consulting services, you agree to be bound by these Terms of Service. If you do not agree to these terms, please do not access or use our platform.
             </p>
           </Section>
 
-          <Section title="2. Scope of Services" icon={Briefcase}>
-            <p className="text-gray-600 text-lg leading-relaxed mb-8 font-medium">
-              VEXA TECH provides digital services including but not limited to:
+          <Section title="2. Intellectual Property Rights" icon={Database}>
+            <p className="text-text-muted text-lg leading-relaxed mb-6 font-normal">
+              Unless otherwise agreed in a separate master service agreement, all website designs, custom code, graphics, and brand trademarks remain the intellectual property of VEXA TECH or its respective licensors.
             </p>
-            
-            <div className="grid md:grid-cols-2 gap-6">
+          </Section>
+
+          <Section title="3. User Warranties & Conduct" icon={Eye}>
+            <ul className="space-y-6">
               {[
-                { title: "Web Development", desc: "Creating responsive websites, web applications, and frontend solutions." },
-                { title: "UI/UX Design", desc: "Designing user interfaces, wireframes, and prototypes." }
-              ].map((item, i) => (
-                <div key={i} className="p-6 rounded-3xl bg-zinc-50 border border-zinc-100 flex flex-col gap-2">
-                  <h3 className="text-lg font-bold text-gray-900">{item.title}</h3>
-                  <p className="text-gray-500 text-sm font-medium leading-relaxed">
-                    {item.desc}
-                  </p>
-                </div>
-              ))}
-            </div>
-            <p className="mt-6 text-sm text-gray-400 italic font-medium">
-              Specific deliverables will be outlined in your individual project contract or proposal.
-            </p>
-          </Section>
-
-          <Section title="3. Payments & Refunds" icon={CreditCard}>
-            <div className="space-y-6">
-              {[
-                { label: "Deposit", text: "A 50% non-refundable deposit is required to commence any project." },
-                { label: "Final Payment", text: "The remaining 50% is due upon project completion and before final file delivery." },
-                { label: "Refunds", text: "Since our services are digital and custom-made, refunds are not provided once work has commenced, unless the project is cancelled by VEXA TECH." }
-              ].map((item, i) => (
-                <div key={i} className="flex gap-4 items-start">
-                  <div className="w-2 h-2 rounded-full bg-indigo-500 mt-2.5 shrink-0" />
-                  <p className="text-lg text-gray-600 font-medium leading-relaxed">
-                    <span className="text-gray-900 font-bold block mb-1">{item.label}</span>
-                    {item.text}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </Section>
-
-          <Section title="4. Intellectual Property (IP)" icon={Lock}>
-            <div className="space-y-8">
-              <div>
-                <h3 className="text-xl font-bold text-gray-900 mb-4">Client Ownership:</h3>
-                <p className="text-gray-600 text-lg font-medium leading-relaxed">
-                  Upon full payment, the client will own the final visual designs and compiled code of the specific project.
-                </p>
-              </div>
-              <div>
-                <h3 className="text-xl font-bold text-gray-900 mb-4">Agency Rights:</h3>
-                <p className="text-gray-600 text-lg font-medium leading-relaxed">
-                   VEXA TECH retains the right to use the completed work in our portfolio, website, and marketing materials for demonstration purposes.
-                </p>
-              </div>
-            </div>
-          </Section>
-
-          <Section title="5. Limitation of Liability" icon={AlertCircle}>
-            <p className="text-gray-600 text-lg leading-relaxed font-medium mb-6">
-              In no event shall VEXA TECH, nor its directors, employees, or partners, be liable for any indirect, incidental, special, consequential or punitive damages, including without limitation, loss of profits, data, use, goodwill, or other intangible losses, resulting from:
-            </p>
-            <ul className="space-y-4">
-              {[
-                "Your access to or use of or inability to access or use the Service;",
-                "Any unauthorized access to or use of our servers and/or any personal information stored therein;",
-                "Any bugs, viruses, or the like that may be transmitted to or through our service by any third party."
+                "You agree to provide accurate and verifiable information when submitting project inquiries.",
+                "You agree not to use our infrastructure for malicious activities, probing, or unauthorized scanning.",
+                "All communications submitted through VEXA TECH forms must adhere to lawful business practices."
               ].map((text, i) => (
-                <li key={i} className="flex gap-3 items-center group text-gray-500 font-medium">
-                  <ChevronRight size={14} className="text-indigo-500" />
-                  {text}
+                <li key={i} className="flex gap-4 items-start group">
+                  <div className="w-6 h-6 rounded-full bg-brand-accent/10 flex items-center justify-center text-brand-accent mt-1 shrink-0 group-hover:bg-brand-accent group-hover:text-white transition-colors">
+                    <Check size={14} strokeWidth={3} />
+                  </div>
+                  <p className="text-lg text-text-muted font-normal leading-relaxed">{text}</p>
                 </li>
               ))}
             </ul>
+          </Section>
+
+          <Section title="4. Limitation of Liability" icon={Settings}>
+            <p className="text-text-muted text-lg leading-relaxed font-normal">
+              In no event shall VEXA TECH or its directors, employees, or partners be liable for indirect, incidental, or consequential damages resulting from your access to or use of our web services.
+            </p>
           </Section>
 
           {/* Final CTA Area */}
@@ -185,28 +137,28 @@ export default function TermsOfService() {
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            className="mt-32 p-12 lg:p-16 rounded-[40px] bg-gray-900 text-white text-center shadow-2xl relative overflow-hidden"
+            className="mt-28 p-12 lg:p-16 rounded-3xl bg-white border border-border-subtle text-text-primary text-center shadow-sm relative overflow-hidden"
           >
-            <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_top_right,rgba(99,102,241,0.15),transparent_50%)]" />
+            <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_top_right,rgba(0,113,227,0.03),transparent_60%)] pointer-events-none" />
             
-            <p className="relative z-10 text-indigo-400 font-bold uppercase tracking-widest text-xs mb-6">
-              Fair & Transparent
-            </p>
-            <h2 className="relative z-10 text-3xl md:text-5xl font-black mb-8">
-              Questions about our Terms?
+            <div className="system-tag mb-6 mx-auto w-fit bg-white shadow-sm">
+              SYS // LEGAL INQUIRIES
+            </div>
+            <h2 className="relative z-10 text-3xl md:text-5xl font-black mb-6">
+              Need legal clarification?
             </h2>
-            <p className="relative z-10 text-gray-400 text-lg mb-10 font-medium max-w-xl mx-auto">
-              We believe in fair and transparent business practices and are here to discuss any specific concerns regarding these terms.
+            <p className="relative z-10 text-text-muted text-lg mb-10 font-normal max-w-xl mx-auto">
+              Our team is ready to answer questions about master service contracts, NDAs, or terms of service.
             </p>
             
-            <div className="relative z-10 inline-flex flex-col sm:flex-row items-center gap-4 bg-white/5 backdrop-blur-md p-2 rounded-3xl border border-white/10">
+            <div className="relative z-10 inline-flex flex-col sm:flex-row items-center gap-4 bg-black/5 p-2 rounded-2xl border border-black/5">
               <div className="flex items-center gap-3 px-6 py-4">
-                <Mail className="text-indigo-500" size={20} />
-                <span className="font-bold text-lg">{email}</span>
+                <Mail className="text-brand-accent" size={20} />
+                <span className="font-bold text-lg text-text-primary">{email}</span>
               </div>
               <button 
                 onClick={handleCopyEmail}
-                className="w-full sm:w-auto group glass-btn-primary px-8 py-4 rounded-2xl font-bold shadow-lg shadow-blue-500/10"
+                className="w-full sm:w-auto group glass-btn-primary px-8 py-4 rounded-xl font-bold h-auto"
               >
                 {copied ? <Check size={18} className="shrink-0" /> : <Copy size={18} className="shrink-0" />}
                 {copied ? "Copied!" : "Copy Email"}

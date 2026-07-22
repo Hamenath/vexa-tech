@@ -5,17 +5,14 @@ import { db } from "@/app/lib/firebase";
 import { collection, onSnapshot, query, orderBy, getDocs, deleteDoc, doc } from "firebase/firestore";
 import { motion, AnimatePresence } from "framer-motion";
 import { 
-  MessageSquare, 
   Search,
   Filter,
   ArrowRight,
-  User,
   Inbox,
   Mail,
   Clock,
   Download
 } from "lucide-react";
-import { format } from "date-fns";
 import { Lead } from "@/app/types/lead";
 import { LeadDetailDrawer } from "@/app/components/admin/LeadDetailDrawer";
 import PageHeader from "@/app/components/admin/PageHeader";
@@ -148,7 +145,7 @@ export default function MessagesCenter() {
               transition={{ delay: i * 0.03 }}
               whileHover={{ y: -4 }}
               onClick={() => setSelectedLead(lead)}
-              className="bg-white p-7 rounded-[32px] border border-gray-100 shadow-sm hover:shadow-xl hover:shadow-gray-200/40 transition-all duration-300 cursor-pointer flex flex-col group relative overflow-hidden"
+              className="bg-white p-7 rounded-4xl border border-gray-100 shadow-sm hover:shadow-xl hover:shadow-gray-200/40 transition-all duration-300 cursor-pointer flex flex-col group relative overflow-hidden"
             >
               {/* Card Header */}
               <div className="flex items-start justify-between mb-6">

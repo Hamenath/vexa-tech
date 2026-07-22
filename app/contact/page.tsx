@@ -10,7 +10,7 @@ export const metadata = {
 export default function ContactPage() {
   return (
     <PageTransition>
-      <main className="min-h-screen bg-white pt-20">
+      <main className="min-h-screen bg-bg-base text-text-primary pt-20">
         <Contact />
         <ScrollToTop />
       </main>

@@ -8,10 +8,10 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
 const metrics = [
-  { value: "150+", label: "Projects Delivered" },
-  { value: "99%", label: "Client Satisfaction" },
-  { value: "2x", label: "Faster Turnaround" },
-  { value: "24/7", label: "Support Availability" },
+  { value: "05+", label: "Completed Client Projects", code: "SYS // 01" },
+  { value: "100%", label: "Client Satisfaction", code: "SYS // 02" },
+  { value: "05+", label: "Business Partners", code: "SYS // 03" },
+  { value: "24/7", label: "Dedicated Support", code: "SYS // 04" },
 ];
 
 export default function Metrics() {
@@ -20,7 +20,7 @@ export default function Metrics() {
 
   useGSAP(() => {
     gsap.from(cardsRef.current, {
-      y: 40,
+      y: 30,
       opacity: 0,
       stagger: 0.12,
       duration: 0.8,
@@ -34,25 +34,26 @@ export default function Metrics() {
   }, { scope: containerRef });
 
   return (
-    <section ref={containerRef} className="py-20 md:py-24 lg:py-28 bg-white relative border-t border-gray-100">
-      <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
-          
+    <section ref={containerRef} className="py-20 md:py-24 bg-bg-base text-text-primary relative border-t border-border-subtle">
+      <div className="max-w-7xl mx-auto px-6 md:px-8 lg:px-12">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
           {metrics.map((metric, idx) => (
             <div 
               key={idx} 
               ref={el => { cardsRef.current[idx] = el; }}
-              className="metric-card p-8 rounded-2xl bg-white border border-gray-100 shadow-[0_4px_20px_rgba(0,0,0,0.02)] flex flex-col items-center justify-center group hover:bg-white transition-all duration-500 hover:shadow-md"
+              className="p-8 rounded-3xl bg-white border border-border-subtle flex flex-col items-center justify-center text-center group hover:border-brand-accent/20 hover:shadow-md transition-all duration-300 shadow-sm"
             >
-              <h3 className="text-4xl md:text-5xl font-bold text-gray-900 mb-2 group-hover:text-brand-accent transition-colors duration-300">
+              <span className="text-[10px] font-mono text-text-muted/65 tracking-wider mb-2">
+                {metric.code}
+              </span>
+              <h3 className="text-4xl md:text-5xl font-black text-text-primary mb-2 group-hover:text-brand-accent transition-colors duration-300">
                 {metric.value}
               </h3>
-              <p className="text-gray-500 text-sm md:text-base font-medium tracking-wide uppercase">
+              <p className="text-text-muted text-xs md:text-sm font-semibold tracking-wider uppercase">
                 {metric.label}
               </p>
             </div>
           ))}
-
         </div>
       </div>
     </section>

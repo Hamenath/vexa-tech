@@ -1,7 +1,7 @@
 import PageTransition from "../../components/PageTransition";
 import ScrollToTop from "../../components/ScrollToTop";
 import Link from "next/link";
-import { ArrowLeft, CheckCircle2, Layout, MousePointer2, Palette, ArrowRight, Zap, Shield, Globe } from "lucide-react";
+import { ArrowLeft, CheckCircle2, Layout, MousePointer2, Palette, ArrowRight } from "lucide-react";
 
 const Figma = ({ className, size = 24, strokeWidth = 2 }: { className?: string; size?: number; strokeWidth?: number }) => (
   <svg
@@ -41,14 +41,14 @@ export default function UIUXDesignPage() {
     <PageTransition>
       <main className="min-h-screen bg-white pt-32 pb-24 relative overflow-hidden">
         {/* Background decoration */}
-        <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-blue-50/50 rounded-full blur-[120px] pointer-events-none" />
-        <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-slate-50/50 rounded-full blur-[100px] pointer-events-none" />
+        <div className="absolute top-0 right-0 w-200 h-200 bg-blue-50/50 rounded-full blur-30 pointer-events-none" />
+        <div className="absolute bottom-0 left-0 w-150 h-150 bg-slate-50/50 rounded-full blur-25 pointer-events-none" />
 
         <div className="max-w-5xl mx-auto px-6 relative z-10">
           {/* Back Link */}
           <Link 
             href="/services"
-            className="inline-flex items-center gap-1.5 text-[#6e6e73] hover:text-[#0071e3] transition-colors mb-16 group font-medium"
+            className="inline-flex items-center gap-1.5 text-[#6e6e73] hover:text-brand-accent transition-colors mb-16 group font-medium"
           >
             <ArrowLeft size={16} className="group-hover:-translate-x-1 transition-transform" />
             Back to Services
@@ -57,11 +57,11 @@ export default function UIUXDesignPage() {
           {/* Hero */}
           <div className="mb-24">
             <div className="w-16 h-16 rounded-2xl bg-slate-50 border border-slate-100 flex items-center justify-center mb-10">
-              <Figma className="text-[#0071e3]" size={32} strokeWidth={1.5} />
+              <Figma className="text-brand-accent" size={32} strokeWidth={1.5} />
             </div>
             <h1 className="text-3xl sm:text-4xl md:text-8xl font-bold text-[#1d1d1f] leading-[1.1] tracking-tight mb-10">
               UI / UX <br />
-              <span className="text-[#0071e3]">Design</span>
+              <span className="text-brand-accent">Design</span>
             </h1>
             <p className="text-[#6e6e73] text-xl md:text-2xl font-light leading-relaxed max-w-3xl">
               We design digital products that feel intuitive and look exceptional. 
@@ -73,9 +73,9 @@ export default function UIUXDesignPage() {
           {/* Feature Grid */}
           <div className="grid md:grid-cols-2 gap-8 mb-32">
             {features.map((f, i) => (
-              <div key={i} className="glass-card p-6 sm:p-8 lg:p-10 rounded-[32px] transition-all duration-500 group">
+              <div key={i} className="glass-card p-6 sm:p-8 lg:p-10 rounded-4xl transition-all duration-500 group">
                 <div className="w-12 h-12 rounded-xl bg-slate-50 flex items-center justify-center mb-8 group-hover:bg-blue-50 transition-colors">
-                  <CheckCircle2 className="text-[#0071e3]" size={24} />
+                  <CheckCircle2 className="text-brand-accent" size={24} />
                 </div>
                 <h3 className="text-2xl font-bold text-[#1d1d1f] mb-4">{f.title}</h3>
                 <p className="text-[#6e6e73] text-[15px] font-light leading-relaxed">{f.desc}</p>
@@ -89,7 +89,7 @@ export default function UIUXDesignPage() {
             <div className="grid md:grid-cols-3 gap-12">
               <div className="space-y-6">
                 <div className="p-3 w-fit rounded-xl bg-slate-50">
-                  <Layout className="text-[#0071e3]" size={20} />
+                  <Layout className="text-brand-accent" size={20} />
                 </div>
                 <h4 className="text-xl font-bold text-[#1d1d1f]">User-Centric</h4>
                 <p className="text-[#6e6e73] font-light leading-relaxed">
@@ -99,7 +99,7 @@ export default function UIUXDesignPage() {
               </div>
               <div className="space-y-6">
                 <div className="p-3 w-fit rounded-xl bg-slate-50">
-                  <Palette className="text-[#0071e3]" size={20} />
+                  <Palette className="text-brand-accent" size={20} />
                 </div>
                 <h4 className="text-xl font-bold text-[#1d1d1f]">Aesthetic Precision</h4>
                 <p className="text-[#6e6e73] font-light leading-relaxed">
@@ -109,7 +109,7 @@ export default function UIUXDesignPage() {
               </div>
               <div className="space-y-6">
                 <div className="p-3 w-fit rounded-xl bg-slate-50">
-                  <MousePointer2 className="text-[#0071e3]" size={20} />
+                  <MousePointer2 className="text-brand-accent" size={20} />
                 </div>
                 <h4 className="text-xl font-bold text-[#1d1d1f]">Fluid Interaction</h4>
                 <p className="text-[#6e6e73] font-light leading-relaxed">

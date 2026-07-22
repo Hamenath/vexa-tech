@@ -3,14 +3,11 @@
 import { useEffect, useState, useCallback } from "react";
 import { db } from "@/app/lib/firebase";
 import { collection, onSnapshot, query, orderBy, getDocs, deleteDoc, doc } from "firebase/firestore";
-import { motion } from "framer-motion";
 import { 
-  Users, 
   Download,
 } from "lucide-react";
 import { Lead } from "@/app/types/lead";
-import { format } from "date-fns";
-import { cn, formatDate } from "@/app/lib/utils";
+import { formatDate } from "@/app/lib/utils";
 import LeadsTable from "@/app/components/admin/LeadsTable";
 import { LeadDetailDrawer } from "@/app/components/admin/LeadDetailDrawer";
 import PageHeader from "@/app/components/admin/PageHeader";

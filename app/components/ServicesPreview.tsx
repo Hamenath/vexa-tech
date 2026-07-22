@@ -9,26 +9,23 @@ const previewServices = [
   {
     title: "Web Development",
     slug: "web-development",
+    sysCode: "SYS // 01",
     icon: Code2,
-    desc: "High-performance, SEO-optimized digital ecosystems.",
-    color: "#7c3aed",
-    glow: "rgba(124,58,237,0.2)",
+    desc: "High-performance, SEO-optimized digital ecosystems engineered for enterprise stability and rapid conversion.",
   },
   {
     title: "UI / UX Design",
     slug: "ui-ux-design",
+    sysCode: "SYS // 02",
     icon: Layers,
-    desc: "Refined digital experiences balancing elegance and function.",
-    color: "#3b82f6",
-    glow: "rgba(59,130,246,0.2)",
+    desc: "Refined digital interfaces balancing visual authority with intuitive user journeys and high conversion clarity.",
   },
   {
     title: "Digital Marketing",
     slug: "digital-marketing",
+    sysCode: "SYS // 03",
     icon: TrendingUp,
-    desc: "Data-driven strategies designed to scale your reach.",
-    color: "#10b981",
-    glow: "rgba(16,185,129,0.2)",
+    desc: "Data-driven growth strategies designed to scale reach, command brand presence, and deliver measurable ROI.",
   },
 ];
 
@@ -46,21 +43,27 @@ export default function ServicesPreview() {
   };
 
   return (
-    <section className="relative py-24 md:py-32 bg-white">
+    <section className="relative py-24 md:py-32 bg-bg-base text-text-primary border-t border-border-subtle overflow-hidden">
+      {/* Background radial glow */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-200 h-125 bg-brand-accent/3 rounded-full blur-35 pointer-events-none" />
+
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         <div ref={headerRef} className="mb-16">
           <motion.div
-            initial={{ opacity: 0, y: 10 }}
+            initial={{ opacity: 0, y: 15 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6 }}
           >
-            <div className="section-tag mb-8">Our Expertise</div>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#1d1d1f] leading-tight tracking-tight mb-8">
-              Solutions <span className="text-[#0071e3]">designed</span> for growth
+            <div className="system-tag mb-8 bg-white/50 backdrop-blur shadow-sm">
+              <span className="status-dot" />
+              SYS // CAPABILITIES
+            </div>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-text-primary leading-tight tracking-tight mb-6">
+              Solutions <span className="text-gradient-blue">engineered</span> for dominance
             </h2>
-            <p className="text-[#6e6e73] text-xl font-light leading-relaxed max-w-xl">
-              From web architecture to brand strategy, we provide the engineering excellence 
-              needed for modern digital dominance.
+            <p className="text-text-muted text-[18px] font-normal leading-relaxed max-w-2xl">
+              From web architecture to digital strategy, we provide the technical precision 
+              needed for enterprise-grade execution.
             </p>
           </motion.div>
         </div>
@@ -82,19 +85,26 @@ export default function ServicesPreview() {
                   <motion.div 
                     whileHover={{ y: -4 }}
                     onMouseMove={handleMouseMove}
-                    className="glass-card-interactive p-6 sm:p-8 h-full rounded-3xl transition-all duration-300"
+                    className="glass-card-interactive p-8 h-full rounded-3xl bg-white border border-border-subtle hover:border-brand-accent/20 hover:shadow-sm transition-all duration-300 flex flex-col"
                   >
-                    <div className="w-12 h-12 rounded-2xl bg-white border border-slate-100 flex items-center justify-center mb-6 group-hover:bg-blue-50 group-hover:border-blue-100 transition-all duration-500 shadow-xs">
-                      <Icon size={24} className="text-[#0071e3]" />
+                    <div className="flex items-center justify-between mb-8">
+                      <div className="w-12 h-12 rounded-2xl bg-black/5 border border-black/5 flex items-center justify-center group-hover:border-brand-accent/20 group-hover:bg-brand-accent/5 transition-all duration-300">
+                        <Icon size={24} className="text-text-primary group-hover:text-brand-accent transition-colors" />
+                      </div>
+                      <span className="text-[10px] font-mono text-text-muted/65 tracking-wider">
+                        {service.sysCode}
+                      </span>
                     </div>
-                    <h3 className="text-xl font-bold text-[#1d1d1f] mb-3 group-hover:text-[#0071e3] transition-all duration-300">
+
+                    <h3 className="text-xl font-bold text-text-primary mb-3 group-hover:text-brand-accent transition-colors">
                       {service.title}
                     </h3>
-                    <p className="text-[#6e6e73] text-sm font-light leading-relaxed mb-6">
+                    <p className="text-text-muted text-sm font-normal leading-relaxed mb-8 flex-1">
                       {service.desc}
                     </p>
-                    <div className="flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-[#0071e3] opacity-0 group-hover:opacity-100 transition-all duration-300">
-                      Learn More <ArrowRight size={12} className="group-hover:translate-x-1 transition-transform" />
+
+                    <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-brand-accent group-hover:text-brand-accent-hover transition-colors">
+                      Learn More <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
                     </div>
                   </motion.div>
                 </Link>
@@ -106,7 +116,7 @@ export default function ServicesPreview() {
         <div className="flex justify-center">
           <Link
             href="/services"
-            className="group glass-btn-primary shadow-lg shadow-blue-500/10 text-base"
+            className="group glass-btn-primary shadow-sm text-base h-auto py-3.5"
           >
             Explore All Services
             <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />

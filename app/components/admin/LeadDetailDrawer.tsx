@@ -6,7 +6,6 @@ import {
   Mail, 
   Phone, 
   Save, 
-  Clock,
   User,
   MessageSquare,
   BadgeInfo,

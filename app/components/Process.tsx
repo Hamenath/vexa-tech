@@ -8,33 +8,33 @@ import { ArrowRight } from "lucide-react";
 const steps = [
   {
     id: "01",
+    sysCode: "PHASE // 01",
     title: "Discover",
-    desc: "We dive deep into your brand, target audience, and market positioning to uncover core opportunities.",
-    color: "#0071e3",
+    desc: "We analyze your enterprise model, target demographics, and competitive landscape to pinpoint core digital leverage.",
   },
   {
     id: "02",
+    sysCode: "PHASE // 02",
     title: "Strategize",
-    desc: "Architecting a precise, scalable roadmap aligned with your business objectives and digital vision.",
-    color: "#0071e3",
+    desc: "Architecting a high-precision, scalable technical roadmap aligned with long-term business goals and growth targets.",
   },
   {
     id: "03",
+    sysCode: "PHASE // 03",
     title: "Design",
-    desc: "Crafting immersive, premium UI/UX that captures attention and elegantly communicates value.",
-    color: "#0071e3",
+    desc: "Crafting immersive, high-end editorial UI/UX that commands attention and communicates brand authority.",
   },
   {
     id: "04",
+    sysCode: "PHASE // 04",
     title: "Develop",
-    desc: "Building the foundation using modern frameworks with flawless performance and scalability.",
-    color: "#0071e3",
+    desc: "Engineering the foundation with modern Next.js App Router, TypeScript, and high-performance animation engines.",
   },
   {
     id: "05",
-    title: "Grow",
-    desc: "Driving exponential growth through continuous optimization and data-driven refinement.",
-    color: "#0071e3",
+    sysCode: "PHASE // 05",
+    title: "Scale & Grow",
+    desc: "Deploying and scaling your application through data-driven performance tuning and continuous feature delivery.",
   },
 ];
 
@@ -52,10 +52,10 @@ function TimelineCard({
   return (
     <div
       ref={ref}
-      className="relative flex items-center w-full mb-20 md:mb-32"
+      className="relative flex items-center w-full mb-16 md:mb-28"
     >
-      {/* Left side (even: card / odd: empty) - hidden on mobile */}
-      <div className="hidden md:block w-full md:w-1/2 md:pr-16">
+      {/* Left side */}
+      <div className="hidden md:block w-full md:w-1/2 md:pr-14">
         {isEven && (
           <motion.div
             initial={{ opacity: 0, x: -30 }}
@@ -67,7 +67,7 @@ function TimelineCard({
         )}
       </div>
 
-      {/* Center node */}
+      {/* Center glowing node */}
       <div className="absolute left-1/2 -translate-x-1/2 z-20 hidden md:flex flex-col items-center">
         <motion.div
           initial={{ scale: 0, opacity: 0 }}
@@ -75,14 +75,12 @@ function TimelineCard({
           transition={{ delay: 0.2, duration: 0.5, type: "spring" }}
           className="relative"
         >
-          <div
-            className="w-5 h-5 rounded-full border-4 border-white z-20 relative bg-[#0071e3] shadow-lg shadow-blue-500/20"
-          />
+          <div className="w-5 h-5 rounded-full border-2 border-white z-20 relative bg-brand-accent shadow-sm" />
         </motion.div>
       </div>
 
-      {/* Right side (odd: card / even: empty) - hidden on mobile */}
-      <div className="hidden md:block w-full md:w-1/2 md:pl-16">
+      {/* Right side */}
+      <div className="hidden md:block w-full md:w-1/2 md:pl-14">
         {!isEven && (
           <motion.div
             initial={{ opacity: 0, x: 30 }}
@@ -99,7 +97,7 @@ function TimelineCard({
         initial={{ opacity: 0, y: 20 }}
         animate={isInView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.6 }}
-        className="md:hidden w-full pl-12"
+        className="md:hidden w-full pl-10"
       >
         <StepCard step={step} isMobile />
       </motion.div>
@@ -126,18 +124,21 @@ function StepCard({
   return (
     <div
       onMouseMove={handleMouseMove}
-      className={`group glass-card-interactive p-6 sm:p-8 lg:p-10 rounded-[32px] transition-all duration-500 ${isMobile ? "block" : "hidden md:block"}`}
+      className={`group glass-card-interactive p-8 rounded-3xl bg-white border border-border-subtle hover:border-brand-accent/20 hover:shadow-md transition-all duration-500 ${isMobile ? "block" : "hidden md:block"}`}
     >
-      <div
-        className="inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-[#0071e3] text-white font-bold text-sm mb-6 shadow-md shadow-blue-500/10 border border-white/30"
-      >
-        {step.id}
+      <div className="flex items-center justify-between mb-6">
+        <div className="inline-flex items-center justify-center w-11 h-11 rounded-2xl bg-brand-accent text-white font-bold text-sm shadow-sm border border-brand-accent/25">
+          {step.id}
+        </div>
+        <span className="text-[10px] font-mono text-text-muted/65 tracking-wider">
+          {step.sysCode}
+        </span>
       </div>
 
-      <h3 className="text-2xl font-bold text-[#1d1d1f] mb-4 tracking-tight">
+      <h3 className="text-2xl font-black text-text-primary mb-3 tracking-tight group-hover:text-brand-accent transition-colors">
         {step.title}
       </h3>
-      <p className="text-[#6e6e73] text-base leading-relaxed font-light">
+      <p className="text-text-muted text-base leading-relaxed font-normal">
         {step.desc}
       </p>
     </div>
@@ -164,42 +165,43 @@ export default function Process() {
     <section
       id="process"
       ref={containerRef}
-      className="relative py-32 md:py-48 bg-white overflow-hidden"
+      className="relative py-32 md:py-44 bg-bg-base text-text-primary border-t border-border-subtle overflow-hidden"
     >
-      {/* Background decoration */}
-      <div className="absolute top-[10%] left-[5%] w-[600px] h-[600px] bg-blue-50/50 rounded-full blur-[120px] pointer-events-none" />
-      <div className="absolute bottom-[10%] right-[5%] w-[500px] h-[500px] bg-slate-50/50 rounded-full blur-[100px] pointer-events-none" />
+      {/* Light Ambient background */}
+      <div className="absolute top-[15%] left-1/2 -translate-x-1/2 w-200 h-150 bg-brand-accent/3 rounded-full blur-40 pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
 
         {/* Header */}
-        <div ref={headerRef} className="text-center mb-24 md:mb-40">
+        <div ref={headerRef} className="text-center mb-20 md:mb-32">
           <motion.div
-            initial={{ opacity: 0, y: 10 }}
+            initial={{ opacity: 0, y: 15 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6 }}
           >
-            <div className="section-tag mb-8 mx-auto w-fit">Execution Strategy</div>
-            <h2 className="text-3xl sm:text-4xl md:text-7xl font-bold text-[#1d1d1f] leading-tight tracking-tight mb-8">
-              How we <span className="text-[#0071e3]">architect</span> success
+            <div className="system-tag mb-8 mx-auto w-fit bg-white/50 backdrop-blur shadow-sm">
+              <span className="status-dot" />
+              SYS // EXECUTION BLUEPRINT
+            </div>
+            <h2 className="text-4xl sm:text-5xl md:text-7xl font-black text-text-primary leading-tight tracking-tight mb-8">
+              How we <span className="text-gradient-blue">architect</span> success
             </h2>
-            <p className="text-[#6e6e73] text-xl font-light max-w-2xl mx-auto leading-relaxed">
-              A refined blueprint for digital dominance, engineered through intentional 
-              strategy and meticulous execution.
+            <p className="text-text-muted text-xl font-normal max-w-2xl mx-auto leading-relaxed">
+              A refined blueprint for enterprise digital dominance, engineered through strategic methodology and continuous execution.
             </p>
           </motion.div>
         </div>
 
         {/* Timeline */}
         <div className="relative max-w-5xl mx-auto">
-          {/* Animated SVG path — desktop only */}
+          {/* Animated SVG path — desktop */}
           <div className="absolute left-1/2 top-0 bottom-0 w-px hidden md:block -translate-x-1/2 overflow-visible pointer-events-none">
             <svg
               width="2"
               height="100%"
               className="absolute inset-0 h-full"
             >
-              <line x1="1" y1="0" x2="1" y2="100%" stroke="rgba(0,0,0,0.05)" strokeWidth="2" />
+              <line x1="1" y1="0" x2="1" y2="100%" stroke="rgba(0,0,0,0.06)" strokeWidth="2" />
               <motion.line
                 x1="1"
                 y1="0"
@@ -212,8 +214,8 @@ export default function Process() {
             </svg>
           </div>
 
-          {/* Mobile track */}
-          <div className="absolute left-6 top-0 bottom-0 w-px bg-slate-100 md:hidden" />
+          {/* Mobile line track */}
+          <div className="absolute left-4 top-0 bottom-0 w-px bg-black/5 md:hidden" />
 
           {/* Steps */}
           <div className="relative z-10">
@@ -230,12 +232,12 @@ export default function Process() {
           viewport={{ once: true }}
           className="mt-20 text-center"
         >
-          <p className="text-slate-400 font-bold uppercase tracking-widest text-[11px] mb-8">
-            Ready to start the journey?
+          <p className="text-text-muted opacity-60 font-mono text-xs uppercase tracking-widest mb-8">
+            Ready to initiate your build?
           </p>
           <Link
             href="/contact"
-            className="group glass-btn-primary shadow-lg shadow-blue-500/10 text-lg"
+            className="group glass-btn-primary shadow-sm text-lg h-auto py-3.5"
           >
             Start Your Project
             <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />

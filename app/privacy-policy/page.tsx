@@ -15,9 +15,8 @@ import {
   Settings,
   Mail
 } from "lucide-react";
-import { cn } from "@/app/lib/utils";
 
-const Section = ({ title, icon: Icon, children }: { title: string, icon: any, children: React.ReactNode }) => (
+const Section = ({ title, icon: Icon, children }: { title: string, icon: React.ComponentType<{ size?: number }>, children: React.ReactNode }) => (
   <motion.section 
     initial={{ opacity: 0, y: 30 }}
     whileInView={{ opacity: 1, y: 0 }}
@@ -25,10 +24,10 @@ const Section = ({ title, icon: Icon, children }: { title: string, icon: any, ch
     className="mb-16 last:mb-0"
   >
     <div className="flex items-center gap-4 mb-8">
-      <div className="w-12 h-12 rounded-2xl bg-blue-50 border border-blue-100 flex items-center justify-center text-blue-600">
+      <div className="w-12 h-12 rounded-2xl bg-black/5 border border-black/5 flex items-center justify-center text-brand-accent shadow-sm">
         <Icon size={24} />
       </div>
-      <h2 className="text-3xl font-bold text-gray-900 tracking-tight">{title}</h2>
+      <h2 className="text-3xl font-black text-text-primary tracking-tight">{title}</h2>
     </div>
     <div className="pl-0 md:pl-16">
       {children}
@@ -51,44 +50,45 @@ export default function PrivacyPolicy() {
   };
 
   return (
-    <main className="min-h-screen bg-white">
+    <main className="min-h-screen bg-bg-base text-text-primary pt-20">
       {/* Header Section */}
-      <section className="pt-32 pb-20 border-b border-gray-100 bg-zinc-50/50">
+      <section className="pt-24 pb-20 border-b border-border-subtle bg-bg-light">
         <div className="max-w-4xl mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             className="text-center"
           >
-            <p className="text-blue-600 font-bold uppercase tracking-[0.2em] text-xs mb-6">
-              Transparency & Trust
-            </p>
-            <h1 className="text-3xl sm:text-4xl md:text-7xl font-black text-gray-900 mb-8 tracking-tight">
+            <div className="system-tag mb-6 mx-auto w-fit bg-white/80 backdrop-blur shadow-sm">
+              <span className="status-dot" />
+              SYS // TRANSPARENCY & TRUST
+            </div>
+            <h1 className="text-4xl sm:text-5xl md:text-7xl font-black text-text-primary mb-6 tracking-tight">
               Privacy Policy
             </h1>
-            <p className="text-xl text-gray-500 font-medium max-w-2xl mx-auto leading-relaxed mb-10">
-              Transparency is key. We believe you should know exactly how we handle your data.
+            <p className="text-xl text-text-muted font-normal max-w-2xl mx-auto leading-relaxed mb-10">
+              Transparency is key. We believe you should know exactly how we handle and protect your enterprise data.
             </p>
 
             <div className="flex flex-wrap items-center justify-center gap-4">
               <button 
                 onClick={handlePrint}
-                className="group glass-btn-secondary px-6 py-3 text-sm font-bold shadow-sm"
+                className="group glass-btn-secondary px-6 py-3 text-sm font-bold shadow-sm h-auto"
               >
                 <Printer size={18} className="shrink-0" />
                 Print Policy
               </button>
               <Link
                 href="/support"
-                className="group glass-btn-primary px-6 py-3 text-sm font-bold shadow-lg shadow-blue-500/10"
+                className="group glass-btn-primary px-6 py-3 text-sm font-bold shadow-sm h-auto"
               >
                 <HelpCircle size={18} className="shrink-0" />
                 Have Questions?
               </Link>
             </div>
             
-            <p className="mt-12 text-sm text-gray-400 font-medium">
-              Effective Date: <span className="text-gray-900">January 15, 2026</span>
+            <p className="mt-10 text-sm text-text-muted font-mono">
+              Effective Date: <span className="text-text-primary font-bold">January 15, 2026</span>
             </p>
           </motion.div>
         </div>
@@ -99,28 +99,28 @@ export default function PrivacyPolicy() {
         <div className="max-w-4xl mx-auto px-6">
           
           <Section title="1. Introduction" icon={ShieldCheck}>
-            <p className="text-gray-600 text-lg leading-relaxed mb-6 font-medium">
-              Welcome to VEXA TECH. We respect your privacy and are committed to protecting your personal data. This policy outlines our practices regarding data collection, use, and protection when you visit our website.
+            <p className="text-text-muted text-lg leading-relaxed mb-6 font-normal">
+              Welcome to VEXA TECH. We respect your privacy and are committed to protecting your personal data. This policy outlines our practices regarding data collection, use, and protection when you visit our website or interact with our services.
             </p>
           </Section>
 
           <Section title="2. Information We Collect" icon={Database}>
-            <p className="text-gray-600 text-lg leading-relaxed mb-8 font-medium">
+            <p className="text-text-muted text-lg leading-relaxed mb-8 font-normal">
               We collect specific data to provide our services effectively:
             </p>
             
-            <div className="grid md:grid-cols-2 gap-6">
+            <div className="grid md:grid-cols-3 gap-6">
               {[
-                { title: "Identity Data", items: ["First name", "Last name", "Organization name"] },
-                { title: "Contact Data", items: ["Email address", "Phone numbers", "Billing address"] },
-                { title: "Technical Data", items: ["IP address", "Browser type", "Device information"] }
+                { title: "Identity Data", items: ["First name", "Last name", "Organization"] },
+                { title: "Contact Data", items: ["Email ID", "Phone number", "Requirements"] },
+                { title: "Technical Data", items: ["IP address", "Browser type", "Device info"] }
               ].map((item, i) => (
-                <div key={i} className="p-6 rounded-3xl bg-zinc-50 border border-zinc-100">
-                  <h3 className="text-lg font-bold text-gray-900 mb-3">{item.title}</h3>
+                <div key={i} className="p-6 rounded-3xl bg-white border border-border-subtle hover:border-brand-accent/10 hover:shadow-sm transition-all duration-300">
+                  <h3 className="text-base font-bold text-text-primary mb-3">{item.title}</h3>
                   <ul className="space-y-2">
                     {item.items.map((sub, j) => (
-                      <li key={j} className="text-gray-500 text-sm flex items-center gap-2 font-medium">
-                        <ChevronRight size={14} className="text-blue-500" />
+                      <li key={j} className="text-text-muted text-sm flex items-center gap-2 font-normal">
+                        <ChevronRight size={14} className="text-brand-accent" />
                         {sub}
                       </li>
                     ))}
@@ -133,53 +133,39 @@ export default function PrivacyPolicy() {
           <Section title="3. How We Use Your Data" icon={Eye}>
             <ul className="space-y-6">
               {[
-                "To reply to your enquiries sent through our forms.",
-                "To schedule and manage consultations via Calendly.",
-                "To improve our website performance and user experience."
+                "To reply to your inquiries sent through our contact forms.",
+                "To schedule and manage consultation sessions.",
+                "To improve our website performance and high-availability digital architecture."
               ].map((text, i) => (
                 <li key={i} className="flex gap-4 items-start group">
-                  <div className="w-6 h-6 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 mt-1 shrink-0 group-hover:bg-blue-600 group-hover:text-white transition-colors">
+                  <div className="w-6 h-6 rounded-full bg-brand-accent/10 flex items-center justify-center text-brand-accent mt-1 shrink-0 group-hover:bg-brand-accent group-hover:text-white transition-colors">
                     <Check size={14} strokeWidth={3} />
                   </div>
-                  <p className="text-lg text-gray-600 font-medium leading-relaxed">{text}</p>
+                  <p className="text-lg text-text-muted font-normal leading-relaxed">{text}</p>
                 </li>
               ))}
             </ul>
           </Section>
 
           <Section title="4. Third-Party Services" icon={Settings}>
-            <p className="text-gray-600 text-lg leading-relaxed mb-8 font-medium">
-              We rely on trusted third-party providers. Click to visit their privacy policies:
+            <p className="text-text-muted text-lg leading-relaxed mb-8 font-normal">
+              We rely on trusted enterprise providers to deliver smooth application experiences:
             </p>
             <div className="flex flex-wrap gap-4">
-              <Link 
-                href="https://web3forms.com/privacy" 
-                target="_blank"
-                className="group flex flex-col p-8 rounded-3xl bg-white border border-gray-100 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 flex-1 min-w-[280px]"
-              >
-                <h3 className="text-xl font-bold text-gray-900 mb-2">Web3Forms</h3>
-                <p className="text-gray-500 text-sm font-medium mb-6">Powers our contact forms securely. Does not sell your data.</p>
-                <span className="text-blue-600 text-xs font-bold uppercase tracking-wider flex items-center gap-2">
-                  View Policy <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
-                </span>
-              </Link>
-              <Link 
-                href="https://calendly.com/privacy" 
-                target="_blank"
-                className="group flex flex-col p-8 rounded-3xl bg-white border border-gray-100 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 flex-1 min-w-[280px]"
-              >
-                <h3 className="text-xl font-bold text-gray-900 mb-2">Calendly</h3>
-                <p className="text-gray-500 text-sm font-medium mb-6">Manages appointment bookings and scheduling.</p>
-                <span className="text-blue-600 text-xs font-bold uppercase tracking-wider flex items-center gap-2">
-                  View Policy <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
-                </span>
-              </Link>
+              <div className="group flex flex-col p-8 rounded-3xl bg-white border border-border-subtle flex-1 min-w-70 hover:border-brand-accent/10 hover:shadow-sm transition-all duration-300">
+                <h3 className="text-xl font-bold text-text-primary mb-2">Firebase (Google)</h3>
+                <p className="text-text-muted text-sm font-normal">Powers lead storage and serverless document operations securely.</p>
+              </div>
+              <div className="group flex flex-col p-8 rounded-3xl bg-white border border-border-subtle flex-1 min-w-70 hover:border-brand-accent/10 hover:shadow-sm transition-all duration-300">
+                <h3 className="text-xl font-bold text-text-primary mb-2">Twilio & Nodemailer</h3>
+                <p className="text-text-muted text-sm font-normal">Triggers instant WhatsApp and Email lead notifications.</p>
+              </div>
             </div>
           </Section>
 
           <Section title="5. Cookies & Tracking" icon={ShieldCheck}>
-            <p className="text-gray-600 text-lg leading-relaxed font-medium">
-              Our website uses minimal cookies to enhance user experience. We do not use intrusive tracking cookies for advertising purposes without your consent. You may choose to set your web browser to refuse cookies.
+            <p className="text-text-muted text-lg leading-relaxed font-normal">
+              Our website uses minimal operational cookies to enhance user experience. We do not use intrusive tracking cookies for advertising purposes without your consent.
             </p>
           </Section>
 
@@ -188,28 +174,28 @@ export default function PrivacyPolicy() {
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            className="mt-32 p-12 lg:p-16 rounded-[40px] bg-gray-900 text-white text-center shadow-2xl relative overflow-hidden"
+            className="mt-28 p-12 lg:p-16 rounded-3xl bg-white border border-border-subtle text-text-primary text-center shadow-sm relative overflow-hidden"
           >
-            <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_top_right,rgba(37,99,235,0.15),transparent_50%)]" />
+            <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_top_right,rgba(0,113,227,0.03),transparent_60%)] pointer-events-none" />
             
-            <p className="relative z-10 text-blue-400 font-bold uppercase tracking-widest text-xs mb-6">
-              Contact Privacy Team
-            </p>
-            <h2 className="relative z-10 text-3xl md:text-5xl font-black mb-8">
+            <div className="system-tag mb-6 mx-auto w-fit bg-white shadow-sm">
+              SYS // PRIVACY TEAM
+            </div>
+            <h2 className="relative z-10 text-3xl md:text-5xl font-black mb-6">
               Still have questions?
             </h2>
-            <p className="relative z-10 text-gray-400 text-lg mb-10 font-medium max-w-xl mx-auto">
-              We are happy to clarify any doubts regarding your data privacy and how we protect your information.
+            <p className="relative z-10 text-text-muted text-lg mb-10 font-normal max-w-xl mx-auto">
+              We are happy to clarify any questions regarding data privacy and how we protect your enterprise information.
             </p>
             
-            <div className="relative z-10 inline-flex flex-col sm:flex-row items-center gap-4 bg-white/5 backdrop-blur-md p-2 rounded-3xl border border-white/10">
+            <div className="relative z-10 inline-flex flex-col sm:flex-row items-center gap-4 bg-black/5 p-2 rounded-2xl border border-black/5">
               <div className="flex items-center gap-3 px-6 py-4">
-                <Mail className="text-blue-500" size={20} />
-                <span className="font-bold text-lg">{email}</span>
+                <Mail className="text-brand-accent" size={20} />
+                <span className="font-bold text-lg text-text-primary">{email}</span>
               </div>
               <button 
                 onClick={handleCopyEmail}
-                className="w-full sm:w-auto group glass-btn-primary px-8 py-4 rounded-2xl font-bold shadow-lg shadow-blue-500/10"
+                className="w-full sm:w-auto group glass-btn-primary px-8 py-4 rounded-xl font-bold h-auto"
               >
                 {copied ? <Check size={18} className="shrink-0" /> : <Copy size={18} className="shrink-0" />}
                 {copied ? "Copied!" : "Copy Email"}
@@ -219,25 +205,5 @@ export default function PrivacyPolicy() {
         </div>
       </section>
     </main>
-  );
-}
-
-// Re-using ArrowRight for inner links since lucide-react is imported
-function ArrowRight({ className, size }: { className?: string, size?: number }) {
-  return (
-    <svg 
-      className={className} 
-      width={size || 24} 
-      height={size || 24} 
-      viewBox="0 0 24 24" 
-      fill="none" 
-      stroke="currentColor" 
-      strokeWidth="2" 
-      strokeLinecap="round" 
-      strokeLinejoin="round"
-    >
-      <line x1="5" y1="12" x2="19" y2="12"></line>
-      <polyline points="12 5 19 12 12 19"></polyline>
-    </svg>
   );
 }

@@ -6,22 +6,26 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
+interface FirestoreTimestamp {
+  toDate: () => Date;
+}
+
 /**
  * Safely formats a date from various formats (Firestore Timestamp, number, Date object, etc.)
  */
-export function formatDate(date: any, formatStr: string = "MMM dd, yyyy") {
+export function formatDate(date: unknown, formatStr: string = "MMM dd, yyyy") {
   if (!date) return "N/A";
   
   try {
     let validDate: Date;
     
     // Handle Firestore Timestamp
-    if (date && typeof date.toDate === "function") {
-      validDate = date.toDate();
+    if (typeof date === "object" && date !== null && "toDate" in date && typeof (date as FirestoreTimestamp).toDate === "function") {
+      validDate = (date as FirestoreTimestamp).toDate();
     } 
     // Handle milliseconds or date string
     else {
-      validDate = new Date(date);
+      validDate = new Date(date as string | number | Date);
     }
     
     // Check if valid

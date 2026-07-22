@@ -4,15 +4,11 @@ import { useEffect, useState, useCallback, useMemo } from "react";
 import { db } from "@/app/lib/firebase";
 import { collection, onSnapshot, query, orderBy, getDocs, deleteDoc, doc } from "firebase/firestore";
 import { 
-  Users, 
-  BarChart3, 
   TrendingUp, 
-  UserPlus, 
-  PhoneCall, 
-  CheckCircle2, 
-  PieChart as PieIcon,
   Activity,
-  Zap
+  Zap,
+  ShieldCheck,
+  LucideIcon
 } from "lucide-react";
 import { Lead } from "@/app/types/lead";
 import AnalyticsCharts from "@/app/components/admin/AnalyticsCharts";
@@ -95,7 +91,7 @@ export default function AnalyticsPage() {
             key={stat.label}
             label={stat.label}
             value={stat.value}
-            icon={stat.icon as any}
+            icon={stat.icon as LucideIcon}
             index={stat.index}
             trend={stat.trend}
           />
@@ -108,6 +104,3 @@ export default function AnalyticsPage() {
     </div>
   );
 }
-
-// Reuse ShieldCheck from Sidebar if needed, or import it
-import { ShieldCheck } from "lucide-react";

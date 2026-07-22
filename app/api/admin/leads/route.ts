@@ -19,7 +19,7 @@ export async function GET() {
     const snapshot = await db.collection("leads").orderBy("createdAt", "desc").get();
     const leads = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
     return NextResponse.json(leads);
-  } catch (e) {
+  } catch {
     return NextResponse.json({ error: "Failed to fetch leads" }, { status: 500 });
   }
 }
@@ -39,7 +39,7 @@ export async function PATCH(req: Request) {
     });
 
     return NextResponse.json({ success: true });
-  } catch (e) {
+  } catch {
     return NextResponse.json({ error: "Failed to update lead" }, { status: 500 });
   }
 }

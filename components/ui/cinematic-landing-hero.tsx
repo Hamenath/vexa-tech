@@ -294,7 +294,7 @@ export default function CinematicLandingHero({
       <div className="absolute inset-0 z-20 flex items-center justify-center pointer-events-none" style={{ perspective: "1500px" }}>
         <div
           ref={mainCardRef}
-          className="main-card premium-depth-card relative overflow-hidden gsap-reveal flex items-center justify-center pointer-events-auto w-[92vw] md:w-[85vw] h-[92vh] md:h-[85vh] rounded-[32px] md:rounded-[40px]"
+          className="main-card premium-depth-card relative overflow-hidden gsap-reveal flex items-center justify-center pointer-events-auto w-[92vw] md:w-[85vw] h-[92vh] md:h-[85vh] rounded-4xl md:rounded-[40px]"
         >
           <div className="card-sheen" aria-hidden="true" />
 
@@ -309,18 +309,18 @@ export default function CinematicLandingHero({
             </div>
 
             {/* IPHONE MOCKUP */}
-            <div className="mockup-scroll-wrapper order-2 lg:order-2 relative w-full h-[380px] lg:h-[600px] flex items-center justify-center z-10" style={{ perspective: "1000px" }}>
+            <div className="mockup-scroll-wrapper order-2 lg:order-2 relative w-full h-95 lg:h-150 flex items-center justify-center z-10" style={{ perspective: "1000px" }}>
               
               <div className="relative w-full h-full flex items-center justify-center transform scale-[0.65] md:scale-85 lg:scale-100">
                 
                 <div
                   ref={mockupRef}
-                  className="relative w-[280px] h-[580px] rounded-[3rem] iphone-bezel flex flex-col will-change-transform transform-style-3d"
+                  className="relative w-70 h-145 rounded-[3rem] iphone-bezel flex flex-col will-change-transform transform-style-3d"
                 >
                   {/* Physical Hardware Buttons */}
-                  <div className="absolute top-[120px] -left-[3px] w-[3px] h-[25px] hardware-btn rounded-l-md z-0" aria-hidden="true" />
-                  <div className="absolute top-[160px] -left-[3px] w-[3px] h-[45px] hardware-btn rounded-l-md z-0" aria-hidden="true" />
-                  <div className="absolute top-[220px] -left-[3px] w-[3px] h-[45px] hardware-btn rounded-l-md z-0" aria-hidden="true" />
+                  <div className="absolute top-30 -left-[3px] w-[3px] h-[25px] hardware-btn rounded-l-md z-0" aria-hidden="true" />
+                  <div className="absolute top-40 -left-[3px] w-[3px] h-[45px] hardware-btn rounded-l-md z-0" aria-hidden="true" />
+                  <div className="absolute top-55 -left-[3px] w-[3px] h-[45px] hardware-btn rounded-l-md z-0" aria-hidden="true" />
                   <div className="absolute top-[170px] -right-[3px] w-[3px] h-[70px] hardware-btn rounded-r-md z-0 scale-x-[-1]" aria-hidden="true" />
 
                   {/* Inner Screen Container */}
@@ -377,7 +377,7 @@ export default function CinematicLandingHero({
                         </div>
                       </div>
 
-                      <div className="absolute bottom-3 left-1/2 -translate-x-1/2 w-32 h-[4px] bg-white/10 rounded-full" />
+                      <div className="absolute bottom-3 left-1/2 -translate-x-1/2 w-32 h-1 bg-white/10 rounded-full" />
                     </div>
                   </div>
                 </div>
