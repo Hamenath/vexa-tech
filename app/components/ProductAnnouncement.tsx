@@ -75,7 +75,7 @@ export default function ProductAnnouncement() {
           >
             <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-text-primary tracking-tight leading-[1.1] mb-6">
               Introducing <br className="hidden sm:inline" />
-              <span className="bg-gradient-to-r from-orange-600 via-amber-500 to-orange-500 bg-clip-text text-transparent">
+              <span className="bg-linear-to-r from-orange-600 via-amber-500 to-orange-500 bg-clip-text text-transparent">
                 VARNAM
               </span>{" "}
               Bridal Software
@@ -112,7 +112,7 @@ export default function ProductAnnouncement() {
                 href={varnamUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group inline-flex items-center justify-center gap-2.5 h-13 px-8 rounded-full bg-gradient-to-r from-orange-600 to-amber-500 text-white font-bold text-base shadow-[0_4px_16px_rgba(234,88,12,0.25)] hover:shadow-[0_8px_24px_rgba(234,88,12,0.35)] hover:scale-[1.02] active:scale-[0.98] transition-all duration-300"
+                className="group inline-flex items-center justify-center gap-2.5 h-13 px-8 rounded-full bg-linear-to-r from-orange-600 to-amber-500 text-white font-bold text-base shadow-[0_4px_16px_rgba(234,88,12,0.25)] hover:shadow-[0_8px_24px_rgba(234,88,12,0.35)] hover:scale-[1.02] active:scale-[0.98] transition-all duration-300"
               >
                 <span>Visit VARNAM Platform</span>
                 <ArrowUpRight size={18} className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 shrink-0" />
@@ -159,7 +159,7 @@ export default function ProductAnnouncement() {
               </div>
 
               {/* Logo Presentation Container */}
-              <div className="relative aspect-square w-full max-w-[380px] mx-auto rounded-2xl bg-white flex items-center justify-center p-6 border border-border-light shadow-inner group-hover:scale-[1.02] transition-transform duration-500">
+              <div className="relative aspect-square w-full max-w-95 mx-auto rounded-2xl bg-white flex items-center justify-center p-6 border border-border-light shadow-inner group-hover:scale-[1.02] transition-transform duration-500">
                 <Image
                   src="/varnam-logo.jpg"
                   alt="VARNAM Bridal Software Logo"
@@ -186,4 +186,3 @@ export default function ProductAnnouncement() {
     </section>
   );
 }
-
