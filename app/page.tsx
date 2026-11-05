@@ -1,4 +1,5 @@
 import Hero from "./components/Hero";
+import ProductAnnouncement from "./components/ProductAnnouncement";
 import AboutPreview from "./components/AboutPreview";
 import RecentProjects from "./components/RecentProjects";
 import TeamPreview from "./components/TeamPreview";
@@ -12,6 +13,7 @@ export default function Home() {
     <PageTransition>
       <main className="min-h-screen bg-bg-base text-text-primary selection:bg-brand-accent/10 selection:text-brand-accent relative">
         <Hero />
+        <ProductAnnouncement />
         <AboutPreview />
         <RecentProjects />
         <TeamPreview />
