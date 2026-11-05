@@ -2,8 +2,7 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
-import Link from "next/link";
-import { ArrowUpRight, ArrowRight, Sparkles, Calendar, ShieldCheck, Zap, Bot } from "lucide-react";
+import { ArrowUpRight, Sparkles, Calendar, ShieldCheck, Zap, Bot } from "lucide-react";
 
 export default function ProductAnnouncement() {
   const varnamUrl = "https://varnam.vexatech.in/";
@@ -106,25 +105,17 @@ export default function ProductAnnouncement() {
               })}
             </div>
 
-            {/* Call to Action Buttons */}
+            {/* Call to Action Button */}
             <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
               <a
                 href={varnamUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group inline-flex items-center justify-center gap-2.5 h-13 px-8 rounded-full bg-linear-to-r from-orange-600 to-amber-500 text-white font-bold text-base shadow-[0_4px_16px_rgba(234,88,12,0.25)] hover:shadow-[0_8px_24px_rgba(234,88,12,0.35)] hover:scale-[1.02] active:scale-[0.98] transition-all duration-300"
+                className="group inline-flex items-center justify-center gap-2.5 h-13 px-8 rounded-full bg-linear-to-r from-orange-600 to-amber-500 text-white font-bold text-base shadow-[0_4px_16px_rgba(234,88,12,0.25)] hover:shadow-[0_8px_24px_rgba(234,88,12,0.35)] hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 w-fit"
               >
                 <span>Visit VARNAM Platform</span>
                 <ArrowUpRight size={18} className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 shrink-0" />
               </a>
-
-              <Link
-                href="/varnam"
-                className="group glass-btn-secondary text-base h-13 py-0 px-7 flex items-center justify-center"
-              >
-                <span>Live Preview via /varnam</span>
-                <ArrowRight size={16} className="transition-transform group-hover:translate-x-1 shrink-0" />
-              </Link>
             </div>
           </motion.div>
 
